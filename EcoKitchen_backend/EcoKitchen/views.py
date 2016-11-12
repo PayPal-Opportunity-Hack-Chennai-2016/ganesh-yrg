@@ -31,12 +31,13 @@ def signInUser(request):
   logger.critical("DATA :: " + request.body)
   result = True;
   msg = None;
+  userProfile = None
 
   if request.method == 'POST' and request.content_type == 'application/json' :
     mobile = request.data[UserProfile_MOBILE]
     password = request.data[UserProfile_PASSWORD]
     try :
-        UserProfile.objects.get(mobile=mobile, password=password)
+        userProfile = UserProfile.objects.get(mobile=mobile, password=password)
     except ObjectDoesNotExist:
         logger.critical("User did not exist")
         result = False
@@ -52,6 +53,8 @@ def signInUser(request):
     response_data = {}
     response_data['success'] = result
     response_data['message'] = msg
+    if userProfile:
+        response_data['userId'] = userProfile.id
   return JsonResponse(response_data)
 
 @api_view(['POST'])
@@ -61,6 +64,7 @@ def signUpUser(request):
 
     result = True
     msg = None
+    userProfile = None
     if request.method == 'POST' and request.content_type == 'application/json' :
         name = request.data[UserProfile_NAME]
         password = request.data[UserProfile_PASSWORD]
@@ -87,4 +91,6 @@ def signUpUser(request):
     response_data = {}
     response_data['success'] = result
     response_data['message'] = msg
+    if result:
+        response_data['userId'] = userProfile.id
     return JsonResponse(response_data)
