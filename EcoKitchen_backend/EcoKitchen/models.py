@@ -12,7 +12,7 @@ class Location(models.Model):
   long = models.CharField(max_length=30)
   address = models.CharField(max_length=200)
   description = models.CharField(max_length=50)
-  status = models.CharField(max_length=30)
+  status = models.BooleanField()
   user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
   def __str__(self):
     return self.address

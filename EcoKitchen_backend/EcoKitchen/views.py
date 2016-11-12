@@ -32,7 +32,7 @@ class LocationSerializer(serializers.Serializer):
     long = serializers.CharField(max_length=30)
     address = serializers.CharField(max_length=200)
     description = serializers.CharField(max_length=50)
-    status = serializers.CharField(max_length=30)
+    status = serializers.BooleanField()
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
@@ -152,9 +152,10 @@ def postLocation(request):
         userId = request.data['userId']
         lat = str(request.data['lat'])
         long = str(request.data['long'])
-        status = "Disabled"
+        status = False
         try:
             existingLocation = Location.objects.filter(Q(lat=lat) & Q(long=long))
+            userReferenced = None
             if existingLocation != None and existingLocation.count() > 0:
                 result = False
                 msg = "A Location is present with same Latitude and Longitude"
