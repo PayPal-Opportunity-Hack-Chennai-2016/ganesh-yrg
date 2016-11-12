@@ -1,4 +1,26 @@
 # ganesh-yrg
-<< Please enter the title of your idea >>
-<< Please enter the description about your idea >>
-<< Please enter your team details below >> 
+Eco Kitchen
+Mobile App for users to find the nearest Eco Kitchen to buy from, give suggestions from new Eco kitchen locations and planning a day to celebrate by donating food
+
+
+Team
+
+Kailesh R
+
+Ravi Shankar
+
+Kumaravel N
+
+Hari Haran
+
+Krishnan
+
+Kalyan
+
+Madan
+
+Aaakash Arora
+
+Rishi Swethan
+
+TriVikram
