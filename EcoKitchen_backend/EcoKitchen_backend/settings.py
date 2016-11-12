@@ -31,13 +31,13 @@ ALLOWED_HOSTS = ['192.168.115.1', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
-    'EcoKitchen.apps.EcokitchenConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'EcoKitchen',
 ]
 
 MIDDLEWARE_CLASSES = [

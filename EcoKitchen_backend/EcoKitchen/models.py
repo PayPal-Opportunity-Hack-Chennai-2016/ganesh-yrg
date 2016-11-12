@@ -4,7 +4,7 @@ class UserProfile(models.Model):
   name = models.CharField(max_length=30)
   address = models.CharField(max_length=250)
   email = models.EmailField(max_length=100, null=True, blank=True, default=None)
-  mobile = models.CharField(max_length=30, unique=True)
+  mobile = models.CharField(max_length=30)
   password = models.CharField(max_length=30)
 
 class Location(models.Model):
@@ -18,22 +18,15 @@ class Location(models.Model):
     return self.address
 
 class FeedBack(models.Model):
-   
-    person = models.ForeignKey(UserProfile, on_delete = models.CASCADE)
-    content = models.CharField(max_length=200)
-    loc = models.CharField(max_length=200) #location
-
-    def __str__(self):
-        return self.content
-        
+  content = models.CharField(max_length=200)
+  location = models.ForeignKey(Location, on_delete = models.CASCADE)
+  user = models.ForeignKey(UserProfile, on_delete = models.CASCADE)
 
 class ReferredPerson(models.Model):
-    assignedlocation = models.CharField(max_length=200, default="")
-    person = models.ForeignKey(UserProfile, on_delete = models.CASCADE)
-    name = models.CharField(max_length=200)
-    phone = models.CharField(max_length=200) #location
-    incomeRange = models.CharField(max_length=200)
-    maritalStatus = models.CharField(max_length=200)
-    description = models.CharField(max_length=200)
-    def __str__(self):
-        return self.name
+  location = models.OneToOneField(Location, on_delete = models.CASCADE, default=None)
+  name = models.CharField(max_length=200)
+  phone = models.CharField(max_length=200) #location
+  incomeRange = models.CharField(max_length=200)
+  maritalStatus = models.CharField(max_length=200)
+  description = models.CharField(max_length=200)
+  user = models.ForeignKey(UserProfile, on_delete = models.CASCADE)

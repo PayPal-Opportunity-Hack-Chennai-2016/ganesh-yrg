@@ -1,20 +1,19 @@
-from django.shortcuts import render, get_object_or_404, redirect
+import logging
+
+from django.core.exceptions import MultipleObjectsReturned
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 from django.http import HttpResponse
-<<<<<<< 16dc80e2d5fbc96a8516df805680c432fcf6b52f
 from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404
+from rest_framework import serializers
+from rest_framework.decorators import api_view
 from rest_framework.decorators import parser_classes
 from rest_framework.parsers import JSONParser
-from rest_framework import serializers
-from EcoKitchen.models import UserProfile, Location
-from django.core.exceptions import ObjectDoesNotExist
-from django.core.exceptions import MultipleObjectsReturned
-from django.core.exceptions import SuspiciousOperation
-from django.db.models import Q
-import logging
-import json
 
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from EcoKitchen.models import UserProfile,Location,FeedBack,ReferredPerson
+
+# Create your views here.
 
 logging.basicConfig()
 logger = logging.getLogger(__name__)
@@ -193,19 +192,6 @@ def getAllLocations(request):
         return JsonResponse(locationJson.data, safe=False)
     else:
         return JsonResponse({})
-=======
-from django.utils import timezone
-from django.http import Http404
-import requests
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
-from django.contrib.auth import login
-from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
-
-from django.template import loader
-from .models import UserProfile,Location,FeedBack,ReferredPerson
-# Create your views here.
 
 def locationspage(request):
 
@@ -249,6 +235,3 @@ def userdetail(request, user_id):
        inplist = request.POST.getlist('i_case')
        outlist = request.POST.getlist('o_case')
    return render(request, 'EcoKitchen/userdetail.html', {'usr': usr})
-
-
->>>>>>> UI changes
