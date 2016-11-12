@@ -183,7 +183,7 @@ def postLocation(request):
         response_data['locationId'] = location.id
     return JsonResponse(response_data)
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 @parser_classes((JSONParser,))
 def getAllLocations(request):
     locationList = Location.objects.all()
