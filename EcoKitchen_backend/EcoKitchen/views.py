@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
+<<<<<<< 16dc80e2d5fbc96a8516df805680c432fcf6b52f
 from django.http import JsonResponse
 from rest_framework.decorators import parser_classes
 from rest_framework.parsers import JSONParser
@@ -192,3 +193,62 @@ def getAllLocations(request):
         return JsonResponse(locationJson.data, safe=False)
     else:
         return JsonResponse({})
+=======
+from django.utils import timezone
+from django.http import Http404
+import requests
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth import login
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+
+from django.template import loader
+from .models import UserProfile,Location,FeedBack,ReferredPerson
+# Create your views here.
+
+def locationspage(request):
+
+    locations_list = Location.objects.all()
+    context = {'locations_list': locations_list}
+    return render(request,'EcoKitchen/locations.html',context)
+
+def userspage(request):
+
+    users_list = UserProfile.objects.all()
+    context = {'users_list': users_list}
+    return render(request,'EcoKitchen/users.html',context)
+
+
+def feedbackpage(request):
+
+    feedback_list = FeedBack.objects.all()
+    context = {'feedback_list': feedback_list}
+    return render(request,'EcoKitchen/feedbackpage.html',context)
+
+
+def entrepreneurs(request):
+
+    entre_list = ReferredPerson.objects.all()
+    context = {'entre_list': entre_list}
+    return render(request,'EcoKitchen/entrepreneurs.html',context) 
+
+
+
+def locationdetail(request, location_id):
+    location = get_object_or_404(Location, pk=location_id)
+    if(request.POST.get('subbtn')):
+        inplist = request.POST.getlist('i_case')
+        outlist = request.POST.getlist('o_case')
+
+    return render(request, 'EcoKitchen/locationdetail.html', {'loc': location})
+
+def userdetail(request, user_id):
+   usr = get_object_or_404(UserProfile, pk=user_id)
+   if(request.POST.get('subbtn')):
+       inplist = request.POST.getlist('i_case')
+       outlist = request.POST.getlist('o_case')
+   return render(request, 'EcoKitchen/userdetail.html', {'usr': usr})
+
+
+>>>>>>> UI changes

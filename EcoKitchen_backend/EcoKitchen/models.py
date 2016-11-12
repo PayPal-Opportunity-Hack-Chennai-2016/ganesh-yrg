@@ -16,3 +16,24 @@ class Location(models.Model):
   user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
   def __str__(self):
     return self.address
+
+class FeedBack(models.Model):
+   
+    person = models.ForeignKey(UserProfile, on_delete = models.CASCADE)
+    content = models.CharField(max_length=200)
+    loc = models.CharField(max_length=200) #location
+
+    def __str__(self):
+        return self.content
+        
+
+class ReferredPerson(models.Model):
+    assignedlocation = models.CharField(max_length=200, default="")
+    person = models.ForeignKey(UserProfile, on_delete = models.CASCADE)
+    name = models.CharField(max_length=200)
+    phone = models.CharField(max_length=200) #location
+    incomeRange = models.CharField(max_length=200)
+    maritalStatus = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
+    def __str__(self):
+        return self.name

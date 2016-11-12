@@ -1,0 +1,155 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Users list page</title>
+		<meta name="description" content="Locations:of users" />
+		<meta name="keywords" content="Locations of users" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="{% static 'EcoKitchen/normalize.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'EcoKitchen/demo.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'EcoKitchen/component.css' %}" />
+		<!--[if IE]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<style type="text/css">
+.form-style-6{
+    font: 95% Arial, Helvetica, sans-serif;
+    max-width: 400px;
+    margin: 10px auto;
+    padding: 16px;
+    background: #F7F7F7;
+}
+.form-style-6 h1{
+    background: #43D1AF;
+    padding: 20px 0;
+    font-size: 140%;
+    font-weight: 300;
+    text-align: center;
+    color: #fff;
+    margin: -16px -16px 16px -16px;
+}
+.form-style-6 input[type="text"],
+.form-style-6 input[type="date"],
+.form-style-6 input[type="datetime"],
+.form-style-6 input[type="email"],
+.form-style-6 input[type="number"],
+.form-style-6 input[type="search"],
+.form-style-6 input[type="time"],
+.form-style-6 input[type="url"],
+.form-style-6 textarea,
+.form-style-6 select
+{
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    background: #fff;
+    margin-bottom: 4%;
+    border: 1px solid #ccc;
+    padding: 3%;
+    color: #555;
+    font: 95% Arial, Helvetica, sans-serif;
+}
+.form-style-6 input[type="text"]:focus,
+.form-style-6 input[type="date"]:focus,
+.form-style-6 input[type="datetime"]:focus,
+.form-style-6 input[type="email"]:focus,
+.form-style-6 input[type="number"]:focus,
+.form-style-6 input[type="search"]:focus,
+.form-style-6 input[type="time"]:focus,
+.form-style-6 input[type="url"]:focus,
+.form-style-6 textarea:focus,
+.form-style-6 select:focus
+{
+    box-shadow: 0 0 5px #43D1AF;
+    padding: 3%;
+    border: 1px solid #43D1AF;
+}
+
+.form-style-6 input[type="submit"],
+.form-style-6 input[type="button"]{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    padding: 3%;
+    background: #43D1AF;
+    border-bottom: 2px solid #30C29E;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;   
+    color: #fff;
+}
+.form-style-6 input[type="submit"]:hover,
+.form-style-6 input[type="button"]:hover{
+    background: #2EBC99;
+}
+</style>
+	</head>
+	<body>
+		<div class="container">
+			<!-- Top Navigation -->
+			<div class="codrops-top clearfix">
+				
+				
+			</div>
+			<header>
+				<h1>Location Details<em></em> <span>Validation of location</span></h1>	
+				<nav class="codrops-demos">
+					<a href="../feedbackpage">Feedback</a>
+					<a class="current-demo" href="../locationspage">Locations of Entrepreneurs</a>
+					<a href="../userspage">List of users</a>
+					<a href="../entrepreneurs">List of Entrepreneurs</a>
+					
+					
+				</nav>
+			</header>
+			<div class="component">
+				<h2>Location:</h2>
+				
+				
+				<table>
+					<thead>
+						<tr>
+							<th>User profile</th>
+							<th>Location</th>
+							<th>Latitude</th>
+							<th>Longitude</th>
+							<th>Status</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+                        <tr><td align="left">{{loc.usr}}</td><td align="left">{{loc.address}}</td><td align="left">{{loc.lat}}</td><td align="left">{{loc.long}}</td><td align="left">{{loc.status}}</td><td align="left">{{loc.description}}</td></tr>
+
+                       
+					</tbody>
+				</table>
+				
+			</div>
+			<div class="form-style-6">
+            <h1>Contact Us</h1>
+            <form>
+			<input type="text" name="field1" placeholder="Location" />
+			<input type="email" name="field2" placeholder="Status" />
+			<textarea name="field3" placeholder="Type new Description"></textarea>
+			<input type="submit" value="Update" />
+			</form>
+			</div>
+		</div><!-- /container -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+		<script src="js/jquery.stickyheader.js"></script>
+	</body>
+</html>
