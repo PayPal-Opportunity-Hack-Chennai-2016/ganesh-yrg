@@ -17,6 +17,7 @@ class FlowViewController: UIViewController,UITableViewDataSource,UITableViewDele
         super.viewDidLoad();
         tableView.dataSource = self;
         tableView.delegate = self;
+        tableView.tableFooterView = UIView()
         self.navigationItem.setHidesBackButton(true, animated:true);
     }
 
@@ -46,6 +47,9 @@ class FlowViewController: UIViewController,UITableViewDataSource,UITableViewDele
        // prepare(for: "LocationViewController", sender: nil);
         if indexPath.row == 1 {
             performSegue(withIdentifier: "LocationViewController", sender: nil);
+        }
+        else if indexPath.row == 4 {
+            performSegue(withIdentifier: "FeedbackTableViewController", sender: nil);
         }
     }
     
