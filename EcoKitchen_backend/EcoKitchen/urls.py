@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^location/(?P<locationId>[0-9]+)$', views.getLocation),
     url(r'^location$', views.postLocation),
     url(r'^locations$', views.getAllLocations),
+    url(r'^feedback$', views.addFeedback),
     url(r'^userspage/$', views.userspage, name='userspage'),
     url(r'^locationspage/$', views.locationspage, name='locationspage'),
     url(r'^feedbackpage/$', views.feedbackpage, name='feedbackpage'),

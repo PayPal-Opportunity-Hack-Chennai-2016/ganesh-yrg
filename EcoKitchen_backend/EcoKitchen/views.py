@@ -193,6 +193,50 @@ def getAllLocations(request):
     else:
         return JsonResponse({})
 
+@api_view(['POST'])
+@parser_classes((JSONParser,))
+def addFeedback(request):
+    result = True
+    msg = None
+    feedback = None
+    if request.method == 'POST' and request.content_type == 'application/json' :
+        content = request.data['content']
+        locationId = request.data['locationId']
+        userId = request.data['userId']
+        courtesy = request.data['courtesy']
+        cleanliness = request.data['cleanliness']
+        qualityOfFood =  request.data['qualityOfFood']
+        quantityOfFood =  request.data['quantityOfFood']
+        foodTaste = request.data['foodTaste']
+        try:
+            existingLocations = Location.objects.filter(id=locationId)
+            existingUsers = UserProfile.objects.filter(id=userId)
+            if existingLocations != None and existingLocations.count() > 0 and existingUsers != None and existingUsers.count() > 0:
+                location = existingLocations.first()
+                user = existingUsers.first()
+                feedback = FeedBack(content=content, user=user, location=location, courtesy= courtesy, qualityOfFood = qualityOfFood,
+                                    quantityOfFood = quantityOfFood, foodTaste = foodTaste, cleanliness= cleanliness)
+                feedback.save()
+            else:
+                result = False
+                msg = "Invalid Location or User!"
+
+        except Exception as ex:
+            logger.critical("Cannot insert succesfully:" + str(ex))
+            result = False
+            msg = "DB insertion error"
+    else:
+        result = False
+        msg = "Unknown ContentType or Method"
+
+    response_data = {}
+    response_data['success'] = result
+    response_data['message'] = msg
+    if result:
+        response_data['feedbackId'] = feedback.id
+    return JsonResponse(response_data)
+
+
 def locationspage(request):
 
     locations_list = Location.objects.all()

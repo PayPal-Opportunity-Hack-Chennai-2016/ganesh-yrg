@@ -19,6 +19,11 @@ class Location(models.Model):
 
 class FeedBack(models.Model):
   content = models.CharField(max_length=200)
+  courtesy = models.FloatField(default=None)
+  qualityOfFood =  models.FloatField(default=None)
+  quantityOfFood =  models.FloatField(default=None)
+  foodTaste = models.FloatField(default=None)
+  cleanliness = models.FloatField(default=None)
   location = models.ForeignKey(Location, on_delete = models.CASCADE)
   user = models.ForeignKey(UserProfile, on_delete = models.CASCADE)
 
