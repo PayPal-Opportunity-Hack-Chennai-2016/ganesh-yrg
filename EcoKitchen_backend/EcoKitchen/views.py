@@ -26,10 +26,10 @@ def signInUser(request):
   msg = None;
 
   if request.method == 'POST' and request.content_type == 'application/json' :
-    username = request.data['username']
+    mobile = request.data['mobile']
     password = request.data['password']
     try :
-        finalUser = UserProfile.objects.get(name=username, password=password)
+        UserProfile.objects.get(mobile=mobile, password=password)
     except ObjectDoesNotExist:
         logger.critical("User did not exist")
         result = False
@@ -43,4 +43,3 @@ def signInUser(request):
     response_data['success'] = result
     response_data['message'] = msg
   return JsonResponse(response_data)
-
