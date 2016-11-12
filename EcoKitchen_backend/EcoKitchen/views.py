@@ -3,9 +3,10 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from rest_framework.decorators import parser_classes
 from rest_framework.parsers import JSONParser
-from EcoKitchen.models import UserProfile
+from EcoKitchen.models import UserProfile, Location
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import MultipleObjectsReturned
+from django.core.exceptions import SuspiciousOperation
 from django.db.models import Q
 import logging
 
@@ -32,7 +33,7 @@ def signInUser(request):
   result = True;
   msg = None;
   userProfile = None
-
+  response_data = {}
   if request.method == 'POST' and request.content_type == 'application/json' :
     mobile = request.data[UserProfile_MOBILE]
     password = request.data[UserProfile_PASSWORD]
@@ -50,11 +51,10 @@ def signInUser(request):
     msg = "Unknown ContentType or Method Name"
     result = False
 
-    response_data = {}
-    response_data['success'] = result
-    response_data['message'] = msg
-    if userProfile:
-        response_data['userId'] = userProfile.id
+  response_data['success'] = result
+  response_data['message'] = msg
+  if result:
+    response_data['userId'] = userProfile.id
   return JsonResponse(response_data)
 
 @api_view(['POST'])
@@ -94,3 +94,78 @@ def signUpUser(request):
     if result:
         response_data['userId'] = userProfile.id
     return JsonResponse(response_data)
+
+def getLocation(request, locationId):
+    logger.critical(request.method)
+    logger.critical("DATA :: " + request.body)
+    result = True
+    msg = None
+    location = None
+    try :
+        location = Location.objects.get(id=locationId)
+    except ObjectDoesNotExist:
+        logger.critical("Location does not exist")
+        result = False
+        msg = "Location does not exist"
+    except MultipleObjectsReturned:
+        logger.critical("Multiple objects returned")
+        msg = "Multiple objects returned"
+        result = False
+    response_data = {}
+    if result:
+        response_data = {}
+        response_data['status'] = location.status
+        response_data['description'] = location.description
+        response_data['address'] = location.address
+        response_data['userId'] = location.user.id
+        response_data['lat'] = location.lat
+        response_data['long'] = location.long
+        response_data['id'] = location.id
+        return JsonResponse(response_data)
+    else:
+        response_data['success'] = False
+        response_data['message'] = msg
+    return JsonResponse(response_data)
+
+@api_view(['POST'])
+@parser_classes((JSONParser,))
+def postLocation(request):
+    result = True
+    msg = None
+    location = None
+    if request.method == 'POST' and request.content_type == 'application/json' :
+        description = request.data['description']
+        address = request.data['address']
+        userId = request.data['userId']
+        lat = str(request.data['lat'])
+        long = str(request.data['long'])
+        status = "Disabled"
+        try:
+            existingLocation = Location.objects.filter(Q(lat=lat) & Q(long=long))
+            if existingLocation != None and existingLocation.count() > 0:
+                result = False
+                msg = "A Location is present with same Latitude and Longitude"
+            else:
+                try :
+                    userReferenced = UserProfile.objects.get(id=userId)
+                except ObjectDoesNotExist:
+                    result = False
+                    msg = "A User Id specified for location doesn't exist"
+                location = Location(lat=lat, long=long,
+                          address=address, description=description, status=status, user=userReferenced)
+                location.save()
+        except Exception as ex:
+            logger.critical("Cannot insert succesfully:" + str(ex))
+            result = False
+            msg = "DB insertion error"
+    else:
+        result = False
+        msg = "Unknown ContentType or Method"
+
+    response_data = {}
+    response_data['success'] = result
+    response_data['message'] = msg
+    if result:
+        response_data['locationId'] = location.id
+    return JsonResponse(response_data)
+

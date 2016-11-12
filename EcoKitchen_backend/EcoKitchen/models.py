@@ -10,9 +10,9 @@ class UserProfile(models.Model):
 class Location(models.Model):
   lat = models.CharField(max_length=30)
   long = models.CharField(max_length=30)
-  address = models.CharField(max_length=200, null=True, blank=True, unique=True)
+  address = models.CharField(max_length=200)
   description = models.CharField(max_length=50)
   status = models.CharField(max_length=30)
-  usr = models.ManyToManyField(UserProfile)
+  user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
   def __str__(self):
     return self.address
