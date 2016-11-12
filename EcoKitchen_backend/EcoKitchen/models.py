@@ -3,8 +3,8 @@ from django.db import models
 class UserProfile(models.Model):
   name = models.CharField(max_length=30)
   address = models.CharField(max_length=250)
-  email = models.EmailField(max_length=100, null=True, blank=True, unique=True)
-  mobile = models.CharField(max_length=30)
+  email = models.EmailField(max_length=100, null=True, blank=True, default=None)
+  mobile = models.CharField(max_length=30, unique=True)
   password = models.CharField(max_length=30)
 
 class Location(models.Model):

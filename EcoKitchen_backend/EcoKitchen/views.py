@@ -3,12 +3,14 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from rest_framework.decorators import parser_classes
 from rest_framework.parsers import JSONParser
+from rest_framework import serializers
 from EcoKitchen.models import UserProfile, Location
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import MultipleObjectsReturned
 from django.core.exceptions import SuspiciousOperation
 from django.db.models import Q
 import logging
+import json
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -24,6 +26,13 @@ UserProfile_MOBILE = "mobile"
 # Create your views here.
 def post_list(self, *args, **kwargs):
   return HttpResponse('{"success":"true"}')
+
+class LocationSerializer(serializers.Serializer):
+    lat = serializers.CharField(max_length=30)
+    long = serializers.CharField(max_length=30)
+    address = serializers.CharField(max_length=200)
+    description = serializers.CharField(max_length=50)
+    status = serializers.CharField(max_length=30)
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
@@ -72,7 +81,10 @@ def signUpUser(request):
         address = request.data[UserProfile_ADDRESS]
         mobile = request.data[UserProfile_MOBILE]
         try:
-            existingUser = UserProfile.objects.filter(Q(email=email)|Q(mobile=mobile))
+            if len(email) > 0:
+                existingUser = UserProfile.objects.filter(Q(email=email)|Q(mobile=mobile))
+            else:
+                existingUser = UserProfile.objects.filter(Q(mobile=mobile))
             if existingUser != None and existingUser.count() > 0:
                 result = False
                 msg = "A user is present with same email or mobile number"
@@ -80,8 +92,9 @@ def signUpUser(request):
                 userProfile = UserProfile(name=name, password=password,
                                   email=email, address=address, mobile=mobile)
                 userProfile.save()
-        except Exception:
+        except Exception as e:
             logger.critical("Cannot insert succesfully")
+            logger.critical(e)
             result = False
             msg = "DB insertion error"
     else:
@@ -169,3 +182,12 @@ def postLocation(request):
         response_data['locationId'] = location.id
     return JsonResponse(response_data)
 
+@api_view(['GET'])
+@parser_classes((JSONParser,))
+def getAllLocations(request):
+    locationList = Location.objects.all()
+    if locationList != None and locationList.count() > 0:
+        locationJson = LocationSerializer(locationList, many=True)
+        return JsonResponse(locationJson.data, safe=False)
+    else:
+        return JsonResponse({})
