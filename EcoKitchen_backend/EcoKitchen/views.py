@@ -236,6 +236,46 @@ def addFeedback(request):
         response_data['feedbackId'] = feedback.id
     return JsonResponse(response_data)
 
+@api_view(['POST'])
+@parser_classes((JSONParser,))
+def createEntreprenuerReferral(request):
+    result = True
+    msg = None
+    referredPerson = None
+    if request.method == 'POST' and request.content_type == 'application/json' :
+        name = request.data['name']
+        phone = request.data['phone']
+        incomeRange = request.data['incomeRange']
+        maritalStatus = request.data['maritalStatus']
+        description =  request.data['description']
+        qualification = request.data['qualification']
+        userId =  request.data['userId']
+        try:
+            existingUsers = UserProfile.objects.filter(id=userId)
+            if existingUsers != None and existingUsers.count() > 0:
+                user = existingUsers.first()
+                referredPerson = ReferredPerson(name=name, phone=phone, incomeRange=incomeRange,
+                               qualification=qualification, maritalStatus=maritalStatus, description=description, user=user)
+                referredPerson.save()
+            else:
+                result = False
+                msg = "Invalid User!"
+
+        except Exception as ex:
+            logger.critical("Cannot insert succesfully:" + str(ex))
+            result = False
+            msg = "DB insertion error"
+    else:
+        result = False
+        msg = "Unknown ContentType or Method"
+
+    response_data = {}
+    response_data['success'] = result
+    response_data['message'] = msg
+    if result:
+        response_data['referredPersonId'] = referredPerson.id
+    return JsonResponse(response_data)
+
 
 def locationspage(request):
 

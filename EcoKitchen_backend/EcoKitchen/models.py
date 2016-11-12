@@ -28,10 +28,11 @@ class FeedBack(models.Model):
   user = models.ForeignKey(UserProfile, on_delete = models.CASCADE)
 
 class ReferredPerson(models.Model):
-  location = models.OneToOneField(Location, on_delete = models.CASCADE, default=None)
-  name = models.CharField(max_length=200)
-  phone = models.CharField(max_length=200) #location
-  incomeRange = models.CharField(max_length=200)
-  maritalStatus = models.CharField(max_length=200)
-  description = models.CharField(max_length=200)
+  location = models.OneToOneField(Location, on_delete = models.CASCADE, default=None, null=True)
+  name = models.CharField(max_length=200, default=None)
+  phone = models.CharField(max_length=200, default=None)
+  incomeRange = models.CharField(max_length=200, default=None)
+  maritalStatus = models.CharField(max_length=200, default=None)
+  description = models.CharField(max_length=200, default=None)
+  qualification = models.CharField(max_length=200, default=None)
   user = models.ForeignKey(UserProfile, on_delete = models.CASCADE)
