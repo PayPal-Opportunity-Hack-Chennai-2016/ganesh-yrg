@@ -1,0 +1,574 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C83A17DB1DD71AB6009126F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83A17DA1DD71AB6009126F4 /* AppDelegate.swift */; };
+		C83A17DD1DD71AB6009126F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83A17DC1DD71AB6009126F4 /* ViewController.swift */; };
+		C83A17E01DD71AB6009126F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C83A17DE1DD71AB6009126F4 /* Main.storyboard */; };
+		C83A17E21DD71AB6009126F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C83A17E11DD71AB6009126F4 /* Assets.xcassets */; };
+		C83A17E51DD71AB6009126F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C83A17E31DD71AB6009126F4 /* LaunchScreen.storyboard */; };
+		C83A17F01DD71AB6009126F4 /* EcoKitcheniOSHackathonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83A17EF1DD71AB6009126F4 /* EcoKitcheniOSHackathonTests.swift */; };
+		C83A17FB1DD71AB6009126F4 /* EcoKitcheniOSHackathonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83A17FA1DD71AB6009126F4 /* EcoKitcheniOSHackathonUITests.swift */; };
+		C83A18091DD71D68009126F4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83A18081DD71D68009126F4 /* ProfileViewController.swift */; };
+		C84A45101DD730C9009CCFA2 /* FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84A450F1DD730C9009CCFA2 /* FlowViewController.swift */; };
+		C84A45121DD73850009CCFA2 /* FlowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84A45111DD73850009CCFA2 /* FlowTableViewCell.swift */; };
+		C84A45141DD73D8C009CCFA2 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84A45131DD73D8C009CCFA2 /* LocationViewController.swift */; };
+		C84A45171DD74076009CCFA2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C84A45161DD74076009CCFA2 /* CoreLocation.framework */; };
+		C84A45191DD7407C009CCFA2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C84A45181DD7407C009CCFA2 /* MapKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C83A17EC1DD71AB6009126F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C83A17CF1DD71AB6009126F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C83A17D61DD71AB6009126F4;
+			remoteInfo = EcoKitcheniOSHackathon;
+		};
+		C83A17F71DD71AB6009126F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C83A17CF1DD71AB6009126F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C83A17D61DD71AB6009126F4;
+			remoteInfo = EcoKitcheniOSHackathon;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C83A17D71DD71AB6009126F4 /* EcoKitcheniOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EcoKitcheniOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C83A17DA1DD71AB6009126F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C83A17DC1DD71AB6009126F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C83A17DF1DD71AB6009126F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C83A17E11DD71AB6009126F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C83A17E41DD71AB6009126F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C83A17E61DD71AB6009126F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C83A17EB1DD71AB6009126F4 /* EcoKitcheniOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EcoKitcheniOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C83A17EF1DD71AB6009126F4 /* EcoKitcheniOSHackathonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoKitcheniOSHackathonTests.swift; sourceTree = "<group>"; };
+		C83A17F11DD71AB6009126F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C83A17F61DD71AB6009126F4 /* EcoKitcheniOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EcoKitcheniOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C83A17FA1DD71AB6009126F4 /* EcoKitcheniOSHackathonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoKitcheniOSHackathonUITests.swift; sourceTree = "<group>"; };
+		C83A17FC1DD71AB6009126F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C83A18081DD71D68009126F4 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C84A450F1DD730C9009CCFA2 /* FlowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowViewController.swift; sourceTree = "<group>"; };
+		C84A45111DD73850009CCFA2 /* FlowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowTableViewCell.swift; sourceTree = "<group>"; };
+		C84A45131DD73D8C009CCFA2 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		C84A45161DD74076009CCFA2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C84A45181DD7407C009CCFA2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C83A17D41DD71AB6009126F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C84A45191DD7407C009CCFA2 /* MapKit.framework in Frameworks */,
+				C84A45171DD74076009CCFA2 /* CoreLocation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C83A17E81DD71AB6009126F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C83A17F31DD71AB6009126F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C83A17CE1DD71AB6009126F4 = {
+			isa = PBXGroup;
+			children = (
+				C83A17D91DD71AB6009126F4 /* EcoKitcheniOSHackathon */,
+				C83A17EE1DD71AB6009126F4 /* EcoKitcheniOSHackathonTests */,
+				C83A17F91DD71AB6009126F4 /* EcoKitcheniOSHackathonUITests */,
+				C83A17D81DD71AB6009126F4 /* Products */,
+				C84A45151DD74076009CCFA2 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C83A17D81DD71AB6009126F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C83A17D71DD71AB6009126F4 /* EcoKitcheniOS.app */,
+				C83A17EB1DD71AB6009126F4 /* EcoKitcheniOSTests.xctest */,
+				C83A17F61DD71AB6009126F4 /* EcoKitcheniOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C83A17D91DD71AB6009126F4 /* EcoKitcheniOSHackathon */ = {
+			isa = PBXGroup;
+			children = (
+				C83A17DA1DD71AB6009126F4 /* AppDelegate.swift */,
+				C83A17DC1DD71AB6009126F4 /* ViewController.swift */,
+				C83A18081DD71D68009126F4 /* ProfileViewController.swift */,
+				C84A450F1DD730C9009CCFA2 /* FlowViewController.swift */,
+				C83A17DE1DD71AB6009126F4 /* Main.storyboard */,
+				C83A17E11DD71AB6009126F4 /* Assets.xcassets */,
+				C83A17E31DD71AB6009126F4 /* LaunchScreen.storyboard */,
+				C83A17E61DD71AB6009126F4 /* Info.plist */,
+				C84A45111DD73850009CCFA2 /* FlowTableViewCell.swift */,
+				C84A45131DD73D8C009CCFA2 /* LocationViewController.swift */,
+			);
+			path = EcoKitcheniOSHackathon;
+			sourceTree = "<group>";
+		};
+		C83A17EE1DD71AB6009126F4 /* EcoKitcheniOSHackathonTests */ = {
+			isa = PBXGroup;
+			children = (
+				C83A17EF1DD71AB6009126F4 /* EcoKitcheniOSHackathonTests.swift */,
+				C83A17F11DD71AB6009126F4 /* Info.plist */,
+			);
+			path = EcoKitcheniOSHackathonTests;
+			sourceTree = "<group>";
+		};
+		C83A17F91DD71AB6009126F4 /* EcoKitcheniOSHackathonUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C83A17FA1DD71AB6009126F4 /* EcoKitcheniOSHackathonUITests.swift */,
+				C83A17FC1DD71AB6009126F4 /* Info.plist */,
+			);
+			path = EcoKitcheniOSHackathonUITests;
+			sourceTree = "<group>";
+		};
+		C84A45151DD74076009CCFA2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C84A45181DD7407C009CCFA2 /* MapKit.framework */,
+				C84A45161DD74076009CCFA2 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C83A17D61DD71AB6009126F4 /* EcoKitcheniOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C83A17FF1DD71AB6009126F4 /* Build configuration list for PBXNativeTarget "EcoKitcheniOS" */;
+			buildPhases = (
+				C83A17D31DD71AB6009126F4 /* Sources */,
+				C83A17D41DD71AB6009126F4 /* Frameworks */,
+				C83A17D51DD71AB6009126F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EcoKitcheniOS;
+			productName = EcoKitcheniOSHackathon;
+			productReference = C83A17D71DD71AB6009126F4 /* EcoKitcheniOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C83A17EA1DD71AB6009126F4 /* EcoKitcheniOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C83A18021DD71AB6009126F4 /* Build configuration list for PBXNativeTarget "EcoKitcheniOSTests" */;
+			buildPhases = (
+				C83A17E71DD71AB6009126F4 /* Sources */,
+				C83A17E81DD71AB6009126F4 /* Frameworks */,
+				C83A17E91DD71AB6009126F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C83A17ED1DD71AB6009126F4 /* PBXTargetDependency */,
+			);
+			name = EcoKitcheniOSTests;
+			productName = EcoKitcheniOSHackathonTests;
+			productReference = C83A17EB1DD71AB6009126F4 /* EcoKitcheniOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C83A17F51DD71AB6009126F4 /* EcoKitcheniOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C83A18051DD71AB6009126F4 /* Build configuration list for PBXNativeTarget "EcoKitcheniOSUITests" */;
+			buildPhases = (
+				C83A17F21DD71AB6009126F4 /* Sources */,
+				C83A17F31DD71AB6009126F4 /* Frameworks */,
+				C83A17F41DD71AB6009126F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C83A17F81DD71AB6009126F4 /* PBXTargetDependency */,
+			);
+			name = EcoKitcheniOSUITests;
+			productName = EcoKitcheniOSHackathonUITests;
+			productReference = C83A17F61DD71AB6009126F4 /* EcoKitcheniOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C83A17CF1DD71AB6009126F4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = madan;
+				TargetAttributes = {
+					C83A17D61DD71AB6009126F4 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 2P797DB3HH;
+						ProvisioningStyle = Automatic;
+					};
+					C83A17EA1DD71AB6009126F4 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 2P797DB3HH;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C83A17D61DD71AB6009126F4;
+					};
+					C83A17F51DD71AB6009126F4 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 2P797DB3HH;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C83A17D61DD71AB6009126F4;
+					};
+				};
+			};
+			buildConfigurationList = C83A17D21DD71AB6009126F4 /* Build configuration list for PBXProject "EcoKitcheniOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C83A17CE1DD71AB6009126F4;
+			productRefGroup = C83A17D81DD71AB6009126F4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C83A17D61DD71AB6009126F4 /* EcoKitcheniOS */,
+				C83A17EA1DD71AB6009126F4 /* EcoKitcheniOSTests */,
+				C83A17F51DD71AB6009126F4 /* EcoKitcheniOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C83A17D51DD71AB6009126F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C83A17E51DD71AB6009126F4 /* LaunchScreen.storyboard in Resources */,
+				C83A17E21DD71AB6009126F4 /* Assets.xcassets in Resources */,
+				C83A17E01DD71AB6009126F4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C83A17E91DD71AB6009126F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C83A17F41DD71AB6009126F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C83A17D31DD71AB6009126F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C83A18091DD71D68009126F4 /* ProfileViewController.swift in Sources */,
+				C84A45121DD73850009CCFA2 /* FlowTableViewCell.swift in Sources */,
+				C83A17DD1DD71AB6009126F4 /* ViewController.swift in Sources */,
+				C84A45141DD73D8C009CCFA2 /* LocationViewController.swift in Sources */,
+				C84A45101DD730C9009CCFA2 /* FlowViewController.swift in Sources */,
+				C83A17DB1DD71AB6009126F4 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C83A17E71DD71AB6009126F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C83A17F01DD71AB6009126F4 /* EcoKitcheniOSHackathonTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C83A17F21DD71AB6009126F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C83A17FB1DD71AB6009126F4 /* EcoKitcheniOSHackathonUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C83A17ED1DD71AB6009126F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C83A17D61DD71AB6009126F4 /* EcoKitcheniOS */;
+			targetProxy = C83A17EC1DD71AB6009126F4 /* PBXContainerItemProxy */;
+		};
+		C83A17F81DD71AB6009126F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C83A17D61DD71AB6009126F4 /* EcoKitcheniOS */;
+			targetProxy = C83A17F71DD71AB6009126F4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C83A17DE1DD71AB6009126F4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C83A17DF1DD71AB6009126F4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C83A17E31DD71AB6009126F4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C83A17E41DD71AB6009126F4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C83A17FD1DD71AB6009126F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C83A17FE1DD71AB6009126F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C83A18001DD71AB6009126F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2P797DB3HH;
+				INFOPLIST_FILE = EcoKitcheniOSHackathon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.citi.madan.EcoKitcheniOSHackathon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		C83A18011DD71AB6009126F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2P797DB3HH;
+				INFOPLIST_FILE = EcoKitcheniOSHackathon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.citi.madan.EcoKitcheniOSHackathon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		C83A18031DD71AB6009126F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 2P797DB3HH;
+				INFOPLIST_FILE = EcoKitcheniOSHackathonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.citi.madan.EcoKitcheniOSHackathonTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EcoKitcheniOS.app/EcoKitcheniOS";
+			};
+			name = Debug;
+		};
+		C83A18041DD71AB6009126F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 2P797DB3HH;
+				INFOPLIST_FILE = EcoKitcheniOSHackathonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.citi.madan.EcoKitcheniOSHackathonTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EcoKitcheniOS.app/EcoKitcheniOS";
+			};
+			name = Release;
+		};
+		C83A18061DD71AB6009126F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 2P797DB3HH;
+				INFOPLIST_FILE = EcoKitcheniOSHackathonUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.citi.madan.EcoKitcheniOSHackathonUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = EcoKitcheniOSHackathon;
+			};
+			name = Debug;
+		};
+		C83A18071DD71AB6009126F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 2P797DB3HH;
+				INFOPLIST_FILE = EcoKitcheniOSHackathonUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.citi.madan.EcoKitcheniOSHackathonUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = EcoKitcheniOSHackathon;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C83A17D21DD71AB6009126F4 /* Build configuration list for PBXProject "EcoKitcheniOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C83A17FD1DD71AB6009126F4 /* Debug */,
+				C83A17FE1DD71AB6009126F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C83A17FF1DD71AB6009126F4 /* Build configuration list for PBXNativeTarget "EcoKitcheniOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C83A18001DD71AB6009126F4 /* Debug */,
+				C83A18011DD71AB6009126F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C83A18021DD71AB6009126F4 /* Build configuration list for PBXNativeTarget "EcoKitcheniOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C83A18031DD71AB6009126F4 /* Debug */,
+				C83A18041DD71AB6009126F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C83A18051DD71AB6009126F4 /* Build configuration list for PBXNativeTarget "EcoKitcheniOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C83A18061DD71AB6009126F4 /* Debug */,
+				C83A18071DD71AB6009126F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C83A17CF1DD71AB6009126F4 /* Project object */;
+}
