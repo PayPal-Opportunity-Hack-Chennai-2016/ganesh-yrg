@@ -44,12 +44,14 @@ class FlowViewController: UIViewController,UITableViewDataSource,UITableViewDele
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // prepare(for: "LocationViewController", sender: nil);
         if indexPath.row == 1 {
             performSegue(withIdentifier: "LocationViewController", sender: nil);
         }
+        else if indexPath.row == 3 {
+            performSegue(withIdentifier: "AboutUsViewController", sender: nil);
+        }
         else if indexPath.row == 4 {
-            performSegue(withIdentifier: "FeedbackTableViewController", sender: nil);
+            performSegue(withIdentifier: "FeedbackViewController", sender: nil);
         }
     }
     

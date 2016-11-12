@@ -26,6 +26,12 @@ class ProfileViewController: UIViewController/*,UIPickerViewDataSource,UIPickerV
         super.viewDidLoad();
         let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.dismissKeyboard));
         view.addGestureRecognizer(tap);
+        
+        userConfirmPassword.text = "neo19@gmail.com"
+        userAddress.text = "Malibu Point"
+        userMobileNumber.text = "8883729358"
+        userPassword.text = "Paypal"
+        userName.text = "Paypal"
 //        genderPicker.dataSource = self;
 //        genderPicker.delegate = self;
 //        datePickerDOB.addTarget(self, action: #selector(ProfileViewController.datePickerChanged), for: UIControlEvents.valueChanged);
@@ -40,7 +46,18 @@ class ProfileViewController: UIViewController/*,UIPickerViewDataSource,UIPickerV
     }
 
     @IBAction func registerBtnPressed(_ sender: AnyObject) {
-        
+        let manager = ServiceManager()
+        let register  = RegistrationModel()
+        register.address = userAddress.text;
+        register.email = userConfirmPassword.text
+        register.mobileNumber = userMobileNumber.text
+        register.name = userName.text
+        register.password = userPassword.text
+        manager.signUp(register : register) { (userId) in
+            if userId != -1 {
+                self.performSegue(withIdentifier: "FlowViewController", sender: nil);
+            }
+        }
     }
 //    @IBAction func genderBtnPressed(_ sender: AnyObject) {
 //        datePickerDOB.isHidden = true;

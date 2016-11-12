@@ -9,7 +9,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="EcoKitcheniOSHackathon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -33,11 +33,12 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="saS-YG-tvD">
-                                <frame key="frameInset" minX="35" minY="214" width="115" height="50"/>
+                                <frame key="frameInset" minX="35" minY="214" width="115" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign In"/>
                                 <connections>
                                     <action selector="signInBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Elf-2w-szg"/>
+                                    <segue destination="qQ6-EP-tW6" kind="show" identifier="FlowViewController" id="3mz-u8-1xa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swT-N2-vMJ">
@@ -46,6 +47,7 @@
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="signUpBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gRf-Tr-KAC"/>
+                                    <segue destination="rV3-Kv-Ne2" kind="show" identifier="ProfileViewController" id="3U3-AC-7So"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -54,12 +56,11 @@
                     <connections>
                         <outlet property="mobileNumber" destination="YcF-sX-jF5" id="U0i-Du-Qpw"/>
                         <outlet property="password" destination="6gU-pi-ILA" id="F3a-uJ-m09"/>
-                        <segue destination="rV3-Kv-Ne2" kind="show" identifier="ProfileViewController" id="wWY-Mk-szX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1809" y="81"/>
+            <point key="canvasLocation" x="-3239" y="-384"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CFk-Tx-yBw">
@@ -75,12 +76,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ifg-jQ-dUK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1077" y="81"/>
+            <point key="canvasLocation" x="-2239" y="-384"/>
         </scene>
         <!--User Registration-->
         <scene sceneID="SPk-sJ-RbY">
             <objects>
-                <viewController id="JPP-N1-xcP" customClass="ProfileViewController" customModule="EcoKitcheniOSHackathon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="JPP-N1-xcP" customClass="ProfileViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v5Z-Ja-SMF"/>
                         <viewControllerLayoutGuide type="bottom" id="6kM-aK-kn6"/>
@@ -130,7 +131,7 @@
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registerBtnPressed:" destination="JPP-N1-xcP" eventType="touchUpInside" id="sRp-jb-mue"/>
-                                    <segue destination="l1B-lY-JFj" kind="push" identifier="FlowViewController" id="Q0P-zf-q6d"/>
+                                    <segue destination="qQ6-EP-tW6" kind="push" identifier="FlowViewController" id="Q0P-zf-q6d"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -147,12 +148,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pO9-aP-txz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-297" y="81"/>
+            <point key="canvasLocation" x="-1287" y="-383"/>
         </scene>
         <!--Flows-->
         <scene sceneID="SdU-Cw-Ceo">
             <objects>
-                <viewController id="l1B-lY-JFj" customClass="FlowViewController" customModule="EcoKitcheniOSHackathon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="l1B-lY-JFj" customClass="FlowViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mSu-SQ-WNz"/>
                         <viewControllerLayoutGuide type="bottom" id="jDV-0q-Y5W"/>
@@ -166,7 +167,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="flowCell" id="J6j-8O-XoP" customClass="FlowTableViewCell" customModule="EcoKitcheniOSHackathon" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="flowCell" id="J6j-8O-XoP" customClass="FlowTableViewCell" customModule="EcoKitcheniOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J6j-8O-XoP" id="0k8-6M-1kp">
@@ -195,16 +196,18 @@
                     <connections>
                         <outlet property="tableView" destination="Ylo-XS-4aa" id="z7P-26-KSg"/>
                         <segue destination="cnS-Ba-9cm" kind="show" identifier="LocationViewController" id="oGW-5V-kBs"/>
+                        <segue destination="6Fj-C9-IDt" kind="show" identifier="FeedbackViewController" id="Cey-BT-C03"/>
+                        <segue destination="eH5-oo-Ayy" kind="show" identifier="AboutUsViewController" id="tzR-JF-jQi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVk-Je-RM8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="346" y="81"/>
+            <point key="canvasLocation" x="-1348" y="525.78710644677665"/>
         </scene>
         <!--Location View Controller-->
         <scene sceneID="wNs-JI-aEP">
             <objects>
-                <viewController id="cnS-Ba-9cm" customClass="LocationViewController" customModule="EcoKitcheniOSHackathon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cnS-Ba-9cm" customClass="LocationViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ati-5u-4YA"/>
                         <viewControllerLayoutGuide type="bottom" id="Fr3-Bp-5m2"/>
@@ -257,7 +260,173 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fb1-BI-BKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168.8" y="69.715142428785612"/>
+            <point key="canvasLocation" x="-559.20000000000005" y="420.53973013493254"/>
+        </scene>
+        <!--Feedback Table View Controller-->
+        <scene sceneID="alF-Vx-KzX">
+            <objects>
+                <tableViewController id="grc-M9-PYp" customClass="FeedbackTableViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="MO6-2Z-HE7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedbackCell" id="ppY-75-jmA">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ppY-75-jmA" id="7lD-9d-bZo">
+                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="grc-M9-PYp" id="3Gc-m7-Daf"/>
+                            <outlet property="delegate" destination="grc-M9-PYp" id="8Tr-m1-CsO"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SoE-cl-ClE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1287" y="2001"/>
+        </scene>
+        <!--About Us View Controller-->
+        <scene sceneID="owV-44-MIp">
+            <objects>
+                <viewController id="eH5-oo-Ayy" customClass="AboutUsViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7OY-5V-8l4"/>
+                        <viewControllerLayoutGuide type="bottom" id="pzw-Bv-pWc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1O8-oh-YRg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z09-Cm-gaz">
+                                <frame key="frameInset" width="375" height="232"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="17" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUP-Me-1jc">
+                                <frame key="frameInset" minY="227" width="375" height="432"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <mutableString key="text">KATHIR is an innovative opportunity for disadvantaged urban women impacted by domestic/partner violence and in need of resources to care for people living with chronic and debilitating diseases. It helps them realize their livelihood aspirations.
+
+The impact of KATHIR is manifold:
+Improved self-esteem for women
+Enhanced disposable incomes
+A purpose to be mobile - leaving the confines of their household
+Improved sense of empowerment
+Supports education, nutrition and health for their children
+Affordable, safe meals to the community
+
+Process
+"KATHIR" is a retail opportunity. It offers meals for resale. KATHIR is popular because it respects work-life balance: women are expected to work between 11 AM and 3 PM, MON-SAT. This reduces conflict at home and allows time for women to play other roles expected by their society. They earn between Rs 300 - 400 each working day.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="aboutUSLabel" destination="OUP-Me-1jc" id="k75-kQ-N2O"/>
+                        <outlet property="imagEView" destination="Z09-Cm-gaz" id="hBe-YQ-WFK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UAJ-Sk-nbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2287.1999999999998" y="1368.6656671664168"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lrF-LE-hDW">
+            <objects>
+                <viewController id="qBZ-0p-WMS" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Avg-OK-gLs"/>
+                        <viewControllerLayoutGuide type="bottom" id="jSa-m6-RSb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tv3-bk-JfW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bp5-0u-wyN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1384" y="1378"/>
+        </scene>
+        <!--Feedback View Controller-->
+        <scene sceneID="I79-I7-Epb">
+            <objects>
+                <viewController id="6Fj-C9-IDt" customClass="FeedbackViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fZl-ab-lSa"/>
+                        <viewControllerLayoutGuide type="bottom" id="K8c-yS-MHn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UFI-pd-TN5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3VU-sc-9mh">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedbackCell" id="DEV-Hc-Yy1">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DEV-Hc-Yy1" id="vXt-l7-auH">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mjf-or-XoE">
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitBtnPressed:" destination="6Fj-C9-IDt" eventType="touchUpInside" id="Szi-mE-Pp8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="K8c-yS-MHn" firstAttribute="top" secondItem="Mjf-or-XoE" secondAttribute="bottom" id="2Ro-8b-SHf"/>
+                            <constraint firstAttribute="trailing" secondItem="Mjf-or-XoE" secondAttribute="trailing" id="4Bh-Ob-U3e"/>
+                            <constraint firstItem="3VU-sc-9mh" firstAttribute="leading" secondItem="UFI-pd-TN5" secondAttribute="leading" id="APh-RX-ZBN"/>
+                            <constraint firstItem="3VU-sc-9mh" firstAttribute="bottom" secondItem="Mjf-or-XoE" secondAttribute="bottom" id="J4C-rF-oUk"/>
+                            <constraint firstItem="3VU-sc-9mh" firstAttribute="top" secondItem="UFI-pd-TN5" secondAttribute="top" id="cLp-VG-uD3"/>
+                            <constraint firstAttribute="trailing" secondItem="3VU-sc-9mh" secondAttribute="trailing" id="efb-hw-joD"/>
+                            <constraint firstItem="Mjf-or-XoE" firstAttribute="leading" secondItem="UFI-pd-TN5" secondAttribute="leading" id="ofF-05-kv1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="3VU-sc-9mh" id="DHi-gB-Zzl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hf2-PA-4Nq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-559.20000000000005" y="1056.5217391304348"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XK1-id-Sq4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qQ6-EP-tW6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="oN1-7e-AOu"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mv8-6o-qLW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="l1B-lY-JFj" kind="relationship" relationship="rootViewController" id="bU9-lm-u7y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7dN-E2-jVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2287.1999999999998" y="525.78710644677665"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3mz-u8-1xa"/>
+    </inferredMetricsTieBreakers>
 </document>

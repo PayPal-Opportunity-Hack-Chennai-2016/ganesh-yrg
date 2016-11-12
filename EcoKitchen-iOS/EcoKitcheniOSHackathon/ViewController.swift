@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        mobileNumber.text = "8883729793"
+        password.text = "echokitchen"
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,12 +26,16 @@ class ViewController: UIViewController {
     }
 
     @IBAction func signInBtnPressed(_ sender: AnyObject) {
-        print(mobileNumber.text!);
-        print(password.text!);
-        performSegue(withIdentifier: "ProfileViewController", sender: nil);
+        
+        let manager = ServiceManager()
+        manager.signIn(mobile: mobileNumber.text!, password: password.text!) { (userId) in
+            self.performSegue(withIdentifier: "FlowViewController", sender: nil);
+        }
+
     }
 
     @IBAction func signUpBtnPressed(_ sender: AnyObject) {
+        self.performSegue(withIdentifier: "ProfileViewController", sender: nil);
     }
     
 }
