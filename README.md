@@ -4,13 +4,23 @@ Mobile App for users to find the nearest Eco Kitchen to buy from, give suggestio
 
 
 Team
+
 Kailesh R
+
 Ravi Shankar
+
 Kumaravel N
+
 Hari Haran
+
 Krishnan
+
 Kalyan
+
 Madan
+
 Aaakash Arora
+
 Rishi Swethan
+
 TriVikram
