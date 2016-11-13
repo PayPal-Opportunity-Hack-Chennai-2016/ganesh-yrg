@@ -1,75 +1,144 @@
 package com.food.ecokitchen.actvities;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.food.ecokitchen.R;
+import com.food.ecokitchen.utils.AppSharedPreferences;
+import com.food.ecokitchen.utils.MyConstants;
+import com.food.ecokitchen.utils.ServiceHandler;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Feedback extends AppCompatActivity {
-
+    String requestParams,feed,Success="not";
+    AppSharedPreferences appSharedPreferences;
+    Float courtesy,Quant,Qual,tas,clean;
+    RatingBar coe,Quantity,Quality,taste,Cleanliness;
+    EditText feedback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
-        RatingBar coe = (RatingBar)findViewById(R.id.ratingBar);
-        RatingBar Quantity = (RatingBar)findViewById(R.id.ratingBar2);
-        RatingBar Quality = (RatingBar)findViewById(R.id.ratingBar3);
-        RatingBar taste = (RatingBar)findViewById(R.id.ratingBar4);
-        RatingBar Cleanliness = (RatingBar)findViewById(R.id.ratingBar5);
-        EditText feedback = (EditText)findViewById(R.id.etfeedback);
+        appSharedPreferences = new AppSharedPreferences(getApplicationContext());
+         coe = (RatingBar)findViewById(R.id.ratingBar);
+         Quantity = (RatingBar)findViewById(R.id.ratingBar2);
+         Quality = (RatingBar)findViewById(R.id.ratingBar3);
+         taste = (RatingBar)findViewById(R.id.ratingBar4);
+         Cleanliness = (RatingBar)findViewById(R.id.ratingBar5);
+         feedback = (EditText)findViewById(R.id.etfeedback);
 
-        Float courtesy = coe.getRating();
-        Float Quant = coe.getRating();
-        Float Qual = coe.getRating();
-        Float tas = coe.getRating();
-        Float clean = coe.getRating();
-        //String feed = feedback.getText();
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        final ActionBar ab = getSupportActionBar();
-//        //ab.setHomeAsUpIndicator(R.mipma);
-//        ab.setDisplayHomeAsUpEnabled(true);
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
 
-//        Spinner coe = (Spinner) findViewById(R.id.spinner6);
-//        Spinner Quality = (Spinner) findViewById(R.id.spinner5);
-//        Spinner Quantity = (Spinner) findViewById(R.id.spinner3);
-//        Spinner taste = (Spinner) findViewById(R.id.spinner2);
-//        Spinner Cleanliness = (Spinner) findViewById(R.id.spinner);
-//
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.curt, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        coe.setAdapter(adapter);
-//
-//        ArrayAdapter<CharSequence> Quality1 = ArrayAdapter.createFromResource(this, R.array.quality, android.R.layout.simple_spinner_item);
-//        Quality1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        Quality.setAdapter(Quality1);
-//
-//        ArrayAdapter<CharSequence> Quantity1 = ArrayAdapter.createFromResource(this, R.array.quantity, android.R.layout.simple_spinner_item);
-//        Quantity1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        Quantity.setAdapter(adapter);
-//
-//        ArrayAdapter<CharSequence> taste1 = ArrayAdapter.createFromResource(this, R.array.taste, android.R.layout.simple_spinner_item);
-//        taste1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        taste.setAdapter(adapter);
-//
-//        ArrayAdapter<CharSequence> Cleanliness1 = ArrayAdapter.createFromResource(this, R.array.cleanliness, android.R.layout.simple_spinner_item);
-//        Cleanliness1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        Cleanliness.setAdapter(adapter);
+        findViewById(R.id.btn_sendFeedback).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                courtesy = coe.getRating();
+                Quant = Quantity.getRating();
+                Qual = Quality.getRating();
+                tas = taste.getRating();
+                clean = Cleanliness.getRating();
+                feed = feedback.getText().toString().trim();
+                JSONObject object = new JSONObject();
+                try {
+                    object.put("content",feed);
+                    object.put("locationId","1");
+                    object.put("userId",appSharedPreferences.getStringPreferences(MyConstants.PREF_KEY_ID));
+                    object.put("courtesy",courtesy );
+                    object.put("cleanliness",clean);
+                    object.put("qualityOfFood",Qual);
+                    object.put("quantityOfFood",Quant);
+                    object.put("foodTaste",tas);
+
+                    requestParams = object.toString();
+                    Log.e("login","--->>> "+requestParams);
+                    new feedbackAsyncTask().execute();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
     }
+
+    private class feedbackAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        ProgressDialog pDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Showing progress dialog
+            pDialog = new ProgressDialog(Feedback.this);
+            pDialog.setMessage("Please wait...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            // Creating service handler class instance
+            ServiceHandler serviceHandler = new ServiceHandler();
+
+
+            // Making a request to url and getting response
+            //String jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
+            String sUrl = MyConstants.URL_ROOT + "feedback";
+
+            String jsonStr = serviceHandler.performPostCall(sUrl, requestParams);
+
+            Log.e("Response: ", "--->>> " + jsonStr);
+            if (jsonStr != null) try {
+                JSONObject jsonObj = new JSONObject(jsonStr);
+                if (jsonObj != null) {
+                    Success= jsonObj.getString("success");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            else {
+                Log.e("ServiceHandler", "Couldn't get any data from the url");
+            }
+
+            return null;
+        }
+
+            @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            // Dismiss the progress dialog
+            if (pDialog.isShowing())
+                pDialog.dismiss();
+                if (!Success.equals("not")) {
+                    finish();
+                    Intent intent = new Intent(getApplicationContext(), ThankYouActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+            }else{
+                displayToast(getString(R.string.apidown));
+            }
+        }
+
+    }
+    private void displayToast(String toastMsg) {
+        Toast.makeText(getApplicationContext(), toastMsg, Toast.LENGTH_SHORT).show();
+    }
+
 }

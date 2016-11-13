@@ -18,32 +18,33 @@
             android:orientation="vertical"
             android:layout_height="wrap_content"
             android:weightSum="1">
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+
+                android:textColor="@color/primary_text"
+                android:typeface="serif"
+                android:text="Refer An Entrepreneur (details)"
+                android:textSize="20dp"
+                android:gravity="center" />
             <EditText
                 android:id="@+id/edt_refname"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_margin="10dp"
+                android:typeface="serif"
+                android:hint="Enter Entrepreneur name"/>
+            <EditText
+                android:id="@+id/edt_refphn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:typeface="serif"
                 android:inputType="number"
-                android:hint="Enter his/her name"/>
+                android:hint="Enter the number"/>
 
-            <EditText
-                android:id="@+id/edt_refphn"
-                android:layout_width="match_parent"
-                android:layout_height="57dp"
-                android:layout_margin="10dp"
-                android:typeface="serif"
-                android:hint="Enter phone number"/>
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-
-        android:textColor="@color/primary_text"
-        android:typeface="serif"
-        android:text="Refer An Entrepreneur (details)"
-        android:textSize="20dp"
-        android:gravity="center" />
             <TextView
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"

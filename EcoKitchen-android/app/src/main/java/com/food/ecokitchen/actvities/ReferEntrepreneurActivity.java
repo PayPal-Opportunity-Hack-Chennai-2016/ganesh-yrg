@@ -39,10 +39,11 @@ public class ReferEntrepreneurActivity extends AppCompatActivity implements Goog
     private RadioButton married,unmarried,others,less5000,less10000,less20000,more20000,primary,middle,sslc,none;
     String entname ="";
     String entphone ="";
-    String entdescription ="";
+    String entdescription ="",Success="not";
     String entadress = "";
     private String Marritalstatus = "others",incomerange = "",educationalstatus = "";
             //,lat = "",lng = "",userid= "";
+
     EditText editname;
     EditText editphone;
     EditText editdescription;
@@ -76,8 +77,8 @@ public class ReferEntrepreneurActivity extends AppCompatActivity implements Goog
         sslc = (RadioButton)findViewById(R.id.radio_sslc);
         none = (RadioButton)findViewById(R.id.radio_None);
 
-        editname = (EditText)findViewById(R.id.edt_name);
-        editphone = (EditText)findViewById(R.id.edt_phone);
+        editname = (EditText)findViewById(R.id.edt_refname);
+        editphone = (EditText)findViewById(R.id.edt_refphn);
         editdescription = (EditText)findViewById(R.id.edt_extradetails);
         editaddress = (EditText)findViewById(R.id.edt_entadd);
 
@@ -206,13 +207,16 @@ public class ReferEntrepreneurActivity extends AppCompatActivity implements Goog
             }
         });
 
-        String entname = editname.getText().toString().trim();
-        String entphone = editphone.getText().toString().trim();
-        String entdescription = editdescription.getText().toString().trim();
-        String entadress = editaddress.getText().toString().trim();
+
+
         findViewById(R.id.btn_refent).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                entname = editname.getText().toString().trim();
+                entphone = editphone.getText().toString().trim();
+                entdescription = editdescription.getText().toString().trim();
+                entadress = editaddress.getText().toString().trim();
+
                 submitDonation();
             }
         });
@@ -221,9 +225,6 @@ public class ReferEntrepreneurActivity extends AppCompatActivity implements Goog
 
     private void submitDonation() {
 
-        String entname = editname.getText().toString().trim();
-        String entphone = editphone.getText().toString().trim();
-        String entdescription = editdescription.getText().toString().trim();
 
 
         if (isValidationSuccess()){
@@ -244,7 +245,7 @@ public class ReferEntrepreneurActivity extends AppCompatActivity implements Goog
                 "latitude":"102.30", "longitude":"233.dd", "address":"Some text" }*/
         JSONObject object = new JSONObject();
         try {
-            //object.put("consumerName", appSharedPreferences.getStringPreferences(MyConstants.PREF_KEY_NAME));
+            object.put("userId", appSharedPreferences.getStringPreferences(MyConstants.PREF_KEY_ID));
             //object.put("isVolunteer", String.valueOf(appSharedPreferences.getStringPreferences(MyConstants.PREF_KEY_IS_VOLUNTEER)));
             //object.put("deviceId", String.valueOf(appSharedPreferences.getStringPreferences(MyConstants.PREF_KEY_DEVICE_ID)));
             object.put("name", entname);
@@ -339,16 +340,16 @@ public class ReferEntrepreneurActivity extends AppCompatActivity implements Goog
 
     private boolean isValidationSuccess(){
         boolean isSuccess = true;
-//        if (quantity.equals("")){
-//            displayToast("Please enter the quantity");
-//            isSuccess = false;
-//        }else if (address.equals("") || address.length() < 5){
-//            displayToast("Please enter the correct address");
-//            isSuccess = false;
-//        }else if (lat.equals("") || lng.equals("")){
-//            displayToast("Please select the location");
-//            isSuccess = false;
-//        }
+        if (entname.equals("")){
+            displayToast("Please enter the name");
+            isSuccess = false;
+        }else if (entphone.equals("") || entphone.length() != 10){
+            displayToast("Please enter the correct Phone number");
+            isSuccess = false;
+        }else if (entadress.equals("")){
+            displayToast("Please enter the adress");
+            isSuccess = false;
+        }
         return isSuccess;
     }
 
@@ -381,7 +382,7 @@ public class ReferEntrepreneurActivity extends AppCompatActivity implements Goog
 
             // Making a request to url and getting response
             //String jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
-            String sUrl = MyConstants.URL_ROOT+"donate/create";
+            String sUrl = MyConstants.URL_ROOT+"referEntrepreneur";
 
             String jsonStr = serviceHandler.performPostCall(sUrl, requestParams);
 
@@ -389,6 +390,8 @@ public class ReferEntrepreneurActivity extends AppCompatActivity implements Goog
 
             if (jsonStr != null) try {
                 JSONObject jsonObj = new JSONObject(jsonStr);
+                Success= jsonObj.getString("success");
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -405,11 +408,16 @@ public class ReferEntrepreneurActivity extends AppCompatActivity implements Goog
             // Dismiss the progress dialog
             if (pDialog.isShowing())
                 pDialog.dismiss();
-            Intent intent =new Intent(getApplicationContext(),ThankYouActivity.class);
-            startActivity(intent);
-            intent.putExtra(MyConstants.FROM_ACTIVITY,MyConstants.KEY_DONOR);
-            overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-            finish();
+            if (!Success.equals("not")) {
+                Intent intent =new Intent(getApplicationContext(),ThankYouActivity.class);
+                startActivity(intent);
+                intent.putExtra(MyConstants.FROM_ACTIVITY,MyConstants.KEY_DONOR);
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                finish();
+            } else {
+//                displayToast(message);
+            }
+
         }
 
     }
