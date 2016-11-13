@@ -3,9 +3,11 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/common_signin_btn_light_text_pressed">
 
     <TextView
         android:id="@+id/msgr"
@@ -19,5 +21,7 @@
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:text="Sample"
-        android:textColor="#000" />
+        android:textColor="#000"
+        android:textSize="16dp"
+        />
 </LinearLayout>

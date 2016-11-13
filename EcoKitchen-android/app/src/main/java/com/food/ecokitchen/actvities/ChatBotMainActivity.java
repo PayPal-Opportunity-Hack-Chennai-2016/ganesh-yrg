@@ -3,7 +3,9 @@ package com.food.ecokitchen.actvities;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,13 +30,26 @@ public class ChatBotMainActivity extends AppCompatActivity implements AIDialog.A
 
     String str="";
     private ChatArrayAdapter chatArrayAdapter;
-    boolean side = false;
+    boolean side = false,flag=true;
     EditText et;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chatbotactivitylayout);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        final ActionBar ab = getSupportActionBar();
+        //ab.setHomeAsUpIndicator(R.mipma);
+        ab.setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         et=(EditText)findViewById(R.id.msg);
 
@@ -55,6 +70,11 @@ public class ChatBotMainActivity extends AppCompatActivity implements AIDialog.A
         chatArrayAdapter=new ChatArrayAdapter(context,R.id.msgview);
 
         final ChatboxNew cb=new ChatboxNew(send,et,chatTextView,getApplicationContext());
+        if(flag==true) {
+            cb.sendChatMessage("");//to make the input shift sides on the screen
+            flag = false;
+        }
+
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

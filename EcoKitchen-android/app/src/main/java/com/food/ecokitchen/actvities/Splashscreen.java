@@ -32,7 +32,6 @@ public class Splashscreen extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
-
         appSharedPreferences = new AppSharedPreferences(Splashscreen.this);
         final boolean isLoggedIn = appSharedPreferences.getBooleanPreferences(MyConstants.PREF_KEY_IS_LOGGEDIN);
 

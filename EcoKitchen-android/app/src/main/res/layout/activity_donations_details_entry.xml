@@ -43,7 +43,7 @@
                 android:layout_margin="10dp"
                 android:typeface="serif"
                 android:inputType="number"
-                android:hint="Enter the number"/>
+                android:hint="Enter Mobile number"/>
 
             <TextView
                 android:layout_marginTop="20dp"
