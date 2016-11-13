@@ -16,64 +16,74 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient_searchbar" translatesAutoresizingMaskIntoConstraints="NO" id="x0H-Nl-ujm"/>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="tTp-wp-nR3">
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your MobileNumber" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YcF-sX-jF5">
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gU-pi-ILA">
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="190" translatesAutoresizingMaskIntoConstraints="NO" id="tPQ-kL-GwD">
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="saS-YG-tvD">
-                                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="17"/>
-                                                <state key="normal" title="Sign In">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="signInBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Elf-2w-szg"/>
-                                                    <segue destination="qQ6-EP-tW6" kind="show" identifier="FlowViewController" id="3mz-u8-1xa"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swT-N2-vMJ">
-                                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="17"/>
-                                                <state key="normal" title="Sign Up">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="signUpBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gRf-Tr-KAC"/>
-                                                    <segue destination="rV3-Kv-Ne2" kind="show" identifier="ProfileViewController" id="3U3-AC-7So"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="saS-YG-tvD">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="99" id="jRu-Ef-4Lo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="17"/>
+                                <state key="normal" title="Sign In">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="signInBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Elf-2w-szg"/>
+                                    <segue destination="qQ6-EP-tW6" kind="show" identifier="FlowViewController" id="3mz-u8-1xa"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your MobileNumber" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YcF-sX-jF5">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="288" id="bDP-be-bkC"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Eco-Kitchen" translatesAutoresizingMaskIntoConstraints="NO" id="ufX-fu-mrP">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="152" id="zd1-OC-e3t"/>
                                 </constraints>
                             </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gU-pi-ILA">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="288" id="110-4n-WXq"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swT-N2-vMJ">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="99" id="Fwg-Lt-en1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="17"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUpBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gRf-Tr-KAC"/>
+                                    <segue destination="rV3-Kv-Ne2" kind="show" identifier="ProfileViewController" id="3U3-AC-7So"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6gU-pi-ILA" firstAttribute="top" secondItem="YcF-sX-jF5" secondAttribute="bottom" constant="29" id="6FE-6B-ZYg"/>
                             <constraint firstItem="x0H-Nl-ujm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9wJ-Ny-GVR"/>
-                            <constraint firstItem="tTp-wp-nR3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DdO-HX-7l8"/>
+                            <constraint firstItem="saS-YG-tvD" firstAttribute="leading" secondItem="6gU-pi-ILA" secondAttribute="leading" id="Eig-Wq-8Uu"/>
                             <constraint firstAttribute="trailing" secondItem="x0H-Nl-ujm" secondAttribute="trailing" id="Oih-In-JsT"/>
                             <constraint firstItem="x0H-Nl-ujm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="PN8-Nt-TSx"/>
+                            <constraint firstItem="swT-N2-vMJ" firstAttribute="trailing" secondItem="6gU-pi-ILA" secondAttribute="trailing" id="Pra-ji-HsX"/>
+                            <constraint firstItem="6gU-pi-ILA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="U7O-HD-Hm3"/>
                             <constraint firstItem="ufX-fu-mrP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="Xap-8l-1pe"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="x0H-Nl-ujm" secondAttribute="bottom" id="Ypb-a8-aGf"/>
+                            <constraint firstItem="YcF-sX-jF5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="anK-7j-qzd"/>
+                            <constraint firstItem="6gU-pi-ILA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="f49-NY-LHT"/>
+                            <constraint firstItem="saS-YG-tvD" firstAttribute="top" secondItem="6gU-pi-ILA" secondAttribute="bottom" constant="25" id="lHY-eK-MNI"/>
+                            <constraint firstItem="swT-N2-vMJ" firstAttribute="top" secondItem="6gU-pi-ILA" secondAttribute="bottom" constant="20" id="moL-yQ-Ejc"/>
                             <constraint firstItem="ufX-fu-mrP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="nxg-aq-ZpI"/>
-                            <constraint firstItem="tTp-wp-nR3" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="qag-hv-7a5"/>
                             <constraint firstItem="ufX-fu-mrP" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ztb-Lj-RwB"/>
                         </constraints>
                     </view>
@@ -84,7 +94,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3239.1999999999998" y="-384.55772113943033"/>
+            <point key="canvasLocation" x="-3240" y="-385.56338028169017"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CFk-Tx-yBw">
@@ -111,7 +121,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6kM-aK-kn6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xyy-1a-Anh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient_searchbar" translatesAutoresizingMaskIntoConstraints="NO" id="Rjs-lj-y8P"/>
@@ -244,17 +254,17 @@
                         <viewControllerLayoutGuide type="bottom" id="jDV-0q-Y5W"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vJL-4e-ldI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ylo-XS-4aa">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="flowCell" id="J6j-8O-XoP" customClass="FlowTableViewCell" customModule="EcoKitcheniOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J6j-8O-XoP" id="0k8-6M-1kp">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                            <frame key="frameInset" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient_searchbar" translatesAutoresizingMaskIntoConstraints="NO" id="uNH-dE-zEy"/>
@@ -299,6 +309,7 @@
                         <segue destination="eH5-oo-Ayy" kind="show" identifier="AboutUsViewController" id="tzR-JF-jQi"/>
                         <segue destination="qBZ-0p-WMS" kind="show" identifier="NearByLocationViewController" id="lgv-bj-CZM"/>
                         <segue destination="GuT-eT-aZq" kind="show" identifier="LocationViewController" id="wLp-T9-yn1"/>
+                        <segue destination="af6-WT-Hie" kind="show" identifier="RefEntrepreneurViewController" id="Klh-AY-kpW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVk-Je-RM8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -314,7 +325,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2Fg-cF-h8P"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GgS-ho-vFl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient_searchbar" translatesAutoresizingMaskIntoConstraints="NO" id="mpB-vc-SX1"/>
@@ -328,8 +339,11 @@
                             </textView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2D0-ZD-ZQU"/>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why do you want to choose the location?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1F-IK-8FV">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="5CK-hD-qWY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLW-b7-ASC">
@@ -342,9 +356,9 @@
                         <constraints>
                             <constraint firstItem="mpB-vc-SX1" firstAttribute="top" secondItem="bt1-yb-koa" secondAttribute="bottom" id="3wi-9h-7M1"/>
                             <constraint firstItem="Khb-Hc-eds" firstAttribute="top" secondItem="bt1-yb-koa" secondAttribute="bottom" id="8kJ-WN-gzA"/>
+                            <constraint firstItem="FLW-b7-ASC" firstAttribute="top" secondItem="X1F-IK-8FV" secondAttribute="bottom" constant="8" symbolic="YES" id="GlX-TM-fWQ"/>
                             <constraint firstAttribute="trailing" secondItem="2D0-ZD-ZQU" secondAttribute="trailing" id="H3p-PG-YCQ"/>
                             <constraint firstItem="X1F-IK-8FV" firstAttribute="top" secondItem="2D0-ZD-ZQU" secondAttribute="bottom" id="IgY-xq-dia"/>
-                            <constraint firstItem="2Fg-cF-h8P" firstAttribute="top" secondItem="X1F-IK-8FV" secondAttribute="bottom" constant="153" id="Kmg-2R-11A"/>
                             <constraint firstItem="X1F-IK-8FV" firstAttribute="leading" secondItem="GgS-ho-vFl" secondAttribute="leading" id="OQE-eS-KEd"/>
                             <constraint firstItem="FLW-b7-ASC" firstAttribute="leading" secondItem="GgS-ho-vFl" secondAttribute="leading" id="Qgs-9b-Ftq"/>
                             <constraint firstAttribute="trailing" secondItem="mpB-vc-SX1" secondAttribute="trailing" id="RZ1-KJ-pUG"/>
@@ -374,15 +388,15 @@
             <objects>
                 <tableViewController id="grc-M9-PYp" customClass="Near" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="MO6-2Z-HE7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedbackCell" id="ppY-75-jmA">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ppY-75-jmA" id="7lD-9d-bZo">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -397,53 +411,40 @@
             </objects>
             <point key="canvasLocation" x="-1830" y="3008"/>
         </scene>
-        <!--About Us View Controller-->
+        <!--Eco Kitchen-->
         <scene sceneID="owV-44-MIp">
             <objects>
-                <viewController id="eH5-oo-Ayy" customClass="AboutUsViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="eH5-oo-Ayy" customClass="AboutUsViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7OY-5V-8l4"/>
                         <viewControllerLayoutGuide type="bottom" id="pzw-Bv-pWc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1O8-oh-YRg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z09-Cm-gaz">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="UdV-72-osV"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gradient_searchbar" translatesAutoresizingMaskIntoConstraints="NO" id="k1Z-Cc-uSZ">
+                                <frame key="frameInset" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="17" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUP-Me-1jc">
-                                <string key="text">KATHIR is an innovative opportunity for disadvantaged urban women impacted by domestic/partner violence and in need of resources to care for people living with chronic and debilitating diseases. It helps them realize their livelihood aspirations.
-
-The impact of KATHIR is manifold:
-Improved self-esteem for women
-Enhanced disposable incomes
-A purpose to be mobile - leaving the confines of their household
-Improved sense of empowerment
-Supports education, nutrition and health for their children
-Affordable, safe meals to the community
-
-Process
-"KATHIR" is a retail opportunity. It offers meals for resale. KATHIR is popular because it respects work-life balance: women are expected to work between 11 AM and 3 PM, MON-SAT. This reduces conflict at home and allows time for women to play other roles expected by their society. They earn between Rs 300 - 400 each working day.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <string key="text">KATHIR is an innovative opportunity for disadvantaged urban women impacted by domestic/partner violence and in need of resources to care for people living with chronic and debilitating diseases. It helps them realize their livelihood aspirations.For more Details visit:                                  http://www.ecokitchen.org/eco/</string>
+                                <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eco-kitchen-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Z09-Cm-gaz"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="OUP-Me-1jc" secondAttribute="trailing" id="95d-lZ-ahH"/>
-                            <constraint firstItem="Z09-Cm-gaz" firstAttribute="trailing" secondItem="OUP-Me-1jc" secondAttribute="trailing" id="G6g-pf-UVr"/>
-                            <constraint firstItem="OUP-Me-1jc" firstAttribute="leading" secondItem="Z09-Cm-gaz" secondAttribute="leading" id="N1g-c5-zVb"/>
-                            <constraint firstItem="Z09-Cm-gaz" firstAttribute="top" secondItem="1O8-oh-YRg" secondAttribute="top" id="hD9-xa-XDz"/>
-                            <constraint firstAttribute="trailing" secondItem="Z09-Cm-gaz" secondAttribute="trailing" id="oOX-ht-lDb"/>
-                            <constraint firstItem="Z09-Cm-gaz" firstAttribute="leading" secondItem="1O8-oh-YRg" secondAttribute="leading" id="roR-bz-kOZ"/>
-                            <constraint firstItem="pzw-Bv-pWc" firstAttribute="top" secondItem="OUP-Me-1jc" secondAttribute="bottom" id="sJw-Vv-zv0"/>
-                            <constraint firstItem="OUP-Me-1jc" firstAttribute="leading" secondItem="1O8-oh-YRg" secondAttribute="leading" id="wlz-UV-VNn"/>
+                            <constraint firstItem="Z09-Cm-gaz" firstAttribute="centerX" secondItem="1O8-oh-YRg" secondAttribute="centerX" id="BtW-FM-tz2"/>
+                            <constraint firstItem="OUP-Me-1jc" firstAttribute="leading" secondItem="1O8-oh-YRg" secondAttribute="leading" constant="10" id="X6U-OH-YYJ"/>
+                            <constraint firstItem="OUP-Me-1jc" firstAttribute="top" secondItem="7OY-5V-8l4" secondAttribute="bottom" constant="10" id="aXf-7f-agz"/>
+                            <constraint firstItem="Z09-Cm-gaz" firstAttribute="top" secondItem="OUP-Me-1jc" secondAttribute="bottom" constant="20" id="e2T-9W-IBp"/>
+                            <constraint firstAttribute="trailing" secondItem="OUP-Me-1jc" secondAttribute="trailing" constant="10" id="tI8-oA-w9R"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Eco Kitchen" id="P4Q-VQ-LQN"/>
                     <connections>
                         <outlet property="aboutUSLabel" destination="OUP-Me-1jc" id="k75-kQ-N2O"/>
                         <outlet property="imagEView" destination="Z09-Cm-gaz" id="hBe-YQ-WFK"/>
@@ -453,7 +454,7 @@ Process
             </objects>
             <point key="canvasLocation" x="-2287.1999999999998" y="1368.6656671664168"/>
         </scene>
-        <!--Near By Location View Controller-->
+        <!--NearBy Kiosk-->
         <scene sceneID="lrF-LE-hDW">
             <objects>
                 <viewController id="qBZ-0p-WMS" customClass="NearByLocationViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -462,7 +463,7 @@ Process
                         <viewControllerLayoutGuide type="bottom" id="jSa-m6-RSb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Tv3-bk-JfW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ICB-2u-h5k"/>
@@ -475,6 +476,7 @@ Process
                             <constraint firstItem="ICB-2u-h5k" firstAttribute="leading" secondItem="Tv3-bk-JfW" secondAttribute="leading" id="uwI-D4-IOn"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="NearBy Kiosk" id="BTw-xx-2Iv"/>
                     <connections>
                         <outlet property="mapView" destination="ICB-2u-h5k" id="2Xx-Th-oVI"/>
                     </connections>
@@ -492,17 +494,17 @@ Process
                         <viewControllerLayoutGuide type="bottom" id="K8c-yS-MHn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UFI-pd-TN5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3VU-sc-9mh">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedbackCell" id="DEV-Hc-Yy1">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DEV-Hc-Yy1" id="vXt-l7-auH">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                            <frame key="frameInset" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient_searchbar" translatesAutoresizingMaskIntoConstraints="NO" id="j8B-ev-Xyq"/>
@@ -518,7 +520,7 @@ Process
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mjf-or-XoE">
-                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="22"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -551,22 +553,22 @@ Process
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hf2-PA-4Nq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-538" y="1194"/>
+            <point key="canvasLocation" x="-540" y="1369"/>
         </scene>
         <!--Select Kiosk-->
         <scene sceneID="9lP-eM-ZlB">
             <objects>
                 <tableViewController id="8CP-MS-ZKL" customClass="SelectKioskTableViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8C4-C9-jvX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KioskCellIdentifier" id="OfW-Wf-U1G">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OfW-Wf-U1G" id="1uL-BR-aG3">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -584,7 +586,89 @@ Process
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bdi-Fa-RsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="W76-ct-O21" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="308" y="1193"/>
+            <point key="canvasLocation" x="295" y="1369"/>
+        </scene>
+        <!--Entrepreneur-->
+        <scene sceneID="YRX-90-9be">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="af6-WT-Hie" customClass="RefEntrepreneurViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cYF-w4-FjJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="fug-zM-XR3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0SK-2N-HjV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h4f-qe-UM3">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Entrepreneurcell" id="vFj-UY-oEZ">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vFj-UY-oEZ" id="WnD-XY-LgZ">
+                                            <frame key="frameInset" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sO4-o9-RvR">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="jrK-GN-L09"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="22"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitBtnPressed:" destination="af6-WT-Hie" eventType="touchUpInside" id="8qm-Ll-rT9"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Name" textAlignment="natural" minimumFontSize="17" background="Enter Your MobileNumber" translatesAutoresizingMaskIntoConstraints="NO" id="VS3-5X-iIV">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="wUW-R0-BgT"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2RF-W5-Z0W">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="41o-PG-QSW"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="h4f-qe-UM3" firstAttribute="top" secondItem="2RF-W5-Z0W" secondAttribute="bottom" constant="10" id="33H-Kc-GGc"/>
+                            <constraint firstItem="fug-zM-XR3" firstAttribute="top" secondItem="sO4-o9-RvR" secondAttribute="bottom" id="5jW-6u-0zo"/>
+                            <constraint firstAttribute="trailing" secondItem="h4f-qe-UM3" secondAttribute="trailing" id="6Lt-MR-abv"/>
+                            <constraint firstItem="2RF-W5-Z0W" firstAttribute="leading" secondItem="0SK-2N-HjV" secondAttribute="leading" constant="10" id="8fm-pA-LtD"/>
+                            <constraint firstAttribute="trailing" secondItem="2RF-W5-Z0W" secondAttribute="trailing" constant="10" id="KZS-Dg-ION"/>
+                            <constraint firstAttribute="trailing" secondItem="sO4-o9-RvR" secondAttribute="trailing" id="LZL-eK-5ra"/>
+                            <constraint firstItem="h4f-qe-UM3" firstAttribute="leading" secondItem="0SK-2N-HjV" secondAttribute="leading" id="O2r-yW-dFa"/>
+                            <constraint firstItem="fug-zM-XR3" firstAttribute="top" secondItem="h4f-qe-UM3" secondAttribute="bottom" id="Qph-MA-meS"/>
+                            <constraint firstItem="VS3-5X-iIV" firstAttribute="leading" secondItem="0SK-2N-HjV" secondAttribute="leading" constant="10" id="Ytp-RT-ccg"/>
+                            <constraint firstItem="VS3-5X-iIV" firstAttribute="top" secondItem="cYF-w4-FjJ" secondAttribute="bottom" constant="10" id="ZyN-Za-Rsn"/>
+                            <constraint firstItem="2RF-W5-Z0W" firstAttribute="top" secondItem="VS3-5X-iIV" secondAttribute="bottom" constant="10" id="pHC-wU-F4U"/>
+                            <constraint firstItem="sO4-o9-RvR" firstAttribute="leading" secondItem="0SK-2N-HjV" secondAttribute="leading" id="taS-RG-ouf"/>
+                            <constraint firstAttribute="trailing" secondItem="VS3-5X-iIV" secondAttribute="trailing" constant="10" id="whx-1v-esF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Entrepreneur" id="POQ-3H-oo0"/>
+                    <connections>
+                        <outlet property="mobileNumberTextField" destination="2RF-W5-Z0W" id="dQx-0q-3Eh"/>
+                        <outlet property="nameTextField" destination="VS3-5X-iIV" id="L2A-sD-6I5"/>
+                        <outlet property="tableView" destination="h4f-qe-UM3" id="Tby-vq-zV0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u5s-fT-qev" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1040.8" y="1368.6656671664168"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XK1-id-Sq4">
@@ -608,9 +692,11 @@ Process
     </scenes>
     <resources>
         <image name="Eco-Kitchen" width="549" height="102"/>
+        <image name="Enter Your MobileNumber" width="375" height="60"/>
+        <image name="eco-kitchen-logo" width="158" height="64"/>
         <image name="gradient_searchbar" width="375" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Q0P-zf-q6d"/>
+        <segue reference="3mz-u8-1xa"/>
     </inferredMetricsTieBreakers>
 </document>
