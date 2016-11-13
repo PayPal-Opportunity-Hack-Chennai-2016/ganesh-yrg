@@ -28,7 +28,7 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
         collapse = [false,false,false,false,false]
         collapseRows = [false,false,false,false,false]
         formData = ["","","","",""];
-        sectionHeader = ["Courtesy of Entrepeneur","Quality of Food","Quantity of Food","Food Taste","Cleanliness of serving"]
+        sectionHeader = ["Entrepeneur courtesy","Quality of Food","Quantity of Food","Food Taste","Cleanliness of Serving"]
         let tmp: NSArray = ["Excellent","Good","Average","Need To Improve"]
         let str = sectionHeader.object(at: 0) as! String
         dict.setValue(tmp, forKey: str)

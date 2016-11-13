@@ -338,9 +338,9 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2D0-ZD-ZQU"/>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why do you want to choose the location?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1F-IK-8FV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reasons for refering this location:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1F-IK-8FV">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="5CK-hD-qWY"/>
+                                    <constraint firstAttribute="height" constant="40" id="5CK-hD-qWY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -613,18 +613,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sO4-o9-RvR">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="jrK-GN-L09"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="22"/>
-                                <state key="normal" title="Submit">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="submitBtnPressed:" destination="af6-WT-Hie" eventType="touchUpInside" id="8qm-Ll-rT9"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Name" textAlignment="natural" minimumFontSize="17" background="Enter Your MobileNumber" translatesAutoresizingMaskIntoConstraints="NO" id="VS3-5X-iIV">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="wUW-R0-BgT"/>
@@ -645,21 +633,24 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="h4f-qe-UM3" firstAttribute="top" secondItem="2RF-W5-Z0W" secondAttribute="bottom" constant="10" id="33H-Kc-GGc"/>
-                            <constraint firstItem="fug-zM-XR3" firstAttribute="top" secondItem="sO4-o9-RvR" secondAttribute="bottom" id="5jW-6u-0zo"/>
                             <constraint firstAttribute="trailing" secondItem="h4f-qe-UM3" secondAttribute="trailing" id="6Lt-MR-abv"/>
                             <constraint firstItem="2RF-W5-Z0W" firstAttribute="leading" secondItem="0SK-2N-HjV" secondAttribute="leading" constant="10" id="8fm-pA-LtD"/>
                             <constraint firstAttribute="trailing" secondItem="2RF-W5-Z0W" secondAttribute="trailing" constant="10" id="KZS-Dg-ION"/>
-                            <constraint firstAttribute="trailing" secondItem="sO4-o9-RvR" secondAttribute="trailing" id="LZL-eK-5ra"/>
                             <constraint firstItem="h4f-qe-UM3" firstAttribute="leading" secondItem="0SK-2N-HjV" secondAttribute="leading" id="O2r-yW-dFa"/>
                             <constraint firstItem="fug-zM-XR3" firstAttribute="top" secondItem="h4f-qe-UM3" secondAttribute="bottom" id="Qph-MA-meS"/>
                             <constraint firstItem="VS3-5X-iIV" firstAttribute="leading" secondItem="0SK-2N-HjV" secondAttribute="leading" constant="10" id="Ytp-RT-ccg"/>
                             <constraint firstItem="VS3-5X-iIV" firstAttribute="top" secondItem="cYF-w4-FjJ" secondAttribute="bottom" constant="10" id="ZyN-Za-Rsn"/>
                             <constraint firstItem="2RF-W5-Z0W" firstAttribute="top" secondItem="VS3-5X-iIV" secondAttribute="bottom" constant="10" id="pHC-wU-F4U"/>
-                            <constraint firstItem="sO4-o9-RvR" firstAttribute="leading" secondItem="0SK-2N-HjV" secondAttribute="leading" id="taS-RG-ouf"/>
                             <constraint firstAttribute="trailing" secondItem="VS3-5X-iIV" secondAttribute="trailing" constant="10" id="whx-1v-esF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Entrepreneur" id="POQ-3H-oo0"/>
+                    <navigationItem key="navigationItem" title="Entrepreneur" id="POQ-3H-oo0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="oYB-34-9oW">
+                            <connections>
+                                <action selector="saveBarBtnPressed:" destination="af6-WT-Hie" id="H91-JQ-FHB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mobileNumberTextField" destination="2RF-W5-Z0W" id="dQx-0q-3Eh"/>
                         <outlet property="nameTextField" destination="VS3-5X-iIV" id="L2A-sD-6I5"/>

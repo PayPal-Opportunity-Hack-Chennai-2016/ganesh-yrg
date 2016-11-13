@@ -28,7 +28,7 @@ class RefEntrepreneurViewController: UIViewController,UITableViewDataSource,UITa
         collapse = [false,false,false,false]
         collapseRows = [false,false,false,false]
         formData = ["","","","",""];
-        sectionHeader = ["Gender","Marital Status","Income Range","Educational Qualification"]
+        sectionHeader = ["Gender","Marital Status","Income Range","Edu Qualification"]
         let tmp: NSArray = ["Male","Female","TransGender"]
         let str = sectionHeader.object(at: 0) as! String
         dict.setValue(tmp, forKey: str)
@@ -64,13 +64,44 @@ class RefEntrepreneurViewController: UIViewController,UITableViewDataSource,UITa
         super.didReceiveMemoryWarning();
     }
     
+    @IBAction func saveBarBtnPressed(_ sender: AnyObject) {
+        let serviceManager = ServiceManager()
+        let refEnterpreneur = RefEnterpreneur()
+        refEnterpreneur.name = nameTextField.text
+        refEnterpreneur.phone = mobileNumberTextField.text
+        refEnterpreneur.incomeRange = formData[2] as! String
+        refEnterpreneur.maritalStatus = formData[1] as! String
+        refEnterpreneur.qualificaiton = formData[3] as! String
+        refEnterpreneur.gender = formData[0] as! String
+        serviceManager.updateRefEntrepreneur(refEntreprenuer: refEnterpreneur) { (success) in
+            if (success != -1) {
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "Refer Entrepreneur Success", message:  "Thank You for your referral.", preferredStyle: UIAlertControllerStyle.alert)
+                    let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+                        self.navigationController?.popViewController(animated: true)
+                    })
+                    alertController.addAction(alertAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                
+            } else {
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "Refer Entrepreneur Failure", message:  "Did not meet requirements", preferredStyle: UIAlertControllerStyle.alert)
+                    let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+                    alertController.addAction(alertAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+        
+    }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
         let newLength = text.characters.count + string.characters.count - range.length
         return newLength <= 10
     }
     
-    @IBAction func submitBtnPressed(_ sender: AnyObject) {
+   /* @IBAction func submitBtnPressed(_ sender: AnyObject) {
         let serviceManager = ServiceManager()
         let refEnterpreneur = RefEnterpreneur()
         refEnterpreneur.name = nameTextField.text
@@ -99,7 +130,7 @@ class RefEntrepreneurViewController: UIViewController,UITableViewDataSource,UITa
                 }
             }
         }
-    }
+    } */
     
     
     // MARK: - Table view data source

@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient_searchbar" translatesAutoresizingMaskIntoConstraints="NO" id="lzl-dI-31f"/>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eco-kitchen-logo" translatesAutoresizingMaskIntoConstraints="NO" id="wcf-Q8-pMS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Eco-Kithcen-High" translatesAutoresizingMaskIntoConstraints="NO" id="wcf-Q8-pMS">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="270" id="rAt-Yt-BID"/>
                                 </constraints>
@@ -43,7 +43,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="eco-kitchen-logo" width="158" height="64"/>
+        <image name="Eco-Kithcen-High" width="7499" height="4199"/>
         <image name="gradient_searchbar" width="375" height="60"/>
     </resources>
 </document>
