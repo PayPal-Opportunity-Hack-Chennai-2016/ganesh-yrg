@@ -10,12 +10,18 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class LocationViewController: UIViewController, CLLocationManagerDelegate{
+class LocationViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
 
-    @IBOutlet weak var latLongLabel: UILabel!
+   // @IBOutlet weak var latLongLabel: UILabel!
     @IBOutlet weak var addressLabel: UITextView!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var pickerView: UIPickerView!
     var locationManager : CLLocationManager!
+    var lat : CLLocationDegrees = 0.0
+    var long : CLLocationDegrees = 0.0
+    var selectedRow = 0
+    
+    let reasonForReferal = ["No Neaby Food Stalls","OI like your Food","Nearby Food stalls are unhygenic","Nearby Food stalls are expoensive","This is a safe location and i want to support an enterpreneur","Others"];
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -32,7 +38,22 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate{
         self.mapView.showsUserLocation = true;
         self.mapView.isZoomEnabled = true;
         self.mapView.isScrollEnabled = true;
-      //  let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+        self.navigationItem.title = "Location Referal"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Refer", style: .plain, target: self, action: #selector(LocationViewController.referBtnPressed))
+        
+        self.addressLabel.sizeToFit()
+        self.addressLabel.scrollsToTop = true
+        self.addressLabel.textColor = UIColor.white
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 70))
+        let image = UIImage(named: "gradient_searchbar")
+        imageView.image = image
+        self.addressLabel.addSubview(imageView)
+        self.addressLabel.sendSubview(toBack: imageView)
+        
+        pickerView.dataSource = self
+        pickerView.delegate = self
+              //  let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
         //self.mapView.setRegion(region, animated: true);
     }
     
@@ -43,9 +64,13 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last! as CLLocation
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
         self.mapView.setRegion(region, animated: true);
-        latLongLabel.text = "Latitude: \(location.coordinate.latitude) Longitude:\(location.coordinate.longitude)"
+        //latLongLabel.text = "Latitude: \(location.coordinate.latitude) Longitude:\(location.coordinate.longitude)"
+        lat = location.coordinate.latitude
+        long = location.coordinate.longitude
+        
+        locationManager.stopUpdatingLocation()
         
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
             print(location)
@@ -59,33 +84,23 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate{
                 var addressString = ""
                 if (pm.locality != nil) {
                     addressString = addressString + pm.locality!;
+                    
                 }
-                if (pm.subLocality != nil) {
-                    addressString = addressString + pm.subLocality!;
-                }
-                if (pm.country != nil) {
-                    addressString = addressString + pm.country!;
-                }
+                addressString += " "
                 if (pm.administrativeArea != nil) {
                     addressString = addressString + pm.administrativeArea!;
                 }
-                if (pm.subAdministrativeArea != nil) {
-                    addressString = addressString + pm.subAdministrativeArea!;
+                addressString += " "
+                if (pm.country != nil) {
+                    addressString = addressString + pm.country!;
                 }
+                addressString += " "
                 if (pm.postalCode != nil) {
                     addressString = addressString + pm.postalCode!;
                 }
-                if (pm.thoroughfare != nil) {
-                    addressString = addressString + pm.thoroughfare!;
-                }
-                if (pm.subThoroughfare != nil) {
-                    addressString = addressString + pm.subThoroughfare!;
-                }
-                if (pm.name != nil) {
-                    addressString = addressString + pm.name!;
-                }
-                
+                addressString += " "
                 self.addressLabel.text = addressString;
+                self.addressLabel.sizeToFit()
 //                print(pm.locality)
 //                print(pm.subLocality)
 //                print(pm.country)
@@ -116,20 +131,31 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate{
         self.mapView.addAnnotation(annotation)
     }
     
-    @IBAction func referLocationBtnPressed(_ sender: AnyObject) {
-        
+    
+    func referBtnPressed(){
+        let serviceManager = ServiceManager()
+        let description = reasonForReferal[selectedRow]
+        let location = Location(address: addressLabel.text, description: description,
+                                status: true, latitude: lat, longitude: long)
+        serviceManager.updateLocation(location: location)
     }
     
-    
     func updateMapCoordinates(gestureReconizer : UILongPressGestureRecognizer) {
+        
+        if addressLabel.isFirstResponder {
+            addressLabel.resignFirstResponder()
+            return
+        }
+        
         let location = gestureReconizer.location(in: mapView)
         let coordinate = mapView.convert(location,toCoordinateFrom: mapView)
         // Add annotation:
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         mapView.addAnnotation(annotation)
-        latLongLabel.text = "Latitude: \(coordinate.latitude) Longitude:\(coordinate.longitude)"
-        
+       // latLongLabel.text = "Latitude: \(coordinate.latitude) Longitude:\(coordinate.longitude)"
+        lat = coordinate.latitude
+        long = coordinate.longitude
         let locationConvert = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude);
         
         CLGeocoder().reverseGeocodeLocation(locationConvert, completionHandler: {(placemarks, error) -> Void in
@@ -142,36 +168,33 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate{
             if (placemarks?.count)! > 0 {
                 
                     let pm = (placemarks?[0])! as CLPlacemark
-                    var addressString = ""
-                    if (pm.locality != nil) {
-                        addressString = addressString + pm.locality!;
-                    }
-                    if (pm.subLocality != nil) {
-                        addressString = addressString + pm.subLocality!;
-                    }
-                    if (pm.country != nil) {
-                        addressString = addressString + pm.country!;
-                    }
-                    if (pm.administrativeArea != nil) {
-                        addressString = addressString + pm.administrativeArea!;
-                    }
-                    if (pm.subAdministrativeArea != nil) {
-                        addressString = addressString + pm.subAdministrativeArea!;
-                    }
-                    if (pm.postalCode != nil) {
-                        addressString = addressString + pm.postalCode!;
-                    }
-                    if (pm.thoroughfare != nil) {
-                        addressString = addressString + pm.thoroughfare!;
-                    }
-                    if (pm.subThoroughfare != nil) {
-                        addressString = addressString + pm.subThoroughfare!;
-                    }
-                    if (pm.name != nil) {
-                        addressString = addressString + pm.name!;
-                    }
+                var addressString = ""
+                if (pm.locality != nil) {
+                    addressString = addressString + pm.locality!;
                     
+                }
+                addressString += " "
+                if (pm.administrativeArea != nil) {
+                    addressString = addressString + pm.administrativeArea!;
+                }
+                addressString += " "
+                if (pm.country != nil) {
+                    addressString = addressString + pm.country!;
+                }
+                addressString += " "
+                if (pm.postalCode != nil) {
+                    addressString = addressString + pm.postalCode!;
+                }
+                addressString += " "
                     self.addressLabel.text = addressString;
+          //      CGRect frame = self.addressLabel.frame;
+        
+                   // frame.size = self.addressLabel.contentSize;
+                  //  self.addressLabel.frame = frame;
+
+                    self.addressLabel.sizeToFit()
+                    self.addressLabel.scrollsToTop = true
+              //  self.addressLabel.frame.height = self.addressLabel.contentSize.height
                     //                print(pm.locality)
                     //                print(pm.subLocality)
                     //                print(pm.country)
@@ -189,5 +212,25 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate{
             }
         })
 
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return reasonForReferal[row]
+    }
+    
+    
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return reasonForReferal.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedRow = row
+       pickerView.selectRow(row, inComponent: component, animated: true)
     }
 }

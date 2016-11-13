@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileViewController: UIViewController/*,UIPickerViewDataSource,UIPickerViewDelegate*/{
 
+    @IBOutlet weak var userEmail: UITextField!
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var userAddress: UITextField!
     @IBOutlet weak var userMobileNumber: UITextField!
@@ -22,10 +23,18 @@ class ProfileViewController: UIViewController/*,UIPickerViewDataSource,UIPickerV
     
     let genderArray = ["Male","Female","TransGender"];
     
+    private var responseFlag = false
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.dismissKeyboard));
         view.addGestureRecognizer(tap);
+        
+        userConfirmPassword.text = "neo19@gmail.com"
+        userAddress.text = "Malibu Point"
+        userMobileNumber.text = "9884170853"
+        userPassword.text = "Paypal"
+        userName.text = "Paypal"
 //        genderPicker.dataSource = self;
 //        genderPicker.delegate = self;
 //        datePickerDOB.addTarget(self, action: #selector(ProfileViewController.datePickerChanged), for: UIControlEvents.valueChanged);
@@ -35,12 +44,40 @@ class ProfileViewController: UIViewController/*,UIPickerViewDataSource,UIPickerV
         super.didReceiveMemoryWarning()
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return responseFlag
+    }
+    
     func dismissKeyboard(){
         self.view.endEditing(true);
     }
 
+    @IBAction func alreadyUserBtnPressed(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBAction func registerBtnPressed(_ sender: AnyObject) {
-        
+        let manager = ServiceManager()
+        let register  = RegistrationModel()
+        register.address = userAddress.text;
+        register.email = userConfirmPassword.text
+        register.mobileNumber = userMobileNumber.text
+        register.name = userName.text
+        register.password = userPassword.text
+        responseFlag = false
+        manager.signUp(register : register) { (userId) in
+            if userId != -1 {
+                self.responseFlag = true
+                GLOBAL_USERID = userId
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "FlowViewController", sender: nil);
+                }
+            } else {
+                let alertController = UIAlertController(title: "Registration Failure", message:  "email Id or Phone Number entered incorrectly", preferredStyle: UIAlertControllerStyle.alert)
+                let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+                alertController.addAction(alertAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
     }
 //    @IBAction func genderBtnPressed(_ sender: AnyObject) {
 //        datePickerDOB.isHidden = true;
