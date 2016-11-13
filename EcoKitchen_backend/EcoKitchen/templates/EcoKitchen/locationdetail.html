@@ -5,7 +5,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-		<title>Users list page</title>
+		<title>Location Details</title>
 		<meta name="description" content="Locations:of users" />
 		<meta name="keywords" content="Locations of users" />
 		<meta name="author" content="Codrops" />
@@ -131,7 +131,13 @@
 					</thead>
 					<tbody>
 						
-                        <tr><td align="left">{{loc.usr}}</td><td align="left">{{loc.address}}</td><td align="left">{{loc.lat}}</td><td align="left">{{loc.long}}</td><td align="left">{{loc.status}}</td><td align="left">{{loc.description}}</td></tr>
+                        <tr>
+							<td align="left">{{location.user.name}}</td>
+							<td align="left">{{location.address}}</td>
+							<td align="left">{{location.lat}}</td>
+							<td align="left">{{location.long}}</td>
+							<td align="left">{{location.status}}</td>
+							<td align="left">{{location.description}}</td></tr>
 
                        
 					</tbody>
@@ -142,15 +148,19 @@
             <h1>Enter Details to modify</h1>
             <form method='post'>
 			{% csrf_token %}
-			<input type="text" name="field1" placeholder="Location" value="{{loc.usr}}" />
-			<input type="text" name="field6" placeholder="location" value="{{loc.address}}"/>
-			<label for="active">ACTIVE</label>
-			<input type="radio" name="choice" id="active" value="active" /><br><br>
-			<label for="inactive">INACTIVE</label>
-			<input type="radio" name="choice" id="inactive" value="inactive" />
-			<input type="text" name="field3" placeholder="Type new Description" value="{{loc.description}}"/>
-			<input type="text" name="field4" placeholder="Latitude" value="{{loc.lat}}" />
-			<input type="text" name="field5" placeholder="Longtitude" value="{{loc.long}}" />
+			<input type="text" name="field1" placeholder="User Name" value="{{location.user.name}}" />
+			<input type="text" name="field6" placeholder="location" value="{{location.address}}"/>
+			<input type="radio" name="choice" value="True" {% if location.status is True %}
+				   checked
+				   {% endif %}
+			/> Active <br>
+			<input type="radio" name="choice" value="False" {% if location.status is False %}
+				   checked
+				   {% endif %}
+			/> Inactive <br><br>
+			<input type="text" name="field3" placeholder="Type new Description" value="{{location.description}}"/>
+			<input type="text" name="field4" placeholder="Latitude" value="{{location.lat}}" />
+			<input type="text" name="field5" placeholder="Longtitude" value="{{location.long}}" />
 			
 			<input type="submit" value="Update" name="update" />
 			</form>

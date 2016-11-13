@@ -132,9 +132,13 @@
 					</thead>
 					<tbody>
 						
-                        <tr><td align="left">{{entre.person}}</td><td align="left">{{entre.name}}</td><td align="left">{{entre.assignedlocation}}</td><td align="left">{{entre.incomeRange}}</td><td align="left">{{entre.maritalStatus}}</td><td align="left">{{entre.description}}</td></tr>
-
-                       
+                        <tr>
+							<td align="left">{{entre.user.name}}</td>
+							<td align="left">{{entre.name}}</td>
+							<td align="left">{{entre.location.address}}</td>
+							<td align="left">{{entre.incomeRange}}</td>
+							<td align="left">{{entre.maritalStatus}}</td>
+							<td align="left">{{entre.description}}</td></tr>
 					</tbody>
 				</table>
 				
@@ -142,19 +146,16 @@
 			<div class="form-style-6">
             <h1>Select Choice to modify</h1>
             <form method='post'>
-			{% csrf_token %}
-			{% for loc in locs %}
-			{% ifequal loc.status "inactive" %}
-			<label for="active">{{loc.address}}</label>
-			<input type="radio" name="choice" id="active" value={{loc.address}} /><br><br>
-			{% endifequal %}
-			{% endfor %}
-			<h1>Select the option below to make the assigned location nil</h1>
-			<label for="nil">NIL</label>
-			<input type="radio" name="nil" id="nil" value="nil" /><br><br>
-			
-			
-			<input type="submit" value="Update" name="update" />
+				{% csrf_token %}
+				{% for loc in locs %}
+					{% if loc.status is False %}
+						<label for="active">{{loc.address}}</label>
+						<input type="radio" name="locationId" id="active" value={{loc.id}} /><br><br>
+					{% endif %}
+				{% endfor %}
+				<label for="nil">Remove Location for entrepreneur</label>
+				<input type="radio" name="nil" id="nil" value="nil" /><br><br>
+				<input type="submit" value="Update" name="update" />
 			</form>
 			</div>
 		</div><!-- /container -->

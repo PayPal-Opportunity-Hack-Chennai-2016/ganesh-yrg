@@ -8,18 +8,6 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import serializers
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
-from EcoKitchen.models import UserProfile,Location,FeedBack,ReferredPerson
-
-from django.utils import timezone
-from django.http import Http404
-import requests
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
-from django.contrib.auth import login
-from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
-
-from django.template import loader
 from .models import UserProfile,Location,FeedBack,ReferredPerson
 import logging
 
@@ -332,25 +320,25 @@ def entrepreneurs(request):
 
 
 
-def locationdetail(request, location_id):
-    location = get_object_or_404(Location, pk=location_id)
+def userdetail(request, user_id):
+    usr = get_object_or_404(UserProfile, pk=user_id)
     if(request.POST.get('subbtn')):
         inplist = request.POST.getlist('i_case')
         outlist = request.POST.getlist('o_case')
 
-    return render(request, 'EcoKitchen/locationdetail.html', {'loc': location})
+    return render(request, 'EcoKitchen/userdetail.html', {'usr': usr})
 
-def userdetail(request, user_id):
-   usr = get_object_or_404(UserProfile, pk=user_id)
+def locationdetail(request, location_id):
+   location = get_object_or_404(Location, pk=location_id)
    if(request.POST.get('update')):
-         location.address = request.POST.get('field6')
-         location.status = request.POST.get('choice')
-         location.description = request.POST.get('field3')
-         location.lat = request.POST.get('field4')
-         location.long = request.POST.get('field5')
-         location.save()
-         return redirect('/EcoKitchen/locationspage')
-   return render(request, 'EcoKitchen/userdetail.html', {'usr': usr})
+        location.address = request.POST.get('field6')
+        location.status = request.POST.get('choice')
+        location.description = request.POST.get('field3')
+        location.lat = request.POST.get('field4')
+        location.long = request.POST.get('field5')
+        location.save()
+        return redirect('/EcoKitchen/locationspage')
+   return render(request, 'EcoKitchen/locationdetail.html', {'location': location})
 
 def entredetail(request, entre_id):
     entre = get_object_or_404(ReferredPerson, pk=entre_id)
@@ -359,17 +347,20 @@ def entredetail(request, entre_id):
     if(request.POST.get('update')):
         if(request.POST.get('choice')=='nil'):
             logger.critical("+++++++ Trying to make as inactive")
-            loca = Location.objects.get(address=str(entre.assignedlocation))
-            loca.status="inactive"
+            locationId =request.POST.get('locationId')
+            loca = Location.objects.get(id=locationId )
+            loca.status=False
             loca.save()
-            entre.assignedlocation="nil"
+            entre.location = None
             entre.save()
         if(request.POST.get('choice')!='nil'):
             logger.critical("+++++++ Trying to make as active")
-            entre.assignedlocation=request.POST.get('choice')
-            entre.save()
-            loca = Location.objects.get(address=str(entre.assignedlocation))
-            loca.status="active"
+            locationId =request.POST.get('locationId')
+            loca = Location.objects.get(id=locationId )
+            loca.status=True
             loca.save()
+            entre.location = loca
+            entre.save()
+
         return redirect('/EcoKitchen/locationspage')
     return render(request, 'EcoKitchen/entredetail.html', {'entre': entre,'locs':locs})

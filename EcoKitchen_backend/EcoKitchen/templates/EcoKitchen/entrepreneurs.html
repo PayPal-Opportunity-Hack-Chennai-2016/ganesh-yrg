@@ -56,8 +56,14 @@
 					</thead>
 					<tbody>
 						{% for entre in entre_list %}
-                        <tr><td align="left">{{entre.person}}</td><td align="left"><a href="{% url 'EcoKitchen:entredetail' entre.id %}">{{entre.name}}</a></td><td align="left">{{entre.assignedlocation}}</td><td align="left">{{entre.phone}}</td><td align="left">{{entre.incomeRange}}</td><td align="left">{{entre.maritalStatus}}</td><td align="left">{{entre.description}}</td></tr>
-
+                        <tr>
+							<td align="left">{{entre.user.name}}</td>
+							<td align="left"><a href="{% url 'EcoKitchen:entredetail' entre.id %}">{{entre.name}}</a></td>
+							<td align="left">{{entre.location.address}}</td>
+							<td align="left">{{entre.phone}}</td>
+							<td align="left">{{entre.incomeRange}}</td>
+							<td align="left">{{entre.maritalStatus}}</td>
+							<td align="left">{{entre.description}}</td></tr>
                         {% endfor %}
 					</tbody>
 				</table>
