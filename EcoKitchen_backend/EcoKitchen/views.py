@@ -1,19 +1,13 @@
-import logging
-
-from django.core.exceptions import MultipleObjectsReturned
-from django.core.exceptions import ObjectDoesNotExist
+import logging,hashlib,base64
+from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
 from django.db.models import Q
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from rest_framework import serializers
-from rest_framework.decorators import api_view
-from rest_framework.decorators import parser_classes
+from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
-
 from EcoKitchen.models import UserProfile,Location,FeedBack,ReferredPerson
-
-# Create your views here.
 
 logging.basicConfig()
 logger = logging.getLogger(__name__)
@@ -23,7 +17,9 @@ UserProfile_PASSWORD = "password"
 UserProfile_EMAIL = "email"
 UserProfile_ADDRESS = "address"
 UserProfile_MOBILE = "mobile"
-# Create your views here.
+HASH_SALT = b'SECRET_SALT'
+NUM_ITERATIONS = 10000
+
 def post_list(self, *args, **kwargs):
   return HttpResponse('{"success":"true"}')
 
@@ -47,12 +43,13 @@ def signInUser(request):
   if request.method == 'POST' and request.content_type == 'application/json' :
     mobile = request.data[UserProfile_MOBILE]
     password = request.data[UserProfile_PASSWORD]
+    passwordHash = base64.b64encode(hashlib.pbkdf2_hmac('sha256', password, HASH_SALT, NUM_ITERATIONS))
     try :
-        userProfile = UserProfile.objects.get(mobile=mobile, password=password)
+        userProfile = UserProfile.objects.get(mobile=mobile, password=passwordHash)
     except ObjectDoesNotExist:
         logger.critical("User did not exist")
         result = False
-        msg = "User did not exist"
+        msg = "Wrong User Name password Combination"
     except MultipleObjectsReturned:
         logger.critical("Multiple objects returned")
         msg = "Multiple objects returned"
@@ -78,6 +75,9 @@ def signUpUser(request):
     if request.method == 'POST' and request.content_type == 'application/json' :
         name = request.data[UserProfile_NAME]
         password = request.data[UserProfile_PASSWORD]
+        logger.critical("PAssword:: " + password)
+        passwordHash = base64.b64encode(hashlib.pbkdf2_hmac('sha256', password, HASH_SALT, NUM_ITERATIONS))
+        logger.critical("PAssword hash:: " + passwordHash)
         email = request.data[UserProfile_EMAIL]
         address = request.data[UserProfile_ADDRESS]
         mobile = request.data[UserProfile_MOBILE]
@@ -90,7 +90,7 @@ def signUpUser(request):
                 result = False
                 msg = "A user is present with same email or mobile number"
             else:
-                userProfile = UserProfile(name=name, password=password,
+                userProfile = UserProfile(name=name, password=passwordHash,
                                   email=email, address=address, mobile=mobile)
                 userProfile.save()
         except Exception as e:
