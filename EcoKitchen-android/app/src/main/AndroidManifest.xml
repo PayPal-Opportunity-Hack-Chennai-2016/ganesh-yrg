@@ -45,7 +45,7 @@
         </activity>
         <activity
             android:name=".actvities.DashBoardActivity"
-            android:label="dashboard"/>
+            android:label="Kathir"/>
         <activity
             android:name=".actvities.Findnearbykiosks"
             android:label="Find nearby Kiosks"/>

@@ -18,5 +18,6 @@
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:text="@string/sampleleft"
-        android:textColor="#000" />
+        android:textColor="#000"
+        android:textSize="16dp"/>
 </RelativeLayout>
