@@ -8,16 +8,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var mobileNumber: UITextField!
     @IBOutlet weak var password: UITextField!
     
+    private var responseReceived = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mobileNumber.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
-        mobileNumber.text = "8883729793"
-        password.text = "echokitchen"
+//        mobileNumber.text = "8883729793"
+//        password.text = "echokitchen"
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,16 +29,38 @@ class ViewController: UIViewController {
     }
 
     @IBAction func signInBtnPressed(_ sender: AnyObject) {
-        
+        responseReceived = false
         let manager = ServiceManager()
         manager.signIn(mobile: mobileNumber.text!, password: password.text!) { (userId) in
-            self.performSegue(withIdentifier: "FlowViewController", sender: nil);
+            self.responseReceived = true
+            if userId != -1 {
+                GLOBAL_USERID = userId
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "FlowViewController", sender: nil);
+                }
+            } else {
+                DispatchQueue.main.async {
+                    // show alert
+                }
+            }
+
         }
 
     }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return responseReceived
+    }
 
     @IBAction func signUpBtnPressed(_ sender: AnyObject) {
-        self.performSegue(withIdentifier: "ProfileViewController", sender: nil);
+        self.performSegue(withIdentifier:"ProfileViewController" , sender: nil);
+
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.characters.count + string.characters.count - range.length
+        return newLength <= 10
     }
     
 }

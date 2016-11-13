@@ -24,6 +24,7 @@ class FlowViewController: UIViewController,UITableViewDataSource,UITableViewDele
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning();
     }
+
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -47,6 +48,9 @@ class FlowViewController: UIViewController,UITableViewDataSource,UITableViewDele
         if indexPath.row == 1 {
             performSegue(withIdentifier: "LocationViewController", sender: nil);
         }
+        else if indexPath.row == 2 {
+            performSegue(withIdentifier: "NearByLocationViewController", sender: nil);
+        }
         else if indexPath.row == 3 {
             performSegue(withIdentifier: "AboutUsViewController", sender: nil);
         }
@@ -56,7 +60,7 @@ class FlowViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return self.tableView.frame.size.height / 5
     }
 
 }

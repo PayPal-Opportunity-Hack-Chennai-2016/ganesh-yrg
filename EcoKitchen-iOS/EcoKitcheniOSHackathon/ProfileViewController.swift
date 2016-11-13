@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileViewController: UIViewController/*,UIPickerViewDataSource,UIPickerViewDelegate*/{
 
+    @IBOutlet weak var userEmail: UITextField!
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var userAddress: UITextField!
     @IBOutlet weak var userMobileNumber: UITextField!
@@ -22,6 +23,8 @@ class ProfileViewController: UIViewController/*,UIPickerViewDataSource,UIPickerV
     
     let genderArray = ["Male","Female","TransGender"];
     
+    private var responseFlag = false
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.dismissKeyboard));
@@ -29,7 +32,7 @@ class ProfileViewController: UIViewController/*,UIPickerViewDataSource,UIPickerV
         
         userConfirmPassword.text = "neo19@gmail.com"
         userAddress.text = "Malibu Point"
-        userMobileNumber.text = "8883729358"
+        userMobileNumber.text = "9884170853"
         userPassword.text = "Paypal"
         userName.text = "Paypal"
 //        genderPicker.dataSource = self;
@@ -39,6 +42,10 @@ class ProfileViewController: UIViewController/*,UIPickerViewDataSource,UIPickerV
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return responseFlag
     }
     
     func dismissKeyboard(){
@@ -53,9 +60,16 @@ class ProfileViewController: UIViewController/*,UIPickerViewDataSource,UIPickerV
         register.mobileNumber = userMobileNumber.text
         register.name = userName.text
         register.password = userPassword.text
+        responseFlag = false
         manager.signUp(register : register) { (userId) in
             if userId != -1 {
-                self.performSegue(withIdentifier: "FlowViewController", sender: nil);
+                self.responseFlag = true
+                GLOBAL_USERID = userId
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "FlowViewController", sender: nil);
+                }
+            } else {
+                // show alert
             }
         }
     }

@@ -12,10 +12,12 @@ import CoreLocation
 
 class LocationViewController: UIViewController, CLLocationManagerDelegate{
 
-    @IBOutlet weak var latLongLabel: UILabel!
+   // @IBOutlet weak var latLongLabel: UILabel!
     @IBOutlet weak var addressLabel: UITextView!
     @IBOutlet weak var mapView: MKMapView!
     var locationManager : CLLocationManager!
+    var lat : CLLocationDegrees = 0.0
+    var long : CLLocationDegrees = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -32,7 +34,12 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate{
         self.mapView.showsUserLocation = true;
         self.mapView.isZoomEnabled = true;
         self.mapView.isScrollEnabled = true;
-      //  let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+        self.navigationItem.title = "Location Referal"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Refer", style: .plain, target: self, action: #selector(LocationViewController.referBtnPressed))
+        
+        self.addressLabel.sizeToFit()
+        self.addressLabel.scrollsToTop = true
+              //  let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
         //self.mapView.setRegion(region, animated: true);
     }
     
@@ -45,7 +52,11 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate{
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
         self.mapView.setRegion(region, animated: true);
-        latLongLabel.text = "Latitude: \(location.coordinate.latitude) Longitude:\(location.coordinate.longitude)"
+        //latLongLabel.text = "Latitude: \(location.coordinate.latitude) Longitude:\(location.coordinate.longitude)"
+        lat = location.coordinate.latitude
+        long = location.coordinate.longitude
+        
+        locationManager.stopUpdatingLocation()
         
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
             print(location)
@@ -86,6 +97,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate{
                 }
                 
                 self.addressLabel.text = addressString;
+                self.addressLabel.sizeToFit()
 //                print(pm.locality)
 //                print(pm.subLocality)
 //                print(pm.country)
@@ -116,20 +128,29 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate{
         self.mapView.addAnnotation(annotation)
     }
     
-    @IBAction func referLocationBtnPressed(_ sender: AnyObject) {
-        
+    
+    func referBtnPressed(){
+        let serviceManager = ServiceManager()
+        let location = Location(address: addressLabel.text, description: "Vendor is available", status: true, latitude: lat, longitude: long)
+        serviceManager.updateLocation(location: location)
     }
     
-    
     func updateMapCoordinates(gestureReconizer : UILongPressGestureRecognizer) {
+        
+        if addressLabel.isFirstResponder {
+            addressLabel.resignFirstResponder()
+            return
+        }
+        
         let location = gestureReconizer.location(in: mapView)
         let coordinate = mapView.convert(location,toCoordinateFrom: mapView)
         // Add annotation:
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         mapView.addAnnotation(annotation)
-        latLongLabel.text = "Latitude: \(coordinate.latitude) Longitude:\(coordinate.longitude)"
-        
+       // latLongLabel.text = "Latitude: \(coordinate.latitude) Longitude:\(coordinate.longitude)"
+        lat = coordinate.latitude
+        long = coordinate.longitude
         let locationConvert = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude);
         
         CLGeocoder().reverseGeocodeLocation(locationConvert, completionHandler: {(placemarks, error) -> Void in
@@ -172,6 +193,14 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate{
                     }
                     
                     self.addressLabel.text = addressString;
+          //      CGRect frame = self.addressLabel.frame;
+        
+                   // frame.size = self.addressLabel.contentSize;
+                  //  self.addressLabel.frame = frame;
+
+                    self.addressLabel.sizeToFit()
+                self.addressLabel.scrollsToTop = true
+              //  self.addressLabel.frame.height = self.addressLabel.contentSize.height
                     //                print(pm.locality)
                     //                print(pm.subLocality)
                     //                print(pm.country)
