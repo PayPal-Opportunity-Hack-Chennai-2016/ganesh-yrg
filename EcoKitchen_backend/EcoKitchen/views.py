@@ -30,6 +30,7 @@ def post_list(self, *args, **kwargs):
 class LocationSerializer(serializers.Serializer):
     lat = serializers.CharField(max_length=30)
     long = serializers.CharField(max_length=30)
+    id = serializers.IntegerField()
     address = serializers.CharField(max_length=200)
     description = serializers.CharField(max_length=50)
     status = serializers.BooleanField()
@@ -276,6 +277,16 @@ def createEntreprenuerReferral(request):
         response_data['referredPersonId'] = referredPerson.id
     return JsonResponse(response_data)
 
+@api_view(['GET'])
+def askQuestion(request):
+    response_data = {}
+    try:
+        question = request.GET['question']
+        response_data['answer'] = "some answer"
+    except Exception as ex:
+        response_data["message"] = str(ex)
+        return JsonResponse(response_data)
+    return JsonResponse(response_data)
 
 def locationspage(request):
 
