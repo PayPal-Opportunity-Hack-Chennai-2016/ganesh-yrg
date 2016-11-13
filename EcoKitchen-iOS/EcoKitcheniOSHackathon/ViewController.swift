@@ -19,8 +19,8 @@ class ViewController: UIViewController, UITextFieldDelegate{
         super.viewDidLoad()
         self.mobileNumber.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
-//        mobileNumber.text = "8883729793"
-//        password.text = "echokitchen"
+        mobileNumber.text = "9884170853"
+        password.text = "Paypal"
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,15 +32,18 @@ class ViewController: UIViewController, UITextFieldDelegate{
         responseReceived = false
         let manager = ServiceManager()
         manager.signIn(mobile: mobileNumber.text!, password: password.text!) { (userId) in
-            self.responseReceived = true
             if userId != -1 {
+                self.responseReceived = true
                 GLOBAL_USERID = userId
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "FlowViewController", sender: nil);
                 }
             } else {
                 DispatchQueue.main.async {
-                    // show alert
+                    let alertController = UIAlertController(title: "Login Failure", message:  "User Id Or Password entered incorrectly", preferredStyle: UIAlertControllerStyle.alert)
+                    let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+                    alertController.addAction(alertAction)
+                    self.present(alertController, animated: true, completion: nil)
                 }
             }
 

@@ -17,17 +17,20 @@ class NearByLocationViewController: UIViewController {
         super.viewDidLoad()
         let serviceManager = ServiceManager()
         serviceManager.allLocations(completion: {(locations) in
-            if locations.count > 0 {
-                for location in locations {
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = location.coordinate
-                    annotation.title = location.description
-                    annotation.subtitle = location.address
-                    self.mapView.addAnnotation(annotation)
-                    let region = MKCoordinateRegion(center: annotation.coordinate, span: MKCoordinateSpan(latitudeDelta: 5, longitudeDelta: 5))
-                    self.mapView.setRegion(region, animated: true);
+            DispatchQueue.main.async {
+                if locations.count > 0 {
+                    for location in locations {
+                        let annotation = MKPointAnnotation()
+                        annotation.coordinate = location.coordinate
+                        annotation.title = "Eco Chain Food Stall"
+                        annotation.subtitle = location.address
+                        self.mapView.addAnnotation(annotation)
+                        let region = MKCoordinateRegion(center: annotation.coordinate,
+                                                        span: MKCoordinateSpan(latitudeDelta: 5, longitudeDelta: 5))
+                        self.mapView.setRegion(region, animated: true);
+                    }
+                    
                 }
-
             }
         });
     }

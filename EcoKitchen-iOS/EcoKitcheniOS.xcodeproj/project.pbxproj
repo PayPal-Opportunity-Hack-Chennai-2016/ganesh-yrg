@@ -28,6 +28,8 @@
 		C8506B1B1DD7B0AA00FE9C73 /* NearByLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8506B1A1DD7B0AA00FE9C73 /* NearByLocationViewController.swift */; };
 		C8506B1D1DD7B50400FE9C73 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8506B1C1DD7B50400FE9C73 /* Location.swift */; };
 		C8F080D11DD7EC8B00C2F9D3 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F080D01DD7EC8B00C2F9D3 /* Common.swift */; };
+		C8F080D31DD81BAA00C2F9D3 /* SelectKioskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F080D21DD81BAA00C2F9D3 /* SelectKioskTableViewController.swift */; };
+		C8F080D51DD821F700C2F9D3 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F080D41DD821F700C2F9D3 /* Feedback.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		C8506B1A1DD7B0AA00FE9C73 /* NearByLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearByLocationViewController.swift; sourceTree = "<group>"; };
 		C8506B1C1DD7B50400FE9C73 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C8F080D01DD7EC8B00C2F9D3 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		C8F080D21DD81BAA00C2F9D3 /* SelectKioskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectKioskTableViewController.swift; sourceTree = "<group>"; };
+		C8F080D41DD821F700C2F9D3 /* Feedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +189,7 @@
 				C83A17DC1DD71AB6009126F4 /* ViewController.swift */,
 				C83A18081DD71D68009126F4 /* ProfileViewController.swift */,
 				C84A450F1DD730C9009CCFA2 /* FlowViewController.swift */,
+				C8F080D21DD81BAA00C2F9D3 /* SelectKioskTableViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -194,6 +199,7 @@
 			children = (
 				C8506B141DD7A2F000FE9C73 /* RegistrationModel.swift */,
 				C8506B1C1DD7B50400FE9C73 /* Location.swift */,
+				C8F080D41DD821F700C2F9D3 /* Feedback.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -365,6 +371,7 @@
 				C8506B171DD7A90B00FE9C73 /* AboutUsViewController.swift in Sources */,
 				C83A18091DD71D68009126F4 /* ProfileViewController.swift in Sources */,
 				C8506B1B1DD7B0AA00FE9C73 /* NearByLocationViewController.swift in Sources */,
+				C8F080D31DD81BAA00C2F9D3 /* SelectKioskTableViewController.swift in Sources */,
 				C84A45121DD73850009CCFA2 /* FlowTableViewCell.swift in Sources */,
 				C8506B1D1DD7B50400FE9C73 /* Location.swift in Sources */,
 				C83A17DD1DD71AB6009126F4 /* ViewController.swift in Sources */,
@@ -375,6 +382,7 @@
 				C8073B5E1DD7630A00DC4922 /* FeedbackViewController.swift in Sources */,
 				C84A45101DD730C9009CCFA2 /* FlowViewController.swift in Sources */,
 				C83A17DB1DD71AB6009126F4 /* AppDelegate.swift in Sources */,
+				C8F080D51DD821F700C2F9D3 /* Feedback.swift in Sources */,
 				C8506B151DD7A2F000FE9C73 /* RegistrationModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

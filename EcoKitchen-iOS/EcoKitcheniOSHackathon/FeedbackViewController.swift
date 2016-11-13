@@ -16,6 +16,8 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
     var collapseRows:NSMutableArray = NSMutableArray()
     var formData:NSMutableArray = NSMutableArray()
     
+    var locationObject : Location?
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -26,7 +28,7 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
         collapse = [false,false,false,false,false,false]
         collapseRows = [false,false,false,false,false,false]
         formData = ["","","","","",""];
-        sectionHeader = ["Courtesy of Entrepeneur","Quality of Food","Quantity of Food","Food Taste","Cleanliness of serving area","Others"]
+        sectionHeader = ["Courtesy of Entrepeneur","Quality of Food","Quantity of Food","Food Taste","Cleanliness of serving","Others"]
         let tmp: NSArray = ["Excellent","Good","Average","Need To Improve"]
         let str = sectionHeader.object(at: 0) as! String
         dict.setValue(tmp, forKey: str)
@@ -48,6 +50,7 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
         tableView.tableFooterView = UIView()
         tableView.dataSource = self;
         tableView.delegate = self;
+        tableView.backgroundView = UIImageView(image: UIImage(named: "gradient_searchbar"));
         
     }
 
@@ -55,7 +58,46 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
         super.didReceiveMemoryWarning();
     }
 
+    func ratingCalc(rating : String) -> Int {
+        if rating == "Excellent"{
+            return 5
+        }
+        else if rating == "Good"{
+            return 4
+        }
+        else if rating == "Average"{
+            return 3
+        }
+        else if rating == "Need To Improve"{
+            return 2
+        }
+        else {
+            return 1
+        }
+        
+    }
+    
+    
     @IBAction func submitBtnPressed(_ sender: AnyObject) {
+        print(formData)
+        let serviceManager = ServiceManager()
+        let feedback = Feedback()
+        feedback.locationId = GLOBAL_USERID
+        feedback.userId = GLOBAL_USERID
+        feedback.courtesy = ratingCalc(rating: formData[0] as! String);
+        feedback.qualityOfFood = ratingCalc(rating: formData[1] as! String);
+        feedback.quantityOfFood = ratingCalc(rating: formData[2] as! String);
+        feedback.foodTaste = ratingCalc(rating: formData[3] as! String);
+        feedback.cleanliness = ratingCalc(rating: formData[4] as! String);
+        feedback.content = formData[5] as! String
+        serviceManager.updateFeedback(feedback: feedback) { (success) in
+            if(success != -1) {
+                print("Successfully feedback")
+            } else {
+                //show Alert
+            }
+        }
+        
     }
     // MARK: - Table view data source
 
@@ -95,8 +137,12 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
                 let arr = dict.value(forKey: country) as! NSArray
                 cell.textLabel?.text = arr.object(at: indexPath.row) as? String
                 cell.textLabel?.sizeToFit();
+            //    cell.textLabel?.textColor = UIColor.white
+                cell.textLabel?.font = UIFont(name: "Courier New", size: 18)
+
                 cell.selectionStyle = UITableViewCellSelectionStyle.none;
                 cell.viewWithTag(100)?.isHidden = true
+                cell.backgroundView = UIImageView(image: UIImage(named: "gradient_searchbar"));
                 return cell
             }
         }
@@ -104,8 +150,11 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
             if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedbackCell"){
                 let headerTextview = UITextView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
                 headerTextview.text = "Please specify"
+                headerTextview.font = UIFont(name: "Courier New", size: 18)
                 headerTextview.tag = 100;
                 cell.addSubview(headerTextview)
+                cell.textLabel?.font = UIFont(name: "Courier New", size: 18)
+                cell.backgroundView = UIImageView(image: UIImage(named: "gradient_searchbar"));
                 cell.selectionStyle = UITableViewCellSelectionStyle.none;
                 return cell
             }
@@ -138,13 +187,20 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
      func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 40))
         headerView.tag = section
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 40))
+        let image = UIImage(named: "gradient_searchbar")
+        imageView.image = image
+        headerView.addSubview(imageView)
+        
         let headerString = UILabel(frame: CGRect(x: 10, y: 10, width: tableView.frame.size.width-10, height: 30)) as UILabel
         headerString.text = sectionHeader[section] as? String
-        headerString.font = UIFont(name: "Times New Roman", size: 24)
+        headerString.font = UIFont(name: "Courier New", size: 21)
+        headerString.textColor = UIColor.white
         
         let headerStringDetailLabel = UILabel(frame: CGRect(x: 10, y: 40, width: tableView.frame.size.width-10, height: 40)) as UILabel
         headerStringDetailLabel.text = formData[section] as? String
-        headerStringDetailLabel.font = UIFont(name: "Times New Roman", size: 16)
+        headerStringDetailLabel.font = UIFont(name: "Courier", size: 16)
         let collapseRowsVal = collapseRows.object(at: section) as! Bool
         if collapseRowsVal == false {
             headerStringDetailLabel.isHidden = true
@@ -248,5 +304,11 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
         tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: UITableViewRowAnimation.none)
     }
     
+    @IBAction func exitSelectKiosk(segue: UIStoryboardSegue) {
+        let controller = segue.source as? SelectKioskTableViewController
+        let location = controller?.selectionLocation
+        self.locationObject = location!
+        navigationItem.title = location?.address
+    }
 
 }

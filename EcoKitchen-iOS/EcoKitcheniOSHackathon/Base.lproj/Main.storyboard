@@ -177,6 +177,19 @@
                                 <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXx-Hm-zxM">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="E1q-zN-lso"/>
+                                    <constraint firstAttribute="width" constant="252" id="F91-78-y6W"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="16"/>
+                                <state key="normal" title="Already Exists? Login Now">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="alreadyUserBtnPressed:" destination="JPP-N1-xcP" eventType="touchUpInside" id="PNd-Vh-j4J"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -188,6 +201,7 @@
                             <constraint firstItem="zPD-yI-BtW" firstAttribute="leading" secondItem="xyy-1a-Anh" secondAttribute="leadingMargin" constant="10" id="Hae-Ms-kbk"/>
                             <constraint firstItem="HF0-eN-SHe" firstAttribute="top" secondItem="kSN-Au-Ujx" secondAttribute="bottom" constant="25" id="K3b-Aa-2hm"/>
                             <constraint firstAttribute="trailing" secondItem="Rjs-lj-y8P" secondAttribute="trailing" id="M05-B9-vqU"/>
+                            <constraint firstItem="aXx-Hm-zxM" firstAttribute="top" secondItem="TpS-Np-5tH" secondAttribute="bottom" constant="25" id="NCC-6L-CJq"/>
                             <constraint firstItem="TpS-Np-5tH" firstAttribute="centerX" secondItem="xyy-1a-Anh" secondAttribute="centerX" id="NTJ-qu-rUi"/>
                             <constraint firstItem="TpS-Np-5tH" firstAttribute="top" secondItem="kMv-TF-3c1" secondAttribute="bottom" constant="46" id="Thj-9D-YTk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ehf-1L-2lY" secondAttribute="trailing" constant="10" id="Tpc-iL-Xxr"/>
@@ -195,6 +209,7 @@
                             <constraint firstItem="kMv-TF-3c1" firstAttribute="top" secondItem="HF0-eN-SHe" secondAttribute="bottom" constant="25" id="Y06-aw-LlO"/>
                             <constraint firstItem="kSN-Au-Ujx" firstAttribute="top" secondItem="zPD-yI-BtW" secondAttribute="bottom" constant="25" id="YQC-Wi-vQ7"/>
                             <constraint firstItem="Rjs-lj-y8P" firstAttribute="leading" secondItem="xyy-1a-Anh" secondAttribute="leading" id="cHG-jg-dtB"/>
+                            <constraint firstItem="aXx-Hm-zxM" firstAttribute="centerX" secondItem="xyy-1a-Anh" secondAttribute="centerX" id="ckh-p7-2cX"/>
                             <constraint firstItem="p7J-4e-c99" firstAttribute="top" secondItem="Ehf-1L-2lY" secondAttribute="bottom" constant="20" id="g9s-pp-6Zh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kMv-TF-3c1" secondAttribute="trailing" constant="10" id="i8t-iu-kGG"/>
                             <constraint firstItem="Ehf-1L-2lY" firstAttribute="top" secondItem="v5Z-Ja-SMF" secondAttribute="bottom" constant="40" id="j7D-mg-j6f"/>
@@ -220,7 +235,7 @@
             </objects>
             <point key="canvasLocation" x="-1287.2" y="-383.65817091454278"/>
         </scene>
-        <!--Flows-->
+        <!--Dashboard-->
         <scene sceneID="SdU-Cw-Ceo">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="l1B-lY-JFj" customClass="FlowViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -242,19 +257,24 @@
                                             <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient_searchbar" translatesAutoresizingMaskIntoConstraints="NO" id="uNH-dE-zEy"/>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyt-uR-LV7">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="27" id="TEu-EE-N7B"/>
                                                         <constraint firstAttribute="width" constant="327" id="gcC-Gh-Bsx"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="22"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="uNH-dE-zEy" firstAttribute="leading" secondItem="0k8-6M-1kp" secondAttribute="leading" id="1Bl-tP-xt3"/>
                                                 <constraint firstItem="pyt-uR-LV7" firstAttribute="centerY" secondItem="0k8-6M-1kp" secondAttribute="centerY" id="Aou-lX-kjz"/>
                                                 <constraint firstItem="pyt-uR-LV7" firstAttribute="centerX" secondItem="0k8-6M-1kp" secondAttribute="centerX" id="E8A-vm-ix6"/>
+                                                <constraint firstItem="uNH-dE-zEy" firstAttribute="top" secondItem="0k8-6M-1kp" secondAttribute="top" id="VN2-P5-gcz"/>
+                                                <constraint firstAttribute="bottom" secondItem="uNH-dE-zEy" secondAttribute="bottom" id="X3S-qC-yq3"/>
+                                                <constraint firstAttribute="trailing" secondItem="uNH-dE-zEy" secondAttribute="trailing" id="kwr-aW-vIC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -272,13 +292,13 @@
                             <constraint firstAttribute="trailing" secondItem="Ylo-XS-4aa" secondAttribute="trailing" id="vRK-Ts-wAz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Flows" id="jt2-O9-LeQ"/>
+                    <navigationItem key="navigationItem" title="Dashboard" id="jt2-O9-LeQ"/>
                     <connections>
                         <outlet property="tableView" destination="Ylo-XS-4aa" id="z7P-26-KSg"/>
-                        <segue destination="cnS-Ba-9cm" kind="show" identifier="LocationViewController" id="oGW-5V-kBs"/>
                         <segue destination="6Fj-C9-IDt" kind="show" identifier="FeedbackViewController" id="Cey-BT-C03"/>
                         <segue destination="eH5-oo-Ayy" kind="show" identifier="AboutUsViewController" id="tzR-JF-jQi"/>
                         <segue destination="qBZ-0p-WMS" kind="show" identifier="NearByLocationViewController" id="lgv-bj-CZM"/>
+                        <segue destination="GuT-eT-aZq" kind="show" identifier="LocationViewController" id="wLp-T9-yn1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVk-Je-RM8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -286,49 +306,68 @@
             <point key="canvasLocation" x="-1348" y="525.78710644677665"/>
         </scene>
         <!--Location View Controller-->
-        <scene sceneID="wNs-JI-aEP">
+        <scene sceneID="kIv-oq-x3b">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="cnS-Ba-9cm" customClass="LocationViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GuT-eT-aZq" customClass="LocationViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ati-5u-4YA"/>
-                        <viewControllerLayoutGuide type="bottom" id="Fr3-Bp-5m2"/>
+                        <viewControllerLayoutGuide type="top" id="bt1-yb-koa"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Fg-cF-h8P"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="4X7-aA-tDH">
+                    <view key="view" contentMode="scaleToFill" id="GgS-ho-vFl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Address(Optional)" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KGZ-ok-RpN">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient_searchbar" translatesAutoresizingMaskIntoConstraints="NO" id="mpB-vc-SX1"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Address" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Khb-Hc-eds">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Wto-Cn-kcF"/>
+                                    <constraint firstAttribute="height" constant="68" id="6gT-ur-Hh8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gbZ-dB-3DU"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2D0-ZD-ZQU"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why do you want to choose the location?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1F-IK-8FV">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLW-b7-ASC">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="154" id="DeP-5c-B1K"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gbZ-dB-3DU" firstAttribute="leading" secondItem="4X7-aA-tDH" secondAttribute="leading" id="Bhj-BF-dMJ"/>
-                            <constraint firstItem="KGZ-ok-RpN" firstAttribute="trailing" secondItem="4X7-aA-tDH" secondAttribute="trailingMargin" id="bdu-k8-b96"/>
-                            <constraint firstAttribute="bottom" secondItem="gbZ-dB-3DU" secondAttribute="bottom" id="cDb-VO-G5g"/>
-                            <constraint firstItem="KGZ-ok-RpN" firstAttribute="leading" secondItem="4X7-aA-tDH" secondAttribute="leadingMargin" id="fip-eT-r3X"/>
-                            <constraint firstItem="KGZ-ok-RpN" firstAttribute="centerX" secondItem="4X7-aA-tDH" secondAttribute="centerX" id="gJa-iF-M6K"/>
-                            <constraint firstItem="KGZ-ok-RpN" firstAttribute="top" secondItem="Ati-5u-4YA" secondAttribute="bottom" constant="10" id="mh9-eh-7G7"/>
-                            <constraint firstItem="gbZ-dB-3DU" firstAttribute="top" secondItem="KGZ-ok-RpN" secondAttribute="bottom" constant="15" id="uyt-8S-Ao9"/>
-                            <constraint firstAttribute="trailing" secondItem="gbZ-dB-3DU" secondAttribute="trailing" id="xlf-Hg-hHX"/>
+                            <constraint firstItem="mpB-vc-SX1" firstAttribute="top" secondItem="bt1-yb-koa" secondAttribute="bottom" id="3wi-9h-7M1"/>
+                            <constraint firstItem="Khb-Hc-eds" firstAttribute="top" secondItem="bt1-yb-koa" secondAttribute="bottom" id="8kJ-WN-gzA"/>
+                            <constraint firstAttribute="trailing" secondItem="2D0-ZD-ZQU" secondAttribute="trailing" id="H3p-PG-YCQ"/>
+                            <constraint firstItem="X1F-IK-8FV" firstAttribute="top" secondItem="2D0-ZD-ZQU" secondAttribute="bottom" id="IgY-xq-dia"/>
+                            <constraint firstItem="2Fg-cF-h8P" firstAttribute="top" secondItem="X1F-IK-8FV" secondAttribute="bottom" constant="153" id="Kmg-2R-11A"/>
+                            <constraint firstItem="X1F-IK-8FV" firstAttribute="leading" secondItem="GgS-ho-vFl" secondAttribute="leading" id="OQE-eS-KEd"/>
+                            <constraint firstItem="FLW-b7-ASC" firstAttribute="leading" secondItem="GgS-ho-vFl" secondAttribute="leading" id="Qgs-9b-Ftq"/>
+                            <constraint firstAttribute="trailing" secondItem="mpB-vc-SX1" secondAttribute="trailing" id="RZ1-KJ-pUG"/>
+                            <constraint firstAttribute="trailing" secondItem="Khb-Hc-eds" secondAttribute="trailing" id="XK0-c5-j4V"/>
+                            <constraint firstItem="Khb-Hc-eds" firstAttribute="leading" secondItem="GgS-ho-vFl" secondAttribute="leading" id="cO6-za-kOh"/>
+                            <constraint firstItem="2Fg-cF-h8P" firstAttribute="top" secondItem="FLW-b7-ASC" secondAttribute="bottom" id="cg2-d1-a5M"/>
+                            <constraint firstAttribute="trailing" secondItem="X1F-IK-8FV" secondAttribute="trailing" id="egQ-E9-zeR"/>
+                            <constraint firstAttribute="trailing" secondItem="FLW-b7-ASC" secondAttribute="trailing" id="jUW-ew-1uk"/>
+                            <constraint firstItem="2D0-ZD-ZQU" firstAttribute="top" secondItem="Khb-Hc-eds" secondAttribute="bottom" constant="1" id="lUD-4D-BGa"/>
+                            <constraint firstItem="2D0-ZD-ZQU" firstAttribute="leading" secondItem="GgS-ho-vFl" secondAttribute="leading" id="nm0-pU-gST"/>
+                            <constraint firstItem="mpB-vc-SX1" firstAttribute="leading" secondItem="GgS-ho-vFl" secondAttribute="leading" id="qr8-3M-PUi"/>
+                            <constraint firstItem="2Fg-cF-h8P" firstAttribute="top" secondItem="mpB-vc-SX1" secondAttribute="bottom" id="vb1-Wz-kwp"/>
                         </constraints>
                     </view>
-                    <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="addressLabel" destination="KGZ-ok-RpN" id="cHV-y1-JBE"/>
-                        <outlet property="mapView" destination="gbZ-dB-3DU" id="ogl-YT-6IU"/>
+                        <outlet property="addressLabel" destination="Khb-Hc-eds" id="IQM-eS-e9g"/>
+                        <outlet property="mapView" destination="2D0-ZD-ZQU" id="PeB-MZ-FGd"/>
+                        <outlet property="pickerView" destination="FLW-b7-ASC" id="hQo-qR-a42"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fb1-BI-BKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2VB-G2-OOR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-559.20000000000005" y="419.64017991004499"/>
+            <point key="canvasLocation" x="-394.39999999999998" y="525.78710644677665"/>
         </scene>
         <!--Near-->
         <scene sceneID="alF-Vx-KzX">
@@ -444,7 +483,7 @@ Process
             </objects>
             <point key="canvasLocation" x="-1348" y="1368.6656671664168"/>
         </scene>
-        <!--Feedback View Controller-->
+        <!--Select Kiosk-->
         <scene sceneID="I79-I7-Epb">
             <objects>
                 <viewController id="6Fj-C9-IDt" customClass="FeedbackViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -465,12 +504,24 @@ Process
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DEV-Hc-Yy1" id="vXt-l7-auH">
                                             <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient_searchbar" translatesAutoresizingMaskIntoConstraints="NO" id="j8B-ev-Xyq"/>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="j8B-ev-Xyq" secondAttribute="trailing" id="9as-S5-5T8"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="j8B-ev-Xyq" secondAttribute="bottom" id="9zB-20-clx"/>
+                                                <constraint firstItem="j8B-ev-Xyq" firstAttribute="top" secondItem="vXt-l7-auH" secondAttribute="topMargin" id="EJO-5o-g0G"/>
+                                                <constraint firstItem="j8B-ev-Xyq" firstAttribute="leading" secondItem="vXt-l7-auH" secondAttribute="leadingMargin" id="JVn-gH-gsg"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mjf-or-XoE">
-                                <state key="normal" title="Submit"/>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="20"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="submitBtnPressed:" destination="6Fj-C9-IDt" eventType="touchUpInside" id="Szi-mE-Pp8"/>
                                 </connections>
@@ -487,13 +538,53 @@ Process
                             <constraint firstItem="Mjf-or-XoE" firstAttribute="leading" secondItem="UFI-pd-TN5" secondAttribute="leading" id="ofF-05-kv1"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Select Kiosk" id="opu-Fy-ebz">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="xsl-21-IId">
+                            <connections>
+                                <segue destination="8CP-MS-ZKL" kind="show" id="5dA-5f-66c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="3VU-sc-9mh" id="DHi-gB-Zzl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hf2-PA-4Nq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-559" y="1117"/>
+            <point key="canvasLocation" x="-538" y="1194"/>
+        </scene>
+        <!--Select Kiosk-->
+        <scene sceneID="9lP-eM-ZlB">
+            <objects>
+                <tableViewController id="8CP-MS-ZKL" customClass="SelectKioskTableViewController" customModule="EcoKitcheniOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8C4-C9-jvX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KioskCellIdentifier" id="OfW-Wf-U1G">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OfW-Wf-U1G" id="1uL-BR-aG3">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="W76-ct-O21" kind="unwind" identifier="ExitSegueIdentifier" unwindAction="exitSelectKioskWithSegue:" id="a1b-Lk-u1e"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8CP-MS-ZKL" id="c6u-FI-aGt"/>
+                            <outlet property="delegate" destination="8CP-MS-ZKL" id="j2A-Oa-niR"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Select Kiosk" id="5JE-30-dge"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bdi-Fa-RsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="W76-ct-O21" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="308" y="1193"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XK1-id-Sq4">
@@ -520,6 +611,6 @@ Process
         <image name="gradient_searchbar" width="375" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3mz-u8-1xa"/>
+        <segue reference="Q0P-zf-q6d"/>
     </inferredMetricsTieBreakers>
 </document>

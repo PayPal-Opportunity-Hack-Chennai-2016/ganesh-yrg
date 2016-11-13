@@ -52,6 +52,9 @@ class ProfileViewController: UIViewController/*,UIPickerViewDataSource,UIPickerV
         self.view.endEditing(true);
     }
 
+    @IBAction func alreadyUserBtnPressed(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBAction func registerBtnPressed(_ sender: AnyObject) {
         let manager = ServiceManager()
         let register  = RegistrationModel()
@@ -69,7 +72,10 @@ class ProfileViewController: UIViewController/*,UIPickerViewDataSource,UIPickerV
                     self.performSegue(withIdentifier: "FlowViewController", sender: nil);
                 }
             } else {
-                // show alert
+                let alertController = UIAlertController(title: "Registration Failure", message:  "email Id or Phone Number entered incorrectly", preferredStyle: UIAlertControllerStyle.alert)
+                let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+                alertController.addAction(alertAction)
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
