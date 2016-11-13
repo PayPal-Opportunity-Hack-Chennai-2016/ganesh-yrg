@@ -11,8 +11,8 @@ public class MyConstants {
     public static final String PREF_NAME_GLOBAL = "ECO Kitchen";
 
 //    public static final String URL_ROOT = "http://192.168.115.1:8080/api/";
-public static final String URL_ROOT ="http://192.168.113.25:80/api/";
-
+//public static final String URL_ROOT ="http://192.168.113.25:80/api/";
+    public static final String URL_ROOT="http://192.168.115.1:8080/api/";
     public static final String FROM_ACTIVITY = "FromActivity";
     public static final String KEY_DONOR = "Donor";
     public static final String KEY_MAP_LOCATION = "MapLocation";

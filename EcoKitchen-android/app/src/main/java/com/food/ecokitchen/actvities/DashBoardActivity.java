@@ -16,7 +16,7 @@ import com.food.ecokitchen.utils.MyConstants;
 public class DashBoardActivity extends AppCompatActivity {
 
     private EditText edtName,edtPhone;
-    private RelativeLayout layoutVolunteer,layout_About_Us,layout_FeedBack;
+    private RelativeLayout layoutVolunteer,layout_About_Us,layout_FeedBack,layout_bot;
     private boolean isVolunteer;
     AppSharedPreferences appSharedPreferences;
 
@@ -39,6 +39,7 @@ public class DashBoardActivity extends AppCompatActivity {
 //        }
         layout_About_Us =(RelativeLayout)findViewById(R.id.layout_About_Us);
         layout_FeedBack =(RelativeLayout)findViewById(R.id.layout_FeedBack);
+        layout_bot =(RelativeLayout)findViewById(R.id.layout_bot);
         final ActionBar ab = getSupportActionBar();
 //        ab.setHomeAsUpIndicator(R.mipmap.ic_launcher);
 //        ab.setDisplayHomeAsUpEnabled(true);
@@ -72,6 +73,14 @@ public class DashBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Aboutus.class);
+                startActivity(intent);
+            }
+        });
+
+        layout_bot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),ChatBotMainActivity.class);
                 startActivity(intent);
             }
         });
