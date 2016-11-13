@@ -10,15 +10,17 @@
 
     <string name="google_api_key">AIzaSyC-yNXRZTkMBzAQ8A_gNfTzi1tTGRYitgM</string>
 
+    <!--<string name="google_api_key_new">AIzaSyA9IKPkK7FMPTMoJcOiJeWImnx_VmnR6kc</string>-->
+
     <string name="accept_as_volunteer">I wolud like to volunteer for delivering food and receive notifications about food donation</string>
 
     <string name="select_available_donation_message">Please select the location from where you would like to pick up the food</string>
 
     <string name="select_available_delivery_message">Please select the location where you want to deliver the foods from the list of charities below</string>
 
-    <string name="donate_food">Donate Food</string>
-    <string name="volunteer">Volunteer</string>
-    <string name="map_a_location">Help us to find the needy</string>
+    <string name="donate_food">ECO Kitchen</string>
+    <string name="volunteer">ECO Kitchen</string>
+    <string name="map_a_location">ECO Kitchen</string>
 
     <!--<string name="banner_msg">Our goal is to Stop Food Wastage!</string>-->
     <string name="banner_msg">Feed People! Not Landfills!</string>

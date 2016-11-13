@@ -40,8 +40,8 @@ public class DashBoardActivity extends AppCompatActivity {
         layout_About_Us =(RelativeLayout)findViewById(R.id.layout_About_Us);
         layout_FeedBack =(RelativeLayout)findViewById(R.id.layout_FeedBack);
         final ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.mipmap.ic_launcher);
-        ab.setDisplayHomeAsUpEnabled(true);
+//        ab.setHomeAsUpIndicator(R.mipmap.ic_launcher);
+//        ab.setDisplayHomeAsUpEnabled(true);
 
         findViewById(R.id.layout_donate_food).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,13 +79,13 @@ public class DashBoardActivity extends AppCompatActivity {
     }
 
     private void donationBtnClick(){
-        Intent intent = new Intent(getApplicationContext(),EnterDonationDetailsActivity.class);
+        Intent intent = new Intent(getApplicationContext(),ReferEntrepreneurActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 
     private void volunteerBtnClick(){
-        Intent intent = new Intent(getApplicationContext(),AvailableDonationsActivity.class);
+        Intent intent = new Intent(getApplicationContext(),Findnearbykiosks.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }

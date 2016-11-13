@@ -72,11 +72,11 @@ public class RegistrationActivity extends AppCompatActivity {
     private void doLoginTask() {
         JSONObject object = new JSONObject();
         try {
-            object.put("mobile","8883729796");
-            object.put("password","Paypal");
-            object.put("address","Malibu Point");
-            object.put("email","neo3@gmail.com");
-            object.put("name","Paypal");
+            object.put("mobile",mobile);
+            object.put("password",passd);
+            object.put("address",address);
+            object.put("email",email);
+            object.put("name",name);
             requestParams = object.toString();
             Log.e("login","--->>> "+requestParams);
             new RegistrationActivity.doLoginAsyncTask().execute();

@@ -16,16 +16,45 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+            <EditText
+                android:id="@+id/edt_refname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:typeface="serif"
+                android:inputType="number"
+                android:hint="Enter his/her name"/>
 
+            <EditText
+                android:id="@+id/edt_refphn"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_margin="10dp"
+                android:typeface="serif"
+                android:hint="Enter phone number"/>
     <TextView
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_height="57dp"
+
         android:textColor="@color/primary_text"
         android:typeface="serif"
-        android:text="Select Food"/>
+        android:text="Refer An Entrepreneur (details)"
+        android:textSize="20dp"
+        android:gravity="center" />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textColor="@color/primary_text"
+                android:typeface="serif"
+                android:text="Marital Status"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_weight="0.69"/>
     <RadioGroup
         android:layout_width="fill_parent"
         android:layout_height="40dp"
@@ -33,37 +62,38 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/radio_breakfast"
+            android:id="@+id/radio_married"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/radio_drawel"
             android:button="@null"
             android:gravity="center_vertical|center_horizontal"
-            android:text="Breakfast"
+            android:text="Married"
             android:typeface="serif"
             android:textColor="@color/primary_text" />
 
         <RadioButton
-            android:id="@+id/radio_lunch"
+            android:id="@+id/radio_unmarried"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/radio_drawel"
             android:button="@null"
             android:gravity="center_vertical|center_horizontal"
-            android:text="Lunch"
+            android:text="Unmarried"
             android:typeface="serif"
             android:textColor="@color/primary_text" />
+
         <RadioButton
-            android:id="@+id/radio_dinner"
+            android:id="@+id/radio_others"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/radio_drawel"
             android:button="@null"
             android:gravity="center_vertical|center_horizontal"
-            android:text="Dinner"
+            android:text="Others"
             android:checked="true"
             android:typeface="serif"
             android:textColor="@color/primary_text" />
@@ -76,15 +106,9 @@
         android:layout_marginTop="5dp"
         android:textColor="@color/primary_text"
         android:typeface="serif"
-        android:text="Number of serves"/>
-    <EditText
-        android:id="@+id/edt_quantity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:typeface="serif"
-        android:inputType="number"
-        android:hint="Enter count"/>
+        android:text="Enter his/her name"
+        android:visibility="gone"/>
+
 
     <TextView
         android:id="@+id/txt_select_location"
@@ -97,30 +121,187 @@
         android:gravity="center_vertical"
         android:background="@drawable/view_bg"
         android:drawableRight="@drawable/ic_location"
-        android:text="Select the location"/>
+        android:text="Select the location"
+        android:visibility="gone"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+
         android:typeface="serif"
         android:textColor="@color/primary_text"
-        android:text="Address to pickup"/>
-    <EditText
-        android:id="@+id/edt_address"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin="10dp"
-        android:typeface="serif"
-        android:hint="Enter address to pickup"/>
+        android:text="Address to pickup"
+        android:visibility="gone"/>
 
-    <Button
-        style="@style/StyleBtn"
-        android:id="@+id/btn_donate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Donate"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:typeface="serif"
+                android:textColor="@color/primary_text"
+                android:text="Income Range"
+                android:id="@+id/textView2"
+                android:gravity="center"
+                android:textSize="20dp"/>
+
+            <RadioGroup
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal"
+                >
+
+                <RadioButton
+                    android:id="@+id/radio_less5000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_drawel"
+                    android:button="@null"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Less than 5000"
+                    android:typeface="serif"
+                    android:textColor="@color/primary_text"
+                    />
+
+                <RadioButton
+                    android:id="@+id/radio_less10000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_drawel"
+                    android:button="@null"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Less than 10000"
+                    android:typeface="serif"
+                    android:textColor="@color/primary_text" />
+
+                <RadioButton
+                    android:id="@+id/radio_less20000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_drawel"
+                    android:button="@null"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Less than 20000"
+                    android:checked="true"
+                    android:typeface="serif"
+                    android:textColor="@color/primary_text" />
+                <RadioButton
+                    android:id="@+id/radio_more20000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_drawel"
+                    android:button="@null"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="More than 20000"
+                    android:checked="true"
+                    android:typeface="serif"
+                    android:textColor="@color/primary_text" />
+            </RadioGroup>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:typeface="serif"
+                android:textColor="@color/primary_text"
+                android:text="Educational Qualification:"
+                android:gravity="center"
+                android:textSize="20dp"/>
+            <RadioGroup
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radio_primary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_drawel"
+                    android:button="@null"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Primary"
+                    android:typeface="serif"
+                    android:textColor="@color/primary_text" />
+
+                <RadioButton
+                    android:id="@+id/radio_Middle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_drawel"
+                    android:button="@null"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Middle"
+                    android:typeface="serif"
+                    android:textColor="@color/primary_text" />
+
+                <RadioButton
+                    android:id="@+id/radio_sslc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_drawel"
+                    android:button="@null"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="SSLC"
+                    android:checked="true"
+                    android:typeface="serif"
+                    android:textColor="@color/primary_text" />
+                <RadioButton
+                    android:id="@+id/radio_hslc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_drawel"
+                    android:button="@null"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Hslc/Puc"
+                    android:checked="true"
+                    android:typeface="serif"
+                    android:textColor="@color/primary_text"
+                    android:visibility="gone"/>
+                <RadioButton
+                    android:id="@+id/radio_None"
+                    android:layout_width="62dp"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/radio_drawel"
+                    android:button="@null"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="None"
+                    android:checked="true"
+                    android:typeface="serif"
+                    android:textColor="@color/primary_text" />
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/edt_extradetails"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_margin="10dp"
+                android:typeface="serif"
+                android:hint="Enter more details"/>
+            <EditText
+                android:id="@+id/edt_entadd"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_margin="10dp"
+                android:typeface="serif"
+                android:hint="Enter the address"
+                android:inputType="textLongMessage"/>
+
+            <Button
+                style="@style/StyleBtn"
+                android:id="@+id/btn_refent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Refer the Entrepreneur"/>
 
         </LinearLayout>
     </ScrollView>

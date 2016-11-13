@@ -43,19 +43,19 @@
         </activity>
         <activity
             android:name=".actvities.DashBoardActivity"
-            android:label="@string/home"/>
+            android:label="dashboard"/>
         <activity
-            android:name=".actvities.AvailableDonationsActivity"
-            android:label="Available Donations"/>
+            android:name=".actvities.Findnearbykiosks"
+            android:label="Find nearby Kiosks"/>
         <activity
             android:name=".actvities.AvailableDeliveryPlacesActivity"
             android:label="Food Delivery Places"/>
         <activity
-            android:name=".actvities.EnterDonationDetailsActivity"
-            android:label="Donation Details"/>
+            android:name=".actvities.ReferEntrepreneurActivity"
+            android:label="Refer Entrepreneur"/>
         <activity
             android:name=".actvities.MapALocationActivity"
-            android:label="Add Details"/>
+            android:label="Refer Location"/>
         <activity
             android:name=".actvities.ThankYouActivity"
             android:label="Thank You"/>

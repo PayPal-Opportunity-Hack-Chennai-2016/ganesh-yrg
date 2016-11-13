@@ -29,15 +29,14 @@ import com.google.android.gms.maps.model.LatLng;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MapALocationActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,
-        GoogleApiClient.ConnectionCallbacks{
+public class MapALocationActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks{
 
     private GoogleApiClient mGoogleApiClient;
     private int PLACE_PICKER_REQUEST = 1;
     private EditText edtAddress;
     private String address = "",lat = "",lng = "",userid= "";
     //private HashMap<String ,String> postParams;
-    private String requestParams;
+    private String requestParams,description;
     AppSharedPreferences appSharedPreferences;
 
     @Override
@@ -84,6 +83,9 @@ public class MapALocationActivity extends AppCompatActivity implements GoogleApi
         findViewById(R.id.btn_map_location).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                EditText edt_description =(EditText)findViewById(R.id.edt_description);
+                description=edt_description.getText().toString().trim();
                 submitDonation();
             }
         });
@@ -108,15 +110,16 @@ public class MapALocationActivity extends AppCompatActivity implements GoogleApi
 
         JSONObject object = new JSONObject();
         try {
-            object.put("consumerName", appSharedPreferences.getStringPreferences(MyConstants.PREF_KEY_NAME));
-            object.put("consumerMobile", appSharedPreferences.getStringPreferences(MyConstants.PREF_KEY_MOBILE));
-            //object.put("isVolunteer", String.valueOf(appSharedPreferences.getStringPreferences(MyConstants.PREF_KEY_IS_VOLUNTEER)));
-            object.put("isActive", "true");
-//            object.put("deviceId", String.valueOf(appSharedPreferences.getStringPreferences(MyConstants.PREF_KEY_DEVICE_ID)));
-            object.put("quantity", "20");
-            object.put("latitude", lat);
-            object.put("longitude", lng);
+            object.put("userId", appSharedPreferences.getStringPreferences(MyConstants.PREF_KEY_ID));
+//            object.put("consumerMobile", appSharedPreferences.getStringPreferences(MyConstants.PREF_KEY_MOBILE));
+//            //object.put("isVolunteer", String.valueOf(appSharedPreferences.getStringPreferences(MyConstants.PREF_KEY_IS_VOLUNTEER)));
+//            object.put("isActive", "true");
+////            object.put("deviceId", String.valueOf(appSharedPreferences.getStringPreferences(MyConstants.PREF_KEY_DEVICE_ID)));
+//            object.put("quantity", "20");
+            object.put("lat", lat);
+            object.put("long", lng);
             object.put("address", address);
+            object.put("description", description);
 //            object.put("deviceToken", "TestDeviceToken");
             requestParams = object.toString();
             Log.e("Map Request params","--->>> "+requestParams);
@@ -240,8 +243,8 @@ public class MapALocationActivity extends AppCompatActivity implements GoogleApi
 
             // Making a request to url and getting response
             //String jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
-            String sUrl = MyConstants.URL_ROOT+"consumer/create";
-
+            String sUrl = MyConstants.URL_ROOT+"location";
+            System.out.println(requestParams+"bingo");
             String jsonStr = serviceHandler.performPostCall(sUrl, requestParams);
 
             Log.e("Map Response: ", "--->>> " + jsonStr);
