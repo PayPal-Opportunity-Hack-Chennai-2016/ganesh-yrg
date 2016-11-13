@@ -45,7 +45,10 @@ class FlowViewController: UIViewController,UITableViewDataSource,UITableViewDele
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 1 {
+        if indexPath.row == 0{
+            performSegue(withIdentifier: "RefEntrepreneurViewController", sender: nil);
+        }
+        else if indexPath.row == 1 {
             performSegue(withIdentifier: "LocationViewController", sender: nil);
         }
         else if indexPath.row == 2 {

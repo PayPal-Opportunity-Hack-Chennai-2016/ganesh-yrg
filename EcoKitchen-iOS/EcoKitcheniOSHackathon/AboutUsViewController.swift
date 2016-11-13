@@ -15,7 +15,6 @@ class AboutUsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         aboutUSLabel.sizeToFit();
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

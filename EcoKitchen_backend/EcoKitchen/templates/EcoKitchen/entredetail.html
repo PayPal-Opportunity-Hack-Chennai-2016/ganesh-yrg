@@ -5,7 +5,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-		<title>Location Details</title>
+		<title>Users list page</title>
 		<meta name="description" content="Locations:of users" />
 		<meta name="keywords" content="Locations of users" />
 		<meta name="author" content="Codrops" />
@@ -121,48 +121,41 @@
 				<table>
 					<thead>
 						<tr>
-							<th>User profile</th>
-							<th>Location</th>
-							<th>Latitude</th>
-							<th>Longitude</th>
-							<th>Status</th>
+							<th>Referrer</th>
+							<th>Name</th>
+							<th>Assigned Location</th>
+							<th>Phone</th>
+							<th>Income Range</th>
+							<th>Marital Status</th>
 							<th>Description</th>
 						</tr>
 					</thead>
 					<tbody>
 						
                         <tr>
-							<td align="left">{{location.user.name}}</td>
-							<td align="left">{{location.address}}</td>
-							<td align="left">{{location.lat}}</td>
-							<td align="left">{{location.long}}</td>
-							<td align="left">{{location.status}}</td>
-							<td align="left">{{location.description}}</td></tr>
-
-                       
+							<td align="left">{{entre.user.name}}</td>
+							<td align="left">{{entre.name}}</td>
+							<td align="left">{{entre.location.address}}</td>
+							<td align="left">{{entre.incomeRange}}</td>
+							<td align="left">{{entre.maritalStatus}}</td>
+							<td align="left">{{entre.description}}</td></tr>
 					</tbody>
 				</table>
 				
 			</div>
 			<div class="form-style-6">
-            <h1>Enter Details to modify</h1>
+            <h1>Select Choice to modify</h1>
             <form method='post'>
-			{% csrf_token %}
-			<input type="text" name="field1" placeholder="User Name" value="{{location.user.name}}" />
-			<input type="text" name="field6" placeholder="location" value="{{location.address}}"/>
-			<input type="radio" name="choice" value="True" {% if location.status is True %}
-				   checked
-				   {% endif %}
-			/> Active <br>
-			<input type="radio" name="choice" value="False" {% if location.status is False %}
-				   checked
-				   {% endif %}
-			/> Inactive <br><br>
-			<input type="text" name="field3" placeholder="Type new Description" value="{{location.description}}"/>
-			<input type="text" name="field4" placeholder="Latitude" value="{{location.lat}}" />
-			<input type="text" name="field5" placeholder="Longtitude" value="{{location.long}}" />
-			
-			<input type="submit" value="Update" name="update" />
+				{% csrf_token %}
+				{% for loc in locs %}
+					{% if loc.status is False %}
+						<label for="active">{{loc.address}}</label>
+						<input type="radio" name="locationId" id="active" value={{loc.id}} /><br><br>
+					{% endif %}
+				{% endfor %}
+				<label for="nil">Remove Location for entrepreneur</label>
+				<input type="radio" name="nil" id="nil" value="nil" /><br><br>
+				<input type="submit" value="Update" name="update" />
 			</form>
 			</div>
 		</div><!-- /container -->

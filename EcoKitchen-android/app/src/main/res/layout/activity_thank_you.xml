@@ -16,8 +16,8 @@
         android:orientation="vertical">
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_banner"/>
+            android:layout_height="200dp"
+            android:src="@drawable/splash_screen"/>
         <TextView
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
@@ -29,13 +29,20 @@
 
     </LinearLayout>
 
+    <Button
+        android:text="Go back to home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gotohome"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/mylayout"
         android:padding="5dp"
         android:layout_marginTop="5dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
         <TextView
             android:id="@+id/txt_user_name"
             android:layout_marginTop="10dp"

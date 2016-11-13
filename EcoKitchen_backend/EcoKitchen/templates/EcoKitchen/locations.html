@@ -37,8 +37,8 @@
 				</nav>
 			</header>
 			<div class="component">
-				<h2>Entrepreneurs</h2>
-				<p>List of entrepreneurs who are enrolled at present</p>
+				<h2>Locations:</h2>
+				<p>List of suggested locations for the kiosk</p>
 				
 				<table>
 					<thead>
@@ -53,7 +53,7 @@
 					</thead>
 					<tbody>
 						{% for location in locations_list %}
-                        <tr><td align="left">{{location.usr}}</td><td align="left"><a href="{% url 'EcoKitchen:locationdetail' location.id %}">{{location.address}}</a></td><td align="left">{{location.lat}}</td><td align="left">{{location.long}}</td><td align="left">{{location.status}}</td><td align="left">{{location.description}}</td></tr>
+                        <tr><td align="left">{{location.user.name}}</td><td align="left"><a href="{% url 'EcoKitchen:locationdetail' location.id %}">{{location.address}}</a></td><td align="left">{{location.lat}}</td><td align="left">{{location.long}}</td><td align="left">{{location.status}}</td><td align="left">{{location.description}}</td></tr>
 
                         {% endfor %}
 					</tbody>

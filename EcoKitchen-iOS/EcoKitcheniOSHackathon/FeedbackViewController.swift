@@ -25,10 +25,10 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
         let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.dismissKeyboard));
         tap.cancelsTouchesInView = false;
         view.addGestureRecognizer(tap);
-        collapse = [false,false,false,false,false,false]
-        collapseRows = [false,false,false,false,false,false]
-        formData = ["","","","","",""];
-        sectionHeader = ["Courtesy of Entrepeneur","Quality of Food","Quantity of Food","Food Taste","Cleanliness of serving","Others"]
+        collapse = [false,false,false,false,false]
+        collapseRows = [false,false,false,false,false]
+        formData = ["","","","",""];
+        sectionHeader = ["Entrepeneur courtesy","Quality of Food","Quantity of Food","Food Taste","Cleanliness of Serving"]
         let tmp: NSArray = ["Excellent","Good","Average","Need To Improve"]
         let str = sectionHeader.object(at: 0) as! String
         dict.setValue(tmp, forKey: str)
@@ -89,13 +89,38 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
         feedback.quantityOfFood = ratingCalc(rating: formData[2] as! String);
         feedback.foodTaste = ratingCalc(rating: formData[3] as! String);
         feedback.cleanliness = ratingCalc(rating: formData[4] as! String);
-        feedback.content = formData[5] as! String
+        feedback.content = ""
+        
+        if let locationObject = self.locationObject {
         serviceManager.updateFeedback(feedback: feedback) { (success) in
             if(success != -1) {
                 print("Successfully feedback")
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "Feedback Success", message:  "Thank You for your feedback.", preferredStyle: UIAlertControllerStyle.alert)
+                    let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+                        self.navigationController?.popViewController(animated: true)
+                    })
+                    alertController.addAction(alertAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                
+
             } else {
-                //show Alert
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "Feedback Failure", message:  "Server not available", preferredStyle: UIAlertControllerStyle.alert)
+                    let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+                    alertController.addAction(alertAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+               
             }
+        }
+        }else{
+            let alertController = UIAlertController(title: "Feedback Failure", message:  "You should select the location and give your feedback.", preferredStyle: UIAlertControllerStyle.alert)
+            let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+
         }
         
     }
@@ -116,20 +141,15 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let value = collapse.object(at: section) as! Bool
         if value == true {
-            if section != 5{
                 let sectionHeaderTitle = sectionHeader.object(at: section) as! String
                 let arr = dict.value(forKey: sectionHeaderTitle) as! NSArray
                 return arr.count
-            }
-            else if section == 5 {
-                return 1;
-            }
         }
         return 0
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section != 5 {
+
             if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedbackCell"){
                 cell.textLabel?.text = .none
                 
@@ -145,20 +165,6 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
                 cell.backgroundView = UIImageView(image: UIImage(named: "gradient_searchbar"));
                 return cell
             }
-        }
-        else if indexPath.section == 5 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedbackCell"){
-                let headerTextview = UITextView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
-                headerTextview.text = "Please specify"
-                headerTextview.font = UIFont(name: "Courier New", size: 18)
-                headerTextview.tag = 100;
-                cell.addSubview(headerTextview)
-                cell.textLabel?.font = UIFont(name: "Courier New", size: 18)
-                cell.backgroundView = UIImageView(image: UIImage(named: "gradient_searchbar"));
-                cell.selectionStyle = UITableViewCellSelectionStyle.none;
-                return cell
-            }
-        }
         return UITableViewCell()
     }
     
@@ -217,9 +223,9 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
         {
             headerButton.setTitle("-", for: .normal)
         }
-        headerButton.setTitleColor(UIColor.blue, for: .normal)
+        headerButton.setTitleColor(UIColor.white, for: .normal)
         headerButton.tag = section
-        headerButton.frame = CGRect(x:tableView.frame.size.width-60,y:5,width:30,height:40)
+        headerButton.frame = CGRect(x:tableView.frame.size.width-40,y:5,width:30,height:40)
         headerButton.addTarget(self, action: #selector(FeedbackViewController.headerTapped), for: .touchUpInside)
         headerView.addSubview(headerString)
         headerView.addSubview(headerButton)
@@ -261,7 +267,7 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
        // tableView.deselectRow(at: indexPath, animated: true)
         print("Selected row");
         let country = sectionHeader.object(at: indexPath.section) as! String
-        if indexPath.section != 5 {
+        
         let arr = dict.value(forKey: country) as! NSArray
         let headerView = self.view.viewWithTag(0)
         let headerDetailLabel = headerView?.viewWithTag(200+indexPath.section) as? UILabel
@@ -273,7 +279,7 @@ class FeedbackViewController: UIViewController,UITableViewDataSource,UITableView
       //  cell.detailTextLabel?.text = arr.object(at: indexPath.row) as? String
        // cell.detailTextLabel?.sizeToFit();
       //  tableView.reloadData()
-        }
+        
         var val = collapseRows.object(at: indexPath.section) as! Bool
         val = true
         collapseRows.replaceObject(at: indexPath.section, with: val)

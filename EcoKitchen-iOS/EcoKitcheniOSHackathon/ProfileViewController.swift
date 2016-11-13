@@ -30,11 +30,11 @@ class ProfileViewController: UIViewController/*,UIPickerViewDataSource,UIPickerV
         let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.dismissKeyboard));
         view.addGestureRecognizer(tap);
         
-        userConfirmPassword.text = "neo19@gmail.com"
+       /* userConfirmPassword.text = "neo19@gmail.com"
         userAddress.text = "Malibu Point"
         userMobileNumber.text = "9884170853"
         userPassword.text = "Paypal"
-        userName.text = "Paypal"
+        userName.text = "Paypal"*/
 //        genderPicker.dataSource = self;
 //        genderPicker.delegate = self;
 //        datePickerDOB.addTarget(self, action: #selector(ProfileViewController.datePickerChanged), for: UIControlEvents.valueChanged);
@@ -64,7 +64,9 @@ class ProfileViewController: UIViewController/*,UIPickerViewDataSource,UIPickerV
         register.name = userName.text
         register.password = userPassword.text
         responseFlag = false
-        manager.signUp(register : register) { (userId) in
+        
+        if userPassword.text == userConfirmPassword.text{
+            manager.signUp(register : register) { (userId) in
             if userId != -1 {
                 self.responseFlag = true
                 GLOBAL_USERID = userId
@@ -77,6 +79,12 @@ class ProfileViewController: UIViewController/*,UIPickerViewDataSource,UIPickerV
                 alertController.addAction(alertAction)
                 self.present(alertController, animated: true, completion: nil)
             }
+        }
+        }else {
+            let alertController = UIAlertController(title: "Password Failure", message:  "Password mismatch", preferredStyle: UIAlertControllerStyle.alert)
+            let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 //    @IBAction func genderBtnPressed(_ sender: AnyObject) {

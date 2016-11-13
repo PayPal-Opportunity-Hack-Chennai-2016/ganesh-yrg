@@ -15,8 +15,15 @@ class SelectKioskTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.tableView.frame.size.height))
+        let image = UIImage(named: "gradient_searchbar")
+        imageView.image = image
+        self.tableView.addSubview(imageView)
+        self.tableView.sendSubview(toBack: imageView)
+        tableView.tableFooterView = UIView()
+
         let manager = ServiceManager()
+
         manager.allLocations { (locations) in
             DispatchQueue.main.async {
                 self.locations = locations
@@ -41,6 +48,14 @@ class SelectKioskTableViewController: UITableViewController {
         let address = locations[indexPath.row].address
         
         cell?.textLabel?.text = address
+        cell?.textLabel?.textColor = UIColor.white
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50))
+        let image = UIImage(named: "gradient_searchbar")
+        imageView.image = image
+        cell?.addSubview(imageView)
+        cell?.sendSubview(toBack: imageView)
+
         
         return cell!
     }

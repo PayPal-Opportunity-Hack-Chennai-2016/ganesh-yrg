@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.food.ecokitchen.R;
@@ -34,43 +35,54 @@ public class ThankYouActivity extends AppCompatActivity {
 
         appSharedPreferences = new AppSharedPreferences(getApplicationContext());
 
-        String userName = appSharedPreferences.getStringPreferences(MyConstants.PREF_KEY_NAME);
-        if (userName.equals("")){
-            userName = "User";
-        }
 
-        txtUserName = (TextView)findViewById(R.id.txt_user_name);
-        txtThanksMsg = (TextView)findViewById(R.id.txt_thanks_msg);
-        txtDeliveryAddress = (TextView)findViewById(R.id.txt_delivery_address);
-        txtDonorAddress = (TextView)findViewById(R.id.txt_donor_address);
-        txtDonorMsg= (TextView)findViewById(R.id.txt_donation_title);
-        txtDelieveryMsg = (TextView)findViewById(R.id.txt_delivery_title);
 
-        readIntentData();
 
-        if (fromActivity == null) fromActivity = "";
+        findViewById(R.id.gotohome).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
 
-        if (fromActivity.equals(MyConstants.KEY_DONOR)){
-            addTextData(userName,getString(R.string.thankyou_donation));
-        }else if(fromActivity.equals(MyConstants.KEY_VOLUNTEER)){
-            addTextData(userName,getString(R.string.thankyou_volunteer));
-        }else if(fromActivity.equals(MyConstants.KEY_MAP_LOCATION)){
-            addTextData(userName,getString(R.string.thankyou_map_location));
-        }
+            }
+        });
 
-        if (donorFoodObj != null && donorFoodObj.getAddress() != null){
-            txtDonorMsg.setVisibility(View.VISIBLE);
-            txtDonorAddress.setVisibility(View.VISIBLE);
-            txtDonorAddress.setText(donorFoodObj.getAddress());
-            addTextData(userName, getString(R.string.thankyou_volunteer));
-        }
-
-        if (deliveryFoodObject != null && deliveryFoodObject.getAddress() != null){
-            txtDelieveryMsg.setVisibility(View.VISIBLE);
-            txtDeliveryAddress.setVisibility(View.VISIBLE);
-            txtDeliveryAddress.setText(deliveryFoodObject.getAddress());
-            addTextData(userName, getString(R.string.thankyou_volunteer));
-        }
+//        String userName = appSharedPreferences.getStringPreferences(MyConstants.PREF_KEY_NAME);
+//        if (userName.equals("")){
+//            userName = "User";
+//        }
+//
+//        txtUserName = (TextView)findViewById(R.id.txt_user_name);
+//        txtThanksMsg = (TextView)findViewById(R.id.txt_thanks_msg);
+//        txtDeliveryAddress = (TextView)findViewById(R.id.txt_delivery_address);
+//        txtDonorAddress = (TextView)findViewById(R.id.txt_donor_address);
+//        txtDonorMsg= (TextView)findViewById(R.id.txt_donation_title);
+//        txtDelieveryMsg = (TextView)findViewById(R.id.txt_delivery_title);
+//
+//        readIntentData();
+//
+//        if (fromActivity == null) fromActivity = "";
+//
+//        if (fromActivity.equals(MyConstants.KEY_DONOR)){
+//            addTextData(userName,getString(R.string.thankyou_donation));
+//        }else if(fromActivity.equals(MyConstants.KEY_VOLUNTEER)){
+//            addTextData(userName,getString(R.string.thankyou_volunteer));
+//        }else if(fromActivity.equals(MyConstants.KEY_MAP_LOCATION)){
+//            addTextData(userName,getString(R.string.thankyou_map_location));
+//        }
+//
+//        if (donorFoodObj != null && donorFoodObj.getAddress() != null){
+//            txtDonorMsg.setVisibility(View.VISIBLE);
+//            txtDonorAddress.setVisibility(View.VISIBLE);
+//            txtDonorAddress.setText(donorFoodObj.getAddress());
+//            addTextData(userName, getString(R.string.thankyou_volunteer));
+//        }
+//
+//        if (deliveryFoodObject != null && deliveryFoodObject.getAddress() != null){
+//            txtDelieveryMsg.setVisibility(View.VISIBLE);
+//            txtDeliveryAddress.setVisibility(View.VISIBLE);
+//            txtDeliveryAddress.setText(deliveryFoodObject.getAddress());
+//            addTextData(userName, getString(R.string.thankyou_volunteer));
+//        }
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

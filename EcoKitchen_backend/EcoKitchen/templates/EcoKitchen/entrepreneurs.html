@@ -27,18 +27,18 @@
 			<header>
 				<h1>List of referred <em>Entrepreneurs</em> <span>Validation of users</span></h1>	
 				<nav class="codrops-demos">
-					<a class="current-demo" href="../feedbackpage">Feedback</a>
+					<a href="../feedbackpage">Feedback</a>
 					<a href="../locationspage" title="Locations of Entrepreneurs">Locations of Entrepreneurs</a>
 					<a href="../userspage">List of users</a>
-					<a href="../entrepreneurs">List of Entrepreneurs</a>
+					<a class="current-demo" href="../entrepreneurs">List of Entrepreneurs</a>
 					
 					
 					
 				</nav>
 			</header>
 			<div class="component">
-				<h2>Entrepreneurs</h2>
-				<p>List of entrepreneurs who are enrolled at present</p>
+				<h2>Entrepreneurs:</h2>
+				<p>List of entrepreneurs who are enrolled</p>
 				
 				<table>
 					<thead>
@@ -56,8 +56,14 @@
 					</thead>
 					<tbody>
 						{% for entre in entre_list %}
-                        <tr><td align="left">{{entre.person}}</td><td align="left">{{entre.name}}</td><td align="left">{{entre.assignedlocation}}</td><td align="left">{{entre.phone}}</td><td align="left">{{entre.incomeRange}}</td><td align="left">{{entre.maritalStatus}}</td><td align="left">{{entre.description}}</td></tr>
-
+                        <tr>
+							<td align="left">{{entre.user.name}}</td>
+							<td align="left"><a href="{% url 'EcoKitchen:entredetail' entre.id %}">{{entre.name}}</a></td>
+							<td align="left">{{entre.location.address}}</td>
+							<td align="left">{{entre.phone}}</td>
+							<td align="left">{{entre.incomeRange}}</td>
+							<td align="left">{{entre.maritalStatus}}</td>
+							<td align="left">{{entre.description}}</td></tr>
                         {% endfor %}
 					</tbody>
 				</table>

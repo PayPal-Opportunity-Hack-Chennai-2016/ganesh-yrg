@@ -37,21 +37,31 @@
 				</nav>
 			</header>
 			<div class="component">
-				<h2>Entrepreneurs</h2>
-				<p>List of entrepreneurs who are enrolled at present</p>
-				
+				<h2>Feedback:</h2>
+				<p>List of feedback received from users (Ratings of 5)</p>
 				<table>
 					<thead>
 						<tr>
 							<th>Person</th>
+							<th>Recommendation</th>
+							<th>Courtesy</th>
+							<th>Quality Of Food</th>
+							<th>Quantity Of Food</th>
+							<th>Cleanliness</th>
 							<th>Location</th>
-							<th>Feedback</th>
-							
 						</tr>
 					</thead>
 					<tbody>
 						{% for fdbk in feedback_list %}
-                        <tr><td align="left">{{fdbk.person}}</td><td align="left">{{fdbk.loc}}</td><td align="left">{{fdbk.content}}</td></tr>
+                        <tr>
+							<td align="left">{{fdbk.user.name}}</td>
+							<td align="left">{{fdbk.content}}</td>
+							<td align="left">{{fdbk.qualityOfFood}}</td>
+							<td align="left">{{fdbk.quantityOfFood}}</td>
+							<td align="left">{{fdbk.foodTaste}}</td>
+							<td align="left">{{fdbk.cleanliness}}</td>
+							<td align="left">{{fdbk.location.address}}</td>
+						</tr>
 
                         {% endfor %}
 					</tbody>

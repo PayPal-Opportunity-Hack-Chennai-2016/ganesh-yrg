@@ -1,17 +1,15 @@
-import logging
-
-from django.core.exceptions import MultipleObjectsReturned
-from django.core.exceptions import ObjectDoesNotExist
+import logging,hashlib,base64
+from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
 from django.db.models import Q
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from rest_framework import serializers
-from rest_framework.decorators import api_view
-from rest_framework.decorators import parser_classes
+from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
-
-from EcoKitchen.models import UserProfile,Location,FeedBack,ReferredPerson
+from .models import UserProfile,Location,FeedBack,ReferredPerson
+import logging
 
 # Create your views here.
 
@@ -23,7 +21,9 @@ UserProfile_PASSWORD = "password"
 UserProfile_EMAIL = "email"
 UserProfile_ADDRESS = "address"
 UserProfile_MOBILE = "mobile"
-# Create your views here.
+HASH_SALT = b'SECRET_SALT'
+NUM_ITERATIONS = 10000
+
 def post_list(self, *args, **kwargs):
   return HttpResponse('{"success":"true"}')
 
@@ -39,7 +39,7 @@ class LocationSerializer(serializers.Serializer):
 @parser_classes((JSONParser,))
 def signInUser(request):
   logger.critical(request.method)
-  logger.critical("DATA :: " + request.body)
+  #logger.critical("DATA :: " + request.body)
   result = True;
   msg = None;
   userProfile = None
@@ -47,12 +47,13 @@ def signInUser(request):
   if request.method == 'POST' and request.content_type == 'application/json' :
     mobile = request.data[UserProfile_MOBILE]
     password = request.data[UserProfile_PASSWORD]
+    passwordHash = base64.b64encode(hashlib.pbkdf2_hmac('sha256', password, HASH_SALT, NUM_ITERATIONS))
     try :
-        userProfile = UserProfile.objects.get(mobile=mobile, password=password)
+        userProfile = UserProfile.objects.get(mobile=mobile, password=passwordHash)
     except ObjectDoesNotExist:
         logger.critical("User did not exist")
         result = False
-        msg = "User did not exist"
+        msg = "Wrong User Name password Combination"
     except MultipleObjectsReturned:
         logger.critical("Multiple objects returned")
         msg = "Multiple objects returned"
@@ -70,7 +71,7 @@ def signInUser(request):
 @api_view(['POST'])
 @parser_classes((JSONParser,))
 def signUpUser(request):
-    logger.critical("DATA :: " + request.body)
+    #logger.critical("DATA :: " + request.body)
 
     result = True
     msg = None
@@ -78,6 +79,9 @@ def signUpUser(request):
     if request.method == 'POST' and request.content_type == 'application/json' :
         name = request.data[UserProfile_NAME]
         password = request.data[UserProfile_PASSWORD]
+        #logger.critical("PAssword:: " + password)
+        passwordHash = base64.b64encode(hashlib.pbkdf2_hmac('sha256', password, HASH_SALT, NUM_ITERATIONS))
+        #logger.critical("PAssword hash:: " + passwordHash)
         email = request.data[UserProfile_EMAIL]
         address = request.data[UserProfile_ADDRESS]
         mobile = request.data[UserProfile_MOBILE]
@@ -90,7 +94,7 @@ def signUpUser(request):
                 result = False
                 msg = "A user is present with same email or mobile number"
             else:
-                userProfile = UserProfile(name=name, password=password,
+                userProfile = UserProfile(name=name, password=passwordHash,
                                   email=email, address=address, mobile=mobile)
                 userProfile.save()
         except Exception as e:
@@ -111,7 +115,7 @@ def signUpUser(request):
 
 def getLocation(request, locationId):
     logger.critical(request.method)
-    logger.critical("DATA :: " + request.body)
+    #logger.critical("DATA :: " + request.body)
     result = True
     msg = None
     location = None
@@ -170,7 +174,7 @@ def postLocation(request):
                           address=address, description=description, status=status, user=userReferenced)
                 location.save()
         except Exception as ex:
-            logger.critical("Cannot insert succesfully:" + str(ex))
+            #logger.critical("Cannot insert succesfully:" + str(ex))
             result = False
             msg = "DB insertion error"
     else:
@@ -316,17 +320,47 @@ def entrepreneurs(request):
 
 
 
-def locationdetail(request, location_id):
-    location = get_object_or_404(Location, pk=location_id)
+def userdetail(request, user_id):
+    usr = get_object_or_404(UserProfile, pk=user_id)
     if(request.POST.get('subbtn')):
         inplist = request.POST.getlist('i_case')
         outlist = request.POST.getlist('o_case')
 
-    return render(request, 'EcoKitchen/locationdetail.html', {'loc': location})
+    return render(request, 'EcoKitchen/userdetail.html', {'usr': usr})
 
-def userdetail(request, user_id):
-   usr = get_object_or_404(UserProfile, pk=user_id)
-   if(request.POST.get('subbtn')):
-       inplist = request.POST.getlist('i_case')
-       outlist = request.POST.getlist('o_case')
-   return render(request, 'EcoKitchen/userdetail.html', {'usr': usr})
+def locationdetail(request, location_id):
+   location = get_object_or_404(Location, pk=location_id)
+   if(request.POST.get('update')):
+        location.address = request.POST.get('field6')
+        location.status = request.POST.get('choice')
+        location.description = request.POST.get('field3')
+        location.lat = request.POST.get('field4')
+        location.long = request.POST.get('field5')
+        location.save()
+        return redirect('/EcoKitchen/locationspage')
+   return render(request, 'EcoKitchen/locationdetail.html', {'location': location})
+
+def entredetail(request, entre_id):
+    entre = get_object_or_404(ReferredPerson, pk=entre_id)
+    locs = Location.objects.all()
+    logger.critical(request.body)
+    if(request.POST.get('update')):
+        if(request.POST.get('choice')=='nil'):
+            logger.critical("+++++++ Trying to make as inactive")
+            locationId =request.POST.get('locationId')
+            loca = Location.objects.get(id=locationId )
+            loca.status=False
+            loca.save()
+            entre.location = None
+            entre.save()
+        if(request.POST.get('choice')!='nil'):
+            logger.critical("+++++++ Trying to make as active")
+            locationId =request.POST.get('locationId')
+            loca = Location.objects.get(id=locationId )
+            loca.status=True
+            loca.save()
+            entre.location = loca
+            entre.save()
+
+        return redirect('/EcoKitchen/locationspage')
+    return render(request, 'EcoKitchen/entredetail.html', {'entre': entre,'locs':locs})

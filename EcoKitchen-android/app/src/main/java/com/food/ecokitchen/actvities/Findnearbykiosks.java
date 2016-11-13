@@ -160,18 +160,20 @@ public class Findnearbykiosks extends AppCompatActivity {
             for (int i = 0; i < markersArray.size(); i++) {
 
 //                drawMarker(new LatLng(Double.parseDouble(locationList.get(i).getLatitude()), Double.parseDouble(locationList.get(i).getLongitude())), locationList.get(i).getNo());
-                LatLng latLng = new LatLng(markersArray.get(i).getLat(),(markersArray.get(i).getLong1()));
+                LatLng latLng = new LatLng(markersArray.get(i).getLat(), (markersArray.get(i).getLong1()));
+                if (!markersArray.get(i).getStatus().equalsIgnoreCase("false")) {
+                    System.out.println(markersArray.size() + "imhere");
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(latLng) //setting position
+                            .draggable(true) //Making the marker draggable
+                            //.snippet(locationInfoList.get(i).getAddress() + "\nDistance : " + new DecimalFormat("#.00").format(distance) + " km")
+                            .snippet(markersArray.get(i).getAddress() + "\nDescription " + markersArray.get(i).getDescription())
+//                            .title(markersArray.get(i).getStatus()) //Adding a title
+                            .title(markersArray.get(i).getStatus()) //Adding a title
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(markersArray.get(i).getLat(), (markersArray.get(i).getLong1())), 10));
 
-                System.out.println(markersArray.size()+"imhere");
-                googleMap.addMarker(new MarkerOptions()
-                        .position(latLng) //setting position
-                        .draggable(true) //Making the marker draggable
-                        //.snippet(locationInfoList.get(i).getAddress() + "\nDistance : " + new DecimalFormat("#.00").format(distance) + " km")
-                        .snippet(markersArray.get(i).getAddress()+"\nDescription "+markersArray.get(i).getDescription())
-                        .title(markersArray.get(i).getStatus()) //Adding a title
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(markersArray.get(i).getLat(),(markersArray.get(i).getLong1())), 10));
-
+                }
             }
 
         }

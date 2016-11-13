@@ -16,11 +16,15 @@ class ViewController: UIViewController, UITextFieldDelegate{
     private var responseReceived = false
     
     override func viewDidLoad() {
+        
+        let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard));
+        view.addGestureRecognizer(tap);
+        
         super.viewDidLoad()
         self.mobileNumber.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
-        mobileNumber.text = "9884170853"
-        password.text = "Paypal"
+       // mobileNumber.text = "9884170853"
+       // password.text = "Paypal"
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,6 +62,10 @@ class ViewController: UIViewController, UITextFieldDelegate{
     @IBAction func signUpBtnPressed(_ sender: AnyObject) {
         self.performSegue(withIdentifier:"ProfileViewController" , sender: nil);
 
+    }
+    
+    func dismissKeyboard(){
+        self.view.endEditing(true);
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

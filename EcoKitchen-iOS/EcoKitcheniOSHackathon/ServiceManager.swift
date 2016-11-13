@@ -11,7 +11,7 @@ import Foundation
 
 class ServiceManager {
     
-    private let BASE_URL = "http://192.168.113.25:80/api/"
+    private let BASE_URL = "http://192.168.115.1:8080/api/"
     
     func signIn(mobile: String, password: String, completion:@escaping (_ userId: Int) -> Void) {
         // mobile
@@ -150,8 +150,8 @@ class ServiceManager {
         }
     }
     
-    
-    func updateLocation(location : Location) {
+   
+    func updateLocation(location : Location, completion:@escaping (_ success: Int) -> Void) {
         // mobile
         // password
         
@@ -182,11 +182,12 @@ class ServiceManager {
                         if success {
                             let locationId = jsonData?["locationId"] as? Int
                             print("userID\(locationId)")
-                            // show alert
+                            completion(locationId!)
                         
                         } else {
                             let message = jsonData?["message"] as? String
                             print(message)
+                            completion(-1)
                         }
                     } else {
                         print("No Data")
@@ -240,4 +241,48 @@ class ServiceManager {
             task.resume()
         }
     }
+    
+    
+    func updateRefEntrepreneur(refEntreprenuer : RefEnterpreneur, completion:@escaping (_ success: Int) -> Void) {
+        // mobile
+        // password
+        
+        let urlString = BASE_URL + "referEntrepreneur"
+        
+        let url = URL(string: urlString)
+        if let url = url {
+            var urlRequest = URLRequest(url: url)
+            // params
+            // content type
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")  // the request is JSON
+            urlRequest.httpMethod = "POST"
+            let params = ["name":refEntreprenuer.name,"location":"","phone": refEntreprenuer.phone,"incomeRange":refEntreprenuer.incomeRange, "maritalStatus":refEntreprenuer.maritalStatus,"description":"","qualification":refEntreprenuer.qualificaiton,"userId":GLOBAL_USERID,"gender":refEntreprenuer.gender] as [String : Any];
+            let data = try! JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+            urlRequest.httpBody = data;//paramString.data(using: String.Encoding.utf8)
+            
+            let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    // JSON Serialization
+                    if let data = data {
+                        
+                        let jsonData = try! JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]
+                        let success = jsonData?["success"] as! Bool
+                        if success {
+                            completion(1)
+                        } else {
+                            completion(-1)
+                        }
+                    } else {
+                        print("No Data")
+                    }
+                }
+                
+            }
+            task.resume()
+        }
+    }
+
 }
