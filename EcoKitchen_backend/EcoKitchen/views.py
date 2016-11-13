@@ -1,6 +1,7 @@
 import logging,hashlib,base64
 from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
 from django.db.models import Q
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
@@ -8,6 +9,21 @@ from rest_framework import serializers
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
 from EcoKitchen.models import UserProfile,Location,FeedBack,ReferredPerson
+
+from django.utils import timezone
+from django.http import Http404
+import requests
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth import login
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+
+from django.template import loader
+from .models import UserProfile,Location,FeedBack,ReferredPerson
+import logging
+
+# Create your views here.
 
 logging.basicConfig()
 logger = logging.getLogger(__name__)
@@ -35,7 +51,7 @@ class LocationSerializer(serializers.Serializer):
 @parser_classes((JSONParser,))
 def signInUser(request):
   logger.critical(request.method)
-  logger.critical("DATA :: " + request.body)
+  #logger.critical("DATA :: " + request.body)
   result = True;
   msg = None;
   userProfile = None
@@ -67,7 +83,7 @@ def signInUser(request):
 @api_view(['POST'])
 @parser_classes((JSONParser,))
 def signUpUser(request):
-    logger.critical("DATA :: " + request.body)
+    #logger.critical("DATA :: " + request.body)
 
     result = True
     msg = None
@@ -75,9 +91,9 @@ def signUpUser(request):
     if request.method == 'POST' and request.content_type == 'application/json' :
         name = request.data[UserProfile_NAME]
         password = request.data[UserProfile_PASSWORD]
-        logger.critical("PAssword:: " + password)
+        #logger.critical("PAssword:: " + password)
         passwordHash = base64.b64encode(hashlib.pbkdf2_hmac('sha256', password, HASH_SALT, NUM_ITERATIONS))
-        logger.critical("PAssword hash:: " + passwordHash)
+        #logger.critical("PAssword hash:: " + passwordHash)
         email = request.data[UserProfile_EMAIL]
         address = request.data[UserProfile_ADDRESS]
         mobile = request.data[UserProfile_MOBILE]
@@ -111,7 +127,7 @@ def signUpUser(request):
 
 def getLocation(request, locationId):
     logger.critical(request.method)
-    logger.critical("DATA :: " + request.body)
+    #logger.critical("DATA :: " + request.body)
     result = True
     msg = None
     location = None
@@ -170,7 +186,7 @@ def postLocation(request):
                           address=address, description=description, status=status, user=userReferenced)
                 location.save()
         except Exception as ex:
-            logger.critical("Cannot insert succesfully:" + str(ex))
+            #logger.critical("Cannot insert succesfully:" + str(ex))
             result = False
             msg = "DB insertion error"
     else:
@@ -326,7 +342,34 @@ def locationdetail(request, location_id):
 
 def userdetail(request, user_id):
    usr = get_object_or_404(UserProfile, pk=user_id)
-   if(request.POST.get('subbtn')):
-       inplist = request.POST.getlist('i_case')
-       outlist = request.POST.getlist('o_case')
+   if(request.POST.get('update')):
+         location.address = request.POST.get('field6')
+         location.status = request.POST.get('choice')
+         location.description = request.POST.get('field3')
+         location.lat = request.POST.get('field4')
+         location.long = request.POST.get('field5')
+         location.save()
+         return redirect('/EcoKitchen/locationspage')
    return render(request, 'EcoKitchen/userdetail.html', {'usr': usr})
+
+def entredetail(request, entre_id):
+    entre = get_object_or_404(ReferredPerson, pk=entre_id)
+    locs = Location.objects.all()
+    logger.critical(request.body)
+    if(request.POST.get('update')):
+        if(request.POST.get('choice')=='nil'):
+            logger.critical("+++++++ Trying to make as inactive")
+            loca = Location.objects.get(address=str(entre.assignedlocation))
+            loca.status="inactive"
+            loca.save()
+            entre.assignedlocation="nil"
+            entre.save()
+        if(request.POST.get('choice')!='nil'):
+            logger.critical("+++++++ Trying to make as active")
+            entre.assignedlocation=request.POST.get('choice')
+            entre.save()
+            loca = Location.objects.get(address=str(entre.assignedlocation))
+            loca.status="active"
+            loca.save()
+        return redirect('/EcoKitchen/locationspage')
+    return render(request, 'EcoKitchen/entredetail.html', {'entre': entre,'locs':locs})

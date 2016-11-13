@@ -18,4 +18,5 @@ urlpatterns = [
     url(r'^locationdetail/(?P<location_id>[0-9]+)/$', views.locationdetail, name='locationdetail'),
     url(r'^userdetail/(?P<user_id>[0-9]+)/$', views.userdetail, name='userdetail'),    
     url(r'^entrepreneurs/$', views.entrepreneurs, name='entrepreneurs'),
+    url(r'^entredetail/(?P<entre_id>[0-9]+)/$', views.entredetail, name='entredetail'),
 ]

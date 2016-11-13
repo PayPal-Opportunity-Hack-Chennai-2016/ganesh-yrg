@@ -121,17 +121,18 @@
 				<table>
 					<thead>
 						<tr>
-							<th>User profile</th>
-							<th>Location</th>
-							<th>Latitude</th>
-							<th>Longitude</th>
-							<th>Status</th>
+							<th>Referrer</th>
+							<th>Name</th>
+							<th>Assigned Location</th>
+							<th>Phone</th>
+							<th>Income Range</th>
+							<th>Marital Status</th>
 							<th>Description</th>
 						</tr>
 					</thead>
 					<tbody>
 						
-                        <tr><td align="left">{{loc.usr}}</td><td align="left">{{loc.address}}</td><td align="left">{{loc.lat}}</td><td align="left">{{loc.long}}</td><td align="left">{{loc.status}}</td><td align="left">{{loc.description}}</td></tr>
+                        <tr><td align="left">{{entre.person}}</td><td align="left">{{entre.name}}</td><td align="left">{{entre.assignedlocation}}</td><td align="left">{{entre.incomeRange}}</td><td align="left">{{entre.maritalStatus}}</td><td align="left">{{entre.description}}</td></tr>
 
                        
 					</tbody>
@@ -139,18 +140,19 @@
 				
 			</div>
 			<div class="form-style-6">
-            <h1>Enter Details to modify</h1>
+            <h1>Select Choice to modify</h1>
             <form method='post'>
 			{% csrf_token %}
-			<input type="text" name="field1" placeholder="Location" value="{{loc.usr}}" />
-			<input type="text" name="field6" placeholder="location" value="{{loc.address}}"/>
-			<label for="active">ACTIVE</label>
-			<input type="radio" name="choice" id="active" value="active" /><br><br>
-			<label for="inactive">INACTIVE</label>
-			<input type="radio" name="choice" id="inactive" value="inactive" />
-			<input type="text" name="field3" placeholder="Type new Description" value="{{loc.description}}"/>
-			<input type="text" name="field4" placeholder="Latitude" value="{{loc.lat}}" />
-			<input type="text" name="field5" placeholder="Longtitude" value="{{loc.long}}" />
+			{% for loc in locs %}
+			{% ifequal loc.status "inactive" %}
+			<label for="active">{{loc.address}}</label>
+			<input type="radio" name="choice" id="active" value={{loc.address}} /><br><br>
+			{% endifequal %}
+			{% endfor %}
+			<h1>Select the option below to make the assigned location nil</h1>
+			<label for="nil">NIL</label>
+			<input type="radio" name="nil" id="nil" value="nil" /><br><br>
+			
 			
 			<input type="submit" value="Update" name="update" />
 			</form>
