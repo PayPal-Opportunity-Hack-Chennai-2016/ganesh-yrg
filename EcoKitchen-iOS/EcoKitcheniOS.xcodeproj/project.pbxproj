@@ -30,6 +30,8 @@
 		C8F080D11DD7EC8B00C2F9D3 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F080D01DD7EC8B00C2F9D3 /* Common.swift */; };
 		C8F080D31DD81BAA00C2F9D3 /* SelectKioskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F080D21DD81BAA00C2F9D3 /* SelectKioskTableViewController.swift */; };
 		C8F080D51DD821F700C2F9D3 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F080D41DD821F700C2F9D3 /* Feedback.swift */; };
+		C8F080D71DD82F0300C2F9D3 /* RefEntrepreneurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F080D61DD82F0300C2F9D3 /* RefEntrepreneurViewController.swift */; };
+		C8F080D91DD842FC00C2F9D3 /* RefEnterpreneur.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F080D81DD842FC00C2F9D3 /* RefEnterpreneur.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		C8F080D01DD7EC8B00C2F9D3 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		C8F080D21DD81BAA00C2F9D3 /* SelectKioskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectKioskTableViewController.swift; sourceTree = "<group>"; };
 		C8F080D41DD821F700C2F9D3 /* Feedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
+		C8F080D61DD82F0300C2F9D3 /* RefEntrepreneurViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefEntrepreneurViewController.swift; sourceTree = "<group>"; };
+		C8F080D81DD842FC00C2F9D3 /* RefEnterpreneur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefEnterpreneur.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +194,7 @@
 				C83A18081DD71D68009126F4 /* ProfileViewController.swift */,
 				C84A450F1DD730C9009CCFA2 /* FlowViewController.swift */,
 				C8F080D21DD81BAA00C2F9D3 /* SelectKioskTableViewController.swift */,
+				C8F080D61DD82F0300C2F9D3 /* RefEntrepreneurViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 				C8506B141DD7A2F000FE9C73 /* RegistrationModel.swift */,
 				C8506B1C1DD7B50400FE9C73 /* Location.swift */,
 				C8F080D41DD821F700C2F9D3 /* Feedback.swift */,
+				C8F080D81DD842FC00C2F9D3 /* RefEnterpreneur.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -372,9 +378,11 @@
 				C83A18091DD71D68009126F4 /* ProfileViewController.swift in Sources */,
 				C8506B1B1DD7B0AA00FE9C73 /* NearByLocationViewController.swift in Sources */,
 				C8F080D31DD81BAA00C2F9D3 /* SelectKioskTableViewController.swift in Sources */,
+				C8F080D71DD82F0300C2F9D3 /* RefEntrepreneurViewController.swift in Sources */,
 				C84A45121DD73850009CCFA2 /* FlowTableViewCell.swift in Sources */,
 				C8506B1D1DD7B50400FE9C73 /* Location.swift in Sources */,
 				C83A17DD1DD71AB6009126F4 /* ViewController.swift in Sources */,
+				C8F080D91DD842FC00C2F9D3 /* RefEnterpreneur.swift in Sources */,
 				C8F080D11DD7EC8B00C2F9D3 /* Common.swift in Sources */,
 				C8506B191DD7B02F00FE9C73 /* Theme.swift in Sources */,
 				C8506B131DD7908900FE9C73 /* ServiceManager.swift in Sources */,
@@ -537,7 +545,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2P797DB3HH;
 				INFOPLIST_FILE = EcoKitcheniOSHackathon/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.citi.madan.EcoKitcheniOSHackathon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -551,7 +559,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2P797DB3HH;
 				INFOPLIST_FILE = EcoKitcheniOSHackathon/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.citi.madan.EcoKitcheniOSHackathon;
 				PRODUCT_NAME = "$(TARGET_NAME)";

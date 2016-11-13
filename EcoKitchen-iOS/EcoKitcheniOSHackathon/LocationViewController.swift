@@ -137,7 +137,26 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UIPic
         let description = reasonForReferal[selectedRow]
         let location = Location(address: addressLabel.text, description: description,
                                 status: true, latitude: lat, longitude: long)
-        serviceManager.updateLocation(location: location)
+        serviceManager.updateLocation(location: location) { (locationId) in
+            if locationId != -1 {
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "Location Referal Success", message:  "Thank You for your location Referral.", preferredStyle: UIAlertControllerStyle.alert)
+                    let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+                        self.navigationController?.popViewController(animated: true)
+                    })
+                    alertController.addAction(alertAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                
+            } else {
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "Location Referal Failure", message:  "Location is already available", preferredStyle: UIAlertControllerStyle.alert)
+                    let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+                    alertController.addAction(alertAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     func updateMapCoordinates(gestureReconizer : UILongPressGestureRecognizer) {
@@ -233,4 +252,5 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UIPic
         selectedRow = row
        pickerView.selectRow(row, inComponent: component, animated: true)
     }
+    
 }
