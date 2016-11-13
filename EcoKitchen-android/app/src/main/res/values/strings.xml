@@ -1,3 +1,102 @@
 <resources>
-    <string name="app_name">Eco Kitchen</string>
+    <string name="app_name">ECO Kitchen</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="home">Dashboard</string>
+
+    <string name="thankyou_donation">Thank you for donation</string>
+
+    <string name="google_api_key">AIzaSyC-yNXRZTkMBzAQ8A_gNfTzi1tTGRYitgM</string>
+
+    <!--<string name="google_api_key_new">AIzaSyA9IKPkK7FMPTMoJcOiJeWImnx_VmnR6kc</string>-->
+
+    <string name="accept_as_volunteer">I wolud like to volunteer for delivering food and receive notifications about food donation</string>
+
+    <string name="select_available_donation_message">Please select the location from where you would like to pick up the food</string>
+
+    <string name="select_available_delivery_message">Please select the location where you want to deliver the foods from the list of charities below</string>
+
+    <string name="donate_food">ECO Kitchen</string>
+    <string name="volunteer">ECO Kitchen</string>
+    <string name="map_a_location">ECO Kitchen</string>
+
+    <!--<string name="banner_msg">Our goal is to Stop Food Wastage!</string>-->
+    <string name="banner_msg">Feed People! Not Landfills!</string>
+
+    <string name="valid_name">Please enter valid name</string>
+    <string name="valid_mobile">Please enter valid mobile number</string>
+
+    <string name="alert_msg">Are you sure about the pickup location and delivery location?</string>
+
+    <string name="unable_to_connect">Unable to get data.Please try again</string>
+
+    <string name="thnxvolunter">This is a conformation message for your volunteering to delevery the food </string>
+    <string name="thnxdonator">Your food donation has been accepted and our volunteer will pick it up shortly.</string>
+    <string name="txtvolunter_Details">Raviji \n 9500369624</string>
+    <string name="txtDonation_Details">Dinner 8kg 4th street,\n saligram,chennai\n (8 kms from current location)</string>
+    <string name="Delevery_location">Siva nantha ashram \n kattankultuthur \n GST Road ,Chennai</string>
+
+    <string name="thankyou_volunteer">Your request to collect the foods from the donor is accepted.The details of the pick up and delivery locations are given bellow</string>
+
+    <string name="thankyou_map_location">Thank you for sharing the location of needy people.we will verifiy it and update.</string>
+    <string name="name">Enter Name</string>
+    <string name="connected">You are registered</string>
+    <string name="required">Enter the required values</string>
+    <string name="FeedBack">FeedBack</string>
+    <string name="refer_Entrepreneur">Refer Entrepreneur</string>
+    <string name="About_Us">About Us</string>
+    <string name="refer_Location">Refer Location</string>
+    <string name="find_nearby_Kiosks">Find nearby Kiosks</string>
+    <string name="aboutus">KATHIR is an innovative opportunity for disadvantaged urban women impacted by domestic/partner violence and in need of resources to care for people living with chronic and debilitating diseases. It helps them realize their livelihood aspirations.  The impact of KATHIR is manifold: Improved self-esteem for women Enhanced disposable incomes A purpose to be mobile - leaving the confines of their household Improved sense of empowerment Supports education, nutrition and health for their children Affordable, safe meals to the community  Process \"KATHIR\" is a retail opportunity. It offers meals for resale. KATHIR is popular because it respects work-life balance: women are expected to work between 11 AM and 3 PM, MON-SAT. This reduces conflict at home and allows time for women to play other roles expected by their society. They earn between Rs 300 - 400 each working day.</string>
+    <string name="passwd_not_match">The passwords dont match</string>
+    <string-array name="curt">
+        <item></item>
+        <item>Excellent</item>
+        <item>Good</item>
+        <item>Average</item>
+        <item>Need to improve</item>
+
+    </string-array>
+
+    <string-array name="quality">
+        <item></item>
+        <item>Excellent</item>
+        <item>Good</item>
+        <item>Average</item>
+        <item>Need to improve</item>
+    </string-array>
+
+    <string-array name="quantity">
+        <item></item>
+        <item>Excellent</item>
+        <item>Good</item>
+        <item>Average</item>
+        <item>Need to improve</item>
+    </string-array>
+
+    <string-array name="taste">
+        <item></item>
+        <item>Excellent</item>
+        <item>Good</item>
+        <item>Average</item>
+        <item>Need to improve</item>
+    </string-array>
+
+    <string-array name="cleanliness">
+        <item></item>
+        <item>Excellent</item>
+        <item>Good</item>
+        <item>Average</item>
+        <item>Need to improve</item>
+
+    </string-array>
+
+
+
+
+
+
+
 </resources>

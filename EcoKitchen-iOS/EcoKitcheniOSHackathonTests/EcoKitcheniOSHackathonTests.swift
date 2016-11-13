@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import EcoKitcheniOSHackathon
+@testable import EcoKitcheniOS
 
 class EcoKitcheniOSHackathonTests: XCTestCase {
     
